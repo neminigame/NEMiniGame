@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
     public Vector3 dir;
     public float speed, rspeed;
     public bool show_line;
+    private float _timeScale = 0.1f;
     private float tspeed, trspeed;//前进速度，旋转速度
     private Vector3 mouse1, mouse2;//第一次鼠标，第二次鼠标位置
     // Start is called before the first frame update
@@ -27,7 +28,10 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetMouseButton(0))
         {
-            mouse2 = Input.mousePosition;
+            //子弹时间
+            ChangeTimeScale(0.1f);
+
+             mouse2 = Input.mousePosition;
             if(Vector3.Distance(mouse1,mouse2)>10)
             {
                 show_line = true;
@@ -48,6 +52,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
+            ChangeTimeScale(1f);
             //松开鼠标赋予速度,取消指示线的显示
             show_line = false;
             trspeed = rspeed;
@@ -71,5 +76,9 @@ public class PlayerControl : MonoBehaviour
             rdir.y = 0;
             dir = rdir.normalized;
         }
+    }
+    void ChangeTimeScale(float val)
+    {
+        Time.timeScale = val;
     }
 }
