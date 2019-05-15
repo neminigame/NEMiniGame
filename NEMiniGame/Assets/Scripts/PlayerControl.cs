@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public Camera _camera;
+    public GameObject model;
     public Rigidbody rig;
     public Vector3 dir;
     public float speed, rspeed;
@@ -12,11 +13,13 @@ public class PlayerControl : MonoBehaviour
     private float _timeScale = 0.1f;
     private float tspeed, trspeed;//前进速度，旋转速度
     private Vector3 mouse1, mouse2;//第一次鼠标，第二次鼠标位置
+    private Vector3 tdir;
     // Start is called before the first frame update
     void Start()
     {
         _camera = Camera.main;
-        rig = GetComponentInChildren<Rigidbody>();
+        rig = GetComponent<Rigidbody>();
+        model = transform.Find("player").gameObject;
     }
 
     // Update is called once per frame
@@ -28,10 +31,9 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetMouseButton(0))
         {
-            //子弹时间
             ChangeTimeScale(0.1f);
-
-             mouse2 = Input.mousePosition;
+            Time.fixedDeltaTime = 0.002f;
+            mouse2 = Input.mousePosition;
             if(Vector3.Distance(mouse1,mouse2)>10)
             {
                 show_line = true;
@@ -46,25 +48,28 @@ public class PlayerControl : MonoBehaviour
                 dir = dir2 - dir1;
         
                 dir = dir.normalized; 
-                tspeed = trspeed=0;//为了测试把速度变为0,本来应该是用子弹时间做
+               // tspeed = trspeed=0;//为了测试把速度变为0,本来应该是用子弹时间做
                 Debug.DrawRay(rig.position, dir, Color.red);
             }
         }
         if (Input.GetMouseButtonUp(0))
         {
             ChangeTimeScale(1f);
+            Time.fixedDeltaTime = 0.02f;
+
             //松开鼠标赋予速度,取消指示线的显示
+            tdir = dir;
             show_line = false;
             trspeed = rspeed;
             tspeed = speed;
         }
         //小球滚动前进
-        Vector3 rotate_dir = Vector3.Cross(Vector3.up,dir);
-        transform.Rotate(rotate_dir * trspeed,Space.World);
+        Vector3 rotate_dir = Vector3.Cross(Vector3.up,tdir);
+        model.transform.Rotate(rotate_dir * trspeed,Space.World);
     }
     private void FixedUpdate()
     {
-        rig.velocity = dir * tspeed;
+        rig.velocity = tdir * tspeed;
     }
     public void OnCollisionEnter(Collision collision)
     {
@@ -72,13 +77,14 @@ public class PlayerControl : MonoBehaviour
         if(collision.gameObject.tag=="wall")
         {
            ContactPoint cp = collision.contacts[0];
-            Vector3 rdir = Vector3.Reflect(dir, cp.normal);
+            Vector3 rdir = Vector3.Reflect(tdir, cp.normal);
             rdir.y = 0;
-            dir = rdir.normalized;
+            tdir = rdir.normalized;
         }
     }
     void ChangeTimeScale(float val)
     {
         Time.timeScale = val;
+       
     }
 }

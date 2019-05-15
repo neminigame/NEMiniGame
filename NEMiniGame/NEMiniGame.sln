@@ -1,7 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{30895105-82FC-8911-EB68-1384A52F4FF8}"
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEMiniGame", "NEMiniGame.csproj", "{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEMiniGame", "NEMiniGame.csproj", "{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEMiniGame", "NEMiniGame.csproj", "{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEMiniGame.Editor", "NEMiniGame.Editor.csproj", "{86A9E753-7D00-2879-4233-2B4934B2AFAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEMiniGame.Editor", "NEMiniGame.Editor.csproj", "{86A9E753-7D00-2879-4233-2B4934B2AFAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEMiniGame.Editor", "NEMiniGame.Editor.csproj", "{86A9E753-7D00-2879-4233-2B4934B2AFAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +19,30 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{30895105-82FC-8911-EB68-1384A52F4FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30895105-82FC-8911-EB68-1384A52F4FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{30895105-82FC-8911-EB68-1384A52F4FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{30895105-82FC-8911-EB68-1384A52F4FF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BFF7B9C-4850-5FB5-CA20-51299C8B662C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86A9E753-7D00-2879-4233-2B4934B2AFAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86A9E753-7D00-2879-4233-2B4934B2AFAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86A9E753-7D00-2879-4233-2B4934B2AFAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86A9E753-7D00-2879-4233-2B4934B2AFAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86A9E753-7D00-2879-4233-2B4934B2AFAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86A9E753-7D00-2879-4233-2B4934B2AFAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86A9E753-7D00-2879-4233-2B4934B2AFAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86A9E753-7D00-2879-4233-2B4934B2AFAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86A9E753-7D00-2879-4233-2B4934B2AFAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86A9E753-7D00-2879-4233-2B4934B2AFAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86A9E753-7D00-2879-4233-2B4934B2AFAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86A9E753-7D00-2879-4233-2B4934B2AFAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

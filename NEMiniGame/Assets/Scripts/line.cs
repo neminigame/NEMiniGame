@@ -14,8 +14,8 @@ public class line : MonoBehaviour
     void Start()
     {
         sphere = GameObject.FindGameObjectWithTag("Player");
-        if (sphere != null)
-            Player = sphere.GetComponent<PlayerControl>();
+        if(sphere!=null)
+         Player=sphere.GetComponent<PlayerControl>();
         linerender = GetComponent<LineRenderer>();
         linerender.positionCount = 2;
     }
@@ -27,7 +27,7 @@ public class line : MonoBehaviour
         else linerender.enabled = true;
 
         p0 = sphere.transform.position;
-        p0.y -= (float)0.5;
+        p0.y -= (float)0.1;
         curdir = Player.dir;
         //Debug.Log(curdir);
         linerender.SetPosition(0, p0);
