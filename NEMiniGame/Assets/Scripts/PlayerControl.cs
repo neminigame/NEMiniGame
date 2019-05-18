@@ -32,7 +32,6 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             ChangeTimeScale(0.1f);
-            Time.fixedDeltaTime = 0.002f;
             mouse2 = Input.mousePosition;
             if(Vector3.Distance(mouse1,mouse2)>10)
             {
@@ -48,15 +47,12 @@ public class PlayerControl : MonoBehaviour
                 dir = dir2 - dir1;
         
                 dir = dir.normalized; 
-               // tspeed = trspeed=0;//为了测试把速度变为0,本来应该是用子弹时间做
                 Debug.DrawRay(rig.position, dir, Color.red);
             }
         }
         if (Input.GetMouseButtonUp(0))
         {
             ChangeTimeScale(1f);
-            Time.fixedDeltaTime = 0.02f;
-
             //松开鼠标赋予速度,取消指示线的显示
             tdir = dir;
             show_line = false;
@@ -65,7 +61,7 @@ public class PlayerControl : MonoBehaviour
         }
         //小球滚动前进
         Vector3 rotate_dir = Vector3.Cross(Vector3.up,tdir);
-        model.transform.Rotate(rotate_dir * trspeed,Space.World);
+        model.transform.Rotate(rotate_dir,Time.deltaTime*trspeed*100,Space.World);
     }
     private void FixedUpdate()
     {
@@ -85,6 +81,6 @@ public class PlayerControl : MonoBehaviour
     void ChangeTimeScale(float val)
     {
         Time.timeScale = val;
-       
+        Time.fixedDeltaTime = val*0.02f;
     }
 }

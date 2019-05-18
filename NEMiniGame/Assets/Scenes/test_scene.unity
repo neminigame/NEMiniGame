@@ -826,8 +826,7 @@ MonoBehaviour:
   rig: {fileID: 0}
   dir: {x: 0, y: 0, z: 0}
   speed: 13
-  rspeed: 24
-  scale: 0.2
+  rspeed: 10
   show_line: 0
 --- !u!135 &1549470074
 SphereCollider:
@@ -1408,7 +1407,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
