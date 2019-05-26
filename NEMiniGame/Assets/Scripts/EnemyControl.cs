@@ -4,22 +4,67 @@ using UnityEngine;
 
 public class EnemyControl : MonoBehaviour
 {
+    public enum EnemyType
+    {
+        Dad = 1,
+        Mom,
+        DD,
+        Dog
+    }
+    public enum LoopType
+    {
+        None,
+        Loop,
+        Pinpong
+    }
+    public EnemyType enemyType;
     public float speed = 1.0f;
-    public int direction = 1;
-    public float durTime = 3f;//敌人持续同一个方向的时间
-    private float _time = 0f;
-    private bool isAlive = true;
+    [Tooltip("巡视后停留时长")]
+    public float stayTime = 3f;//敌人持续同一个方向的时间
+    public LoopType loopType; 
+    public iTween.EaseType easeType ;
+    private bool isAlive = true; 
+    private Transform target;
+    private bool isRevert=false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (loopType == LoopType.Pinpong)
+        {
+            isRevert = !isRevert;
+            transform.position = (Vector3)iTweenPath.GetPath(enemyType.ToString()).GetValue(0);
+            iTween.MoveTo(gameObject, iTween.Hash(
+                "path", iTweenPath.GetPath(enemyType.ToString()),
+                "delay", stayTime,
+                "easetype", easeType,
+                "looptype", iTween.LoopType.none,
+                "speed", speed,
+                "orienttopath", true,
+                "lookTime", 1.1,
+                "axis", "y",
+                "oncomplete", "myCompleteFun",
+                "oncompletetarget", gameObject));
+        }
+        else
+        {
+            transform.position = (Vector3)iTweenPath.GetPath(enemyType.ToString()).GetValue(0);
+            iTween.MoveTo(gameObject, iTween.Hash(
+                "path", iTweenPath.GetPath(enemyType.ToString()),
+                "delay", stayTime,
+                "easetype", easeType,
+                "looptype", loopType.ToString().ToLower(),
+                "speed", speed,
+                "orienttopath", true,
+                "lookTime", 1.1,
+                "axis", "y"));
+        }
     }
 
     // Update is called once per frame
     void Update()
-    {
-        updateDirection();
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * direction);
+    {         
+
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -29,12 +74,45 @@ public class EnemyControl : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    void updateDirection()
+
+    public void myUpdateFunction()
     {
-        if (Time.time - _time > durTime)
+    }
+
+    public void myCompleteFun()
+    {
+        RevertPath();
+    }
+    void RevertPath()
+    {
+        if (isRevert)
         {
-            _time = Time.time;
-            direction *= -1;
+            isRevert = !isRevert;
+            iTween.MoveTo(gameObject, iTween.Hash(
+            "path", iTweenPath.GetPathReversed(enemyType.ToString()),
+            "delay", stayTime,
+            "easetype", easeType,
+            "looptype", loopType,
+            "speed", speed,
+            "orienttopath", true,
+            "lookTime", 1.1,
+            "axis", "y",
+            "oncomplete", "myCompleteFun",
+            "oncompletetarget", gameObject));
+        }
+        else {
+            isRevert = !isRevert;
+            iTween.MoveTo(gameObject, iTween.Hash(
+            "path", iTweenPath.GetPath(enemyType.ToString()),
+            "delay", stayTime,
+            "easetype", easeType,
+            "looptype", loopType,
+            "speed", speed,
+            "orienttopath", true,
+            "lookTime", 1.1,
+            "axis", "y",
+            "oncomplete", "myCompleteFun",
+            "oncompletetarget", gameObject));
         }
     }
 }

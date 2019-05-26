@@ -1,0 +1,202 @@
+fileFormatVersion: 2
+guid: 570ab5a0f338e9f44bcad20aec667afb
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Area_Light
+    100004: carpet
+    100006: carpet__1_
+    100008: Cube
+    100010: Cube_1
+    100012: Cube_10
+    100014: Cube_2
+    100016: Cube_3
+    100018: Cube_4
+    100020: Cube_5
+    100022: Cube_6
+    100024: Cube_7
+    100026: Cube_8
+    100028: Cube_9
+    100030: Cube__1_
+    100032: Cube__1__1
+    100034: Cube__2_
+    100036: Cube__3_
+    100038: Ground
+    100040: TV
+    100042: Wall
+    100044: Wall2
+    400000: //RootNode
+    400002: Area_Light
+    400004: carpet
+    400006: carpet__1_
+    400008: Cube
+    400010: Cube_1
+    400012: Cube_10
+    400014: Cube_2
+    400016: Cube_3
+    400018: Cube_4
+    400020: Cube_5
+    400022: Cube_6
+    400024: Cube_7
+    400026: Cube_8
+    400028: Cube_9
+    400030: Cube__1_
+    400032: Cube__1__1
+    400034: Cube__2_
+    400036: Cube__3_
+    400038: Ground
+    400040: TV
+    400042: Wall
+    400044: Wall2
+    2100000: ProBuilderDefault
+    2300000: carpet
+    2300002: carpet__1_
+    2300004: Cube
+    2300006: Cube_1
+    2300008: Cube_10
+    2300010: Cube_2
+    2300012: Cube_3
+    2300014: Cube_4
+    2300016: Cube_5
+    2300018: Cube_6
+    2300020: Cube_7
+    2300022: Cube_8
+    2300024: Cube_9
+    2300026: Cube__1_
+    2300028: Cube__1__1
+    2300030: Cube__2_
+    2300032: Cube__3_
+    2300034: Ground
+    2300036: TV
+    2300038: Wall
+    2300040: Wall2
+    3300000: carpet
+    3300002: carpet__1_
+    3300004: Cube
+    3300006: Cube_1
+    3300008: Cube_10
+    3300010: Cube_2
+    3300012: Cube_3
+    3300014: Cube_4
+    3300016: Cube_5
+    3300018: Cube_6
+    3300020: Cube_7
+    3300022: Cube_8
+    3300024: Cube_9
+    3300026: Cube__1_
+    3300028: Cube__1__1
+    3300030: Cube__2_
+    3300032: Cube__3_
+    3300034: Ground
+    3300036: TV
+    3300038: Wall
+    3300040: Wall2
+    4300000: Ground
+    4300002: carpet
+    4300004: Cube
+    4300006: Cube_1
+    4300008: Cube_2
+    4300010: Wall
+    4300012: Wall2
+    4300014: Cube_3
+    4300016: Cube_4
+    4300018: TV
+    4300020: Cube_5
+    4300022: Cube_6
+    4300024: Cube__1_
+    4300026: carpet__1_
+    4300028: Cube_7
+    4300030: Cube_8
+    4300032: Cube_9
+    4300034: Cube_10
+    4300036: Cube__1__1
+    4300038: Cube__2_
+    4300040: Cube__3_
+    10800000: Area_Light
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
