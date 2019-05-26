@@ -22,7 +22,8 @@ public class EnemyControl : MonoBehaviour
     [Tooltip("巡视后停留时长")]
     public float stayTime = 3f;//敌人持续同一个方向的时间
     public LoopType loopType; 
-    public iTween.EaseType easeType ;
+    public iTween.EaseType easeType;
+    public GameObject player;
     private bool isAlive = true; 
     private Transform target;
     private bool isRevert=false;
@@ -63,8 +64,11 @@ public class EnemyControl : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {         
-
+    {
+        if (fanControl.checkFan(transform, player.transform))
+        {
+            Debug.Log("检测到");
+        }
     }
     private void OnCollisionEnter(Collision other)
     {
