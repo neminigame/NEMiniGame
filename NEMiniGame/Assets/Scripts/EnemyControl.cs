@@ -122,21 +122,13 @@ public class EnemyControl : MonoBehaviour
             isStartUpgrade = true;
             haveupgrade = !haveupgrade;
         }
+        transform.Find("check").GetComponent<MeshRenderer>().material.SetVector("_Color", Vector4.Lerp(transform.Find("check").GetComponent<MeshRenderer>().material.GetVector("_Color"), new Vector4(1,0,0,1), Time.deltaTime));
     }
 
     private void UpgradeDetect(bool isStart)
     {
         if(isStart)        
             transform.Find("check").localScale = Vector3.Lerp(transform.Find("check").localScale, upgradeTrans, animTime * Time.deltaTime);
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            isAlive = false;
-            Destroy(this.gameObject);
-        }
     }
 
     public void myUpdateFunction()
