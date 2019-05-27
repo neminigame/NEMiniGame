@@ -1107,7 +1107,7 @@ PrefabInstance:
     - target: {fileID: 7410566350715327941, guid: 3bb3e1249bb4aeb44991ad6ced31f239,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.062
+      value: 4.82
       objectReference: {fileID: 0}
     - target: {fileID: 7410566350715327941, guid: 3bb3e1249bb4aeb44991ad6ced31f239,
         type: 3}
@@ -1117,7 +1117,7 @@ PrefabInstance:
     - target: {fileID: 7410566350715327941, guid: 3bb3e1249bb4aeb44991ad6ced31f239,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.199
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7410566350715327941, guid: 3bb3e1249bb4aeb44991ad6ced31f239,
         type: 3}
@@ -1821,6 +1821,8 @@ MonoBehaviour:
   restTime: 3
   upgradeScale: 1.5
   UsePosition: 0
+  isStartUpgrade: 0
+  animTime: 1.5
 --- !u!65 &328787588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4545,7 +4547,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 636a17a562e0b784aac49261ba949065, type: 2}
+  - {fileID: 2100000, guid: a6c28f3fbf3d1dc47a7cb47143041709, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4612,6 +4614,8 @@ MonoBehaviour:
   restTime: 3
   upgradeScale: 1.5
   UsePosition: 0
+  isStartUpgrade: 0
+  animTime: 1.5
 --- !u!1 &729876059
 GameObject:
   m_ObjectHideFlags: 0
@@ -7778,6 +7782,8 @@ MonoBehaviour:
   restTime: 3
   upgradeScale: 1.5
   UsePosition: 0
+  isStartUpgrade: 0
+  animTime: 1.5
 --- !u!65 &1595107085
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8565,6 +8571,8 @@ MonoBehaviour:
   restTime: 3
   upgradeScale: 1.5
   UsePosition: 0
+  isStartUpgrade: 0
+  animTime: 1.5
 --- !u!65 &1702885836
 BoxCollider:
   m_ObjectHideFlags: 0

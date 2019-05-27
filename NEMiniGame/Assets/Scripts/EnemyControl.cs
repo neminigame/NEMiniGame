@@ -36,11 +36,14 @@ public class EnemyControl : MonoBehaviour
     public float upgradeScale;
     public bool UsePosition = false;
     private Camera cam;
-
-
+    private Vector3 upgradeTrans;
+    public bool isStartUpgrade;
+    public float animTime=1.5f;
     // Start is called before the first frame update
     void Start()
     {
+        isStartUpgrade = false;
+        upgradeTrans = transform.Find("check").localScale * upgradeScale;
         exclamationMark = transform.Find("ExclamationMark").gameObject;
         questionMark = transform.Find("QuestionMark").gameObject;
         cam = Camera.main;
@@ -75,11 +78,13 @@ public class EnemyControl : MonoBehaviour
                 "lookTime", 1.1,
                 "axis", "y"));
         }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpgradeDetect(isStartUpgrade);
         if (fanControl.checkFan(transform, player.transform))
         {
             //第一次检测到
@@ -114,14 +119,15 @@ public class EnemyControl : MonoBehaviour
         mark.SetActive(false);
         if (!haveupgrade)
         {
-            UpgradeDetect();
+            isStartUpgrade = true;
             haveupgrade = !haveupgrade;
         }
     }
 
-    private void UpgradeDetect()
+    private void UpgradeDetect(bool isStart)
     {
-        fanControl.upgradeFan(transform, upgradeScale);
+        if(isStart)        
+            transform.Find("check").localScale = Vector3.Lerp(transform.Find("check").localScale, upgradeTrans, animTime * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision other)
