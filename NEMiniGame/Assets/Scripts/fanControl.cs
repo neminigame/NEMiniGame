@@ -19,6 +19,10 @@ class fanControl
             return true;
         return false;
     }
+    public static void upgradeFan(Transform enemy, float scale)
+    {
+        enemy.Find("check").localScale *= scale;
+    }
     //在需要有检测的物体下建立一个quad并命名为check，保证坐标系position为（0，0，0）
     //rotation为(90,90,0)并赋予shader MInigame/shape
     //根据自己需求改变检测形状，然后调用该方法进行判断即可。

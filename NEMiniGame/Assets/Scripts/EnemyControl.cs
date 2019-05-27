@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,13 +25,27 @@ public class EnemyControl : MonoBehaviour
     public LoopType loopType; 
     public iTween.EaseType easeType;
     public GameObject player;
+    public int detectNum;
+    public float restTime=3.0f;
     private bool isAlive = true; 
     private Transform target;
     private bool isRevert=false;
+    private bool haveupgrade=false;
+    private GameObject exclamationMark;
+    private GameObject questionMark;
+    public float upgradeScale;
+    public bool UsePosition = false;
+    private Camera cam;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        exclamationMark = transform.Find("ExclamationMark").gameObject;
+        questionMark = transform.Find("QuestionMark").gameObject;
+        cam = Camera.main;
+        detectNum = 0;
+        exclamationMark = transform.Find("ExclamationMark").gameObject;
         if (loopType == LoopType.Pinpong)
         {
             isRevert = !isRevert;
@@ -67,9 +82,48 @@ public class EnemyControl : MonoBehaviour
     {
         if (fanControl.checkFan(transform, player.transform))
         {
-            Debug.Log("检测到");
+            //第一次检测到
+            if (detectNum == 0)
+            {
+                questionMark.SetActive(true);
+                
+                StartCoroutine(GetRest(restTime, questionMark));
+            }
+            else if (detectNum == 1)
+            {
+                exclamationMark.SetActive(true);
+                LookAtCam(exclamationMark.transform);
+                GameManager.Instance.GameOver();
+            }
+        }
+        if (questionMark.activeSelf == true)
+        {
+            LookAtCam(questionMark.transform);
+        }
+        if (exclamationMark.activeSelf == true)
+        {
+            LookAtCam(exclamationMark.transform);
+        }
+
+    }
+
+    IEnumerator GetRest(float restTime,GameObject mark)
+    {
+        yield return new WaitForSeconds(restTime);
+        detectNum = 1;
+        mark.SetActive(false);
+        if (!haveupgrade)
+        {
+            UpgradeDetect();
+            haveupgrade = !haveupgrade;
         }
     }
+
+    private void UpgradeDetect()
+    {
+        fanControl.upgradeFan(transform, upgradeScale);
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Player")
@@ -117,6 +171,19 @@ public class EnemyControl : MonoBehaviour
             "axis", "y",
             "oncomplete", "myCompleteFun",
             "oncompletetarget", gameObject));
+        }
+    }
+    public void LookAtCam(Transform target)
+    {
+        if (UsePosition)
+        {
+            Vector3 vDir = cam.transform.position - target.position;
+            vDir.Normalize();
+            target.rotation = Quaternion.LookRotation(-vDir);
+        }
+        else
+        {
+            target.rotation = cam.transform.rotation;
         }
     }
 }
