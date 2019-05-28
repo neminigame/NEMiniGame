@@ -549,7 +549,7 @@ GameObject:
   m_Layer: 0
   m_Name: CM vcam1 (4)
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -597,7 +597,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75025084}
-  m_LocalRotation: {x: -0.0383828, y: -0.41438526, z: 0.5647323, w: 0.7126634}
+  m_LocalRotation: {x: -0.04229045, y: -0.3654725, z: 0.4980729, w: 0.7852164}
   m_LocalPosition: {x: 13.15, y: 1.1, z: -7.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2873,7 +2873,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465026255}
-  m_LocalRotation: {x: 0.3500901, y: -0.124187484, z: 0.046887208, w: 0.92726266}
+  m_LocalRotation: {x: 0.35312238, y: -0.021527156, z: 0.008127576, w: 0.93529415}
   m_LocalPosition: {x: 2.2599993, y: 14.311203, z: -16.782555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -5327,7 +5327,7 @@ GameObject:
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5375,7 +5375,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791764452}
-  m_LocalRotation: {x: -0.13318127, y: -0.08692953, z: 0.10032048, w: 0.9821619}
+  m_LocalRotation: {x: -0.13433483, y: -0.015068731, z: 0.017389918, w: 0.99066883}
   m_LocalPosition: {x: -11.14, y: -7.72, z: -12.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8493,7 +8493,7 @@ GameObject:
   m_Layer: 0
   m_Name: CM vcam1 (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8541,7 +8541,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1509120116}
-  m_LocalRotation: {x: -0.1563595, y: -0.2901244, z: 0.3096979, w: 0.89188945}
+  m_LocalRotation: {x: -0.16346583, y: -0.2203315, z: 0.23519611, w: 0.93242466}
   m_LocalPosition: {x: -0.54, y: -8.83, z: -13.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10303,7 +10303,7 @@ GameObject:
   m_Layer: 0
   m_Name: CM vcam1 (3)
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -10351,7 +10351,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754209288}
-  m_LocalRotation: {x: -0.13057156, y: -0.34389678, z: 0.38266343, w: 0.84749913}
+  m_LocalRotation: {x: -0.13839039, y: -0.27882046, z: 0.3102512, w: 0.89824915}
   m_LocalPosition: {x: 11.08, y: -6.16, z: -11.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
