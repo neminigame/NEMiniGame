@@ -1,0 +1,210 @@
+fileFormatVersion: 2
+guid: a464bcb5c4003b74ba2da1f3d38ecd17
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Bed
+    100004: Chest2
+    100006: Chest3
+    100008: Clock
+    100010: Desk5
+    100012: Keyboard
+    100014: Lap
+    100016: Led
+    100018: Mouse
+    100020: MousePad
+    100022: NS
+    100024: PC
+    100026: Quilt
+    100028: Table2
+    100030: Table3
+    100032: Table4
+    100034: Thumb3
+    100036: Thumb4
+    100038: Thumb4 1
+    100040: Thumb5
+    100042: Thumb6
+    100044: Thumb7
+    100046: TV
+    400000: //RootNode
+    400002: Bed
+    400004: Chest2
+    400006: Chest3
+    400008: Clock
+    400010: Desk5
+    400012: Keyboard
+    400014: Lap
+    400016: Led
+    400018: Mouse
+    400020: MousePad
+    400022: NS
+    400024: PC
+    400026: Quilt
+    400028: Table2
+    400030: Table3
+    400032: Table4
+    400034: Thumb3
+    400036: Thumb4
+    400038: Thumb4 1
+    400040: Thumb5
+    400042: Thumb6
+    400044: Thumb7
+    400046: TV
+    2100000: No Name
+    2300000: Bed
+    2300002: Chest2
+    2300004: Chest3
+    2300006: Clock
+    2300008: Desk5
+    2300010: Keyboard
+    2300012: Lap
+    2300014: Led
+    2300016: Mouse
+    2300018: MousePad
+    2300020: NS
+    2300022: PC
+    2300024: Quilt
+    2300026: Table2
+    2300028: Table3
+    2300030: Table4
+    2300032: Thumb3
+    2300034: Thumb4
+    2300036: Thumb4 1
+    2300038: Thumb5
+    2300040: Thumb6
+    2300042: Thumb7
+    2300044: TV
+    3300000: Bed
+    3300002: Chest2
+    3300004: Chest3
+    3300006: Clock
+    3300008: Desk5
+    3300010: Keyboard
+    3300012: Lap
+    3300014: Led
+    3300016: Mouse
+    3300018: MousePad
+    3300020: NS
+    3300022: PC
+    3300024: Quilt
+    3300026: Table2
+    3300028: Table3
+    3300030: Table4
+    3300032: Thumb3
+    3300034: Thumb4
+    3300036: Thumb4 1
+    3300038: Thumb5
+    3300040: Thumb6
+    3300042: Thumb7
+    3300044: TV
+    4300000: TV
+    4300002: Table2
+    4300004: NS
+    4300006: Thumb3
+    4300008: Thumb7
+    4300010: Table3
+    4300012: Quilt
+    4300014: Bed
+    4300016: Chest3
+    4300018: Thumb4
+    4300020: Thumb5
+    4300022: Chest2
+    4300024: Desk5
+    4300026: Clock
+    4300028: Thumb6
+    4300030: Led
+    4300032: Lap
+    4300034: Keyboard
+    4300036: Mouse
+    4300038: MousePad
+    4300040: PC
+    4300042: Table4
+    4300044: Thumb4
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
