@@ -14,6 +14,7 @@ public class PlayerControl : MonoBehaviour
     private float tspeed, trspeed;//前进速度，旋转速度
     private Vector3 mouse1, mouse2;//第一次鼠标，第二次鼠标位置
     private Vector3 tdir;
+    public List<Item> Items;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,12 +71,19 @@ public class PlayerControl : MonoBehaviour
     public void OnCollisionEnter(Collision collision)
     {
         //计算完全弹性碰撞更新移动方向
-        if(collision.gameObject.tag=="wall")
+        if (collision.gameObject.tag == "wall")
         {
-           ContactPoint cp = collision.contacts[0];
+            ContactPoint cp = collision.contacts[0];
             Vector3 rdir = Vector3.Reflect(tdir, cp.normal);
             rdir.y = 0;
             tdir = rdir.normalized;
+        }
+        else if (collision.gameObject.tag == "StartAndEndPos")
+        {
+            if (GameManager.Instance.isFinished == true)
+            {
+                GameManager.Instance.Win();
+            }
         }
     }
     void ChangeTimeScale(float val)

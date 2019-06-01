@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public GameObject gameOver;
     public float speed;
+    public bool isFinished;//是否收集齐
     [SerializeField]
     private PlayerControl _playerControl;
     [SerializeField]
@@ -46,5 +47,10 @@ public class GameManager : MonoBehaviour
         gameOver.SetActive(false);
         _textMeshProUGUIMat.SetFloat("_OutlineSoftness", 1f);
         _textMeshProUGUIMat.SetFloat("_FaceDilate", -1f);
+        isFinished = false;
+    }
+    public void Win()
+    {
+        GameOver();
     }
 }
