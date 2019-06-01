@@ -6,10 +6,11 @@ public class CountDown : MonoBehaviour
 {
     [SerializeField]
     private Text TimeCountDown;
+    public int TimeTotal=10;
+    private int _time;
     void Start()
     {
-        TimeCountDown.text = "10";
-        StartCoroutine("CountDownT");
+        reStartCountDown();
     }
 
     void Update()
@@ -19,14 +20,21 @@ public class CountDown : MonoBehaviour
 
     private IEnumerator CountDownT()
     {
-        int tempT = int.Parse(TimeCountDown.text);
-        while (tempT > 0)
+        _time = int.Parse(TimeCountDown.text);
+        while (_time > 0)
         {
             yield return new WaitForSeconds(1);
-            tempT -= 1;
-            TimeCountDown.text = tempT + "";
+            _time -= 1;
+            TimeCountDown.text = _time + "";
         }
-
-
+    }
+    public void CountStop()
+    {
+        StopCoroutine("CountDownT");
+    }
+    public void reStartCountDown()
+    {
+        TimeCountDown.text = TimeTotal.ToString();
+        StartCoroutine("CountDownT");
     }
 }
