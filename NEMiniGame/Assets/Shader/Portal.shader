@@ -12,8 +12,11 @@
 		_Speed("Speed",Range(0,100))=32
 		_Color1("Color1",Color)=(1,1,1,1)
 		_Color2("Color2",Color) = (1,1,1,1)
+<<<<<<< HEAD
 		_Force("Force",Range(0,1.85))=1
 		_PortalOffset("PortalOffset",Range(0,5))=1
+=======
+>>>>>>> 205209e0d2537f1090c8be8688fdb1b23f15fdd2
     }
     SubShader
     {
@@ -34,16 +37,23 @@
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+<<<<<<< HEAD
 				float3 normal : NORMAL;
+=======
+>>>>>>> 205209e0d2537f1090c8be8688fdb1b23f15fdd2
             };
 
             struct v2f
             {
                 float2 uv : TEXCOORD0;
+<<<<<<< HEAD
 				UNITY_FOG_COORDS(1)
 				float3 normal : TEXCOORD2;
 				float3 worldNormal:TEXCOORD3;
 				float3 worldPos : TEXCOORD4;
+=======
+                UNITY_FOG_COORDS(1)
+>>>>>>> 205209e0d2537f1090c8be8688fdb1b23f15fdd2
                 float4 vertex : SV_POSITION;
             };
 
@@ -60,8 +70,11 @@
 			float _DistortFactor;
 			float _NoiseFactor;
 			float _Speed;
+<<<<<<< HEAD
 			float _Force;
 			float _PortalOffset;
+=======
+>>>>>>> 205209e0d2537f1090c8be8688fdb1b23f15fdd2
 			fixed4 _Color1;
 			fixed4 _Color2;
 			
@@ -69,6 +82,7 @@
             v2f vert (appdata v)
             {
                 v2f o;
+<<<<<<< HEAD
 
 				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 				o.worldNormal = UnityObjectToWorldNormal(v.normal);
@@ -82,6 +96,10 @@
 
 				//o.vertex = UnityObjectToClipPos(v.vertex);
 				o.normal = v.normal;
+=======
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+>>>>>>> 205209e0d2537f1090c8be8688fdb1b23f15fdd2
 				UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
             }
@@ -109,7 +127,10 @@
     //            UNITY_APPLY_FOG(i.fogCoord, col);
     //            return col;
 
+<<<<<<< HEAD
 				//worldPos.xyz += worldNormal * _Force;
+=======
+>>>>>>> 205209e0d2537f1090c8be8688fdb1b23f15fdd2
 				float2 uv = i.uv;
 				i.uv += -0.5 + tex2D(_MainTex, uv)/3;
 				float r = sqrt(i.uv.x * i.uv.x + i.uv.y * i.uv.y);
@@ -120,7 +141,10 @@
 				fixed4 col = lerp(_Color1,_Color2,a);
 				clip (tex2D(_AlphaClip, uv).x - 0.5);
 				col = lerp(col, tex2D(_GlowMask, uv), tex2D(_GlowMask, uv).x);
+<<<<<<< HEAD
 				//return _Force;
+=======
+>>>>>>> 205209e0d2537f1090c8be8688fdb1b23f15fdd2
 				return fixed4(col.xyz, 1.0);
 				////将uv原点放到屏幕中心
 				//float2 dir = i.uv - float2(0.5, 0.5);

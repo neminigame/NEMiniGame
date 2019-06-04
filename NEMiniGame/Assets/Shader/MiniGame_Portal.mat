@@ -44,12 +44,17 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+<<<<<<< HEAD
     - _Arg: 1
     - _Arg2: 1
     - _DistortFactor: 4
     - _Force: 1.0018198
     - _NoiseFactor: 8
     - _PortalOffset: 1
+=======
+    - _DistortFactor: 4
+    - _NoiseFactor: 8
+>>>>>>> 205209e0d2537f1090c8be8688fdb1b23f15fdd2
     - _Speed: 100
     - _clipangle: 0
     - _radius: 0
