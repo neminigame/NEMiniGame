@@ -17,7 +17,7 @@
     }
     SubShader
     {
-        Tags { "Queue"="AlphaTest"  "IgnoreProjector"="True ""RenderType"="TransparentCutout" }
+        Tags { "Queue"="AlphaTest"  "IgnoreProjector"="True "}
         LOD 100
 
         Pass

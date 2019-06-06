@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour
     private Vector3 tdir;
     public List<Item> Items;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _camera = Camera.main;
         rig = GetComponent<Rigidbody>();
@@ -34,7 +34,7 @@ public class PlayerControl : MonoBehaviour
         {
             ChangeTimeScale(0.1f);
             mouse2 = Input.mousePosition;
-            if(Vector3.Distance(mouse1,mouse2)>10)
+            if (Vector3.Distance(mouse1, mouse2) > 10)
             {
                 show_line = true;
                 Vector3 screenP = _camera.WorldToScreenPoint(rig.position);
@@ -44,10 +44,10 @@ public class PlayerControl : MonoBehaviour
                 Vector3 dir2 = _camera.ScreenToWorldPoint(mouse2);
                 dir1.y = rig.position.y;
                 dir2.y = rig.position.y;
-               //屏幕鼠标确定小球方向
+                //屏幕鼠标确定小球方向
                 dir = dir2 - dir1;
-        
-                dir = dir.normalized; 
+
+                dir = dir.normalized;
                 Debug.DrawRay(rig.position, dir, Color.red);
             }
         }
@@ -61,8 +61,8 @@ public class PlayerControl : MonoBehaviour
             tspeed = speed;
         }
         //小球滚动前进
-        Vector3 rotate_dir = Vector3.Cross(Vector3.up,tdir);
-        model.transform.Rotate(rotate_dir,Time.deltaTime*trspeed*100,Space.World);
+        Vector3 rotate_dir = Vector3.Cross(Vector3.up, tdir);
+        model.transform.Rotate(rotate_dir, Time.deltaTime * trspeed * 100, Space.World);
     }
     private void FixedUpdate()
     {
@@ -73,10 +73,20 @@ public class PlayerControl : MonoBehaviour
         //计算完全弹性碰撞更新移动方向
         if (collision.gameObject.tag == "wall")
         {
+           // StartCoroutine(Dunzhen());
             ContactPoint cp = collision.contacts[0];
             Vector3 rdir = Vector3.Reflect(tdir, cp.normal);
             rdir.y = 0;
             tdir = rdir.normalized;
+            //碰撞特效
+            Material wallmat = collision.gameObject.transform.GetComponent<Renderer>().material;
+            if (wallmat != null)
+            {
+                wallmat.SetVector("_Center", cp.point);
+                wallmat.SetFloat("_speed", 0f);
+                wallmat.SetFloat("_GridEmission", 20f);
+                wallmat.SetFloat("_width", 1f);
+            }
         }
         else if (collision.gameObject.tag == "StartAndEndPos")
         {
@@ -85,10 +95,20 @@ public class PlayerControl : MonoBehaviour
                 GameManager.Instance.Win();
             }
         }
+        else if(collision.gameObject.tag == "Enemy")
+        {
+            GameManager.Instance.GameOver();
+        }
     }
     void ChangeTimeScale(float val)
     {
         Time.timeScale = val;
-        Time.fixedDeltaTime = val*0.02f;
+        Time.fixedDeltaTime = val * 0.02f;
+    }
+    IEnumerator Dunzhen()
+    {
+        ChangeTimeScale(0.05f);
+        yield return new WaitForSecondsRealtime(0.005f);
+        ChangeTimeScale(1f);
     }
 }

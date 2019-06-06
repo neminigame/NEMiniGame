@@ -31,7 +31,7 @@ public class PortalFX : MonoBehaviour
         if (canStartAnim)
         {
             _time += Time.deltaTime;
-            Debug.Log(GetInterpolation(_time));
+           //Debug.Log(GetInterpolation(_time));
             _portalMaterial.SetFloat("_Force", GetInterpolation(speed * _time));
             if (_time > durTime)
             {

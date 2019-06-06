@@ -8,7 +8,7 @@
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Opaque" "Queue" = "Transparent" }
         LOD 100
 
         Pass
@@ -56,7 +56,7 @@
 				float d=length(i.uv);
                 if(t<0||d>_radius)
 					discard;
-                return fixed4(_Color.rgb,_Color.a*(1.-d));
+                return fixed4(_Color.rgb,_Color.a);
             }
             ENDCG
         }

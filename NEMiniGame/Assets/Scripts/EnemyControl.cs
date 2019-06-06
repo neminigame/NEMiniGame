@@ -140,7 +140,7 @@ public class EnemyControl : MonoBehaviour
     private void ChangeColor(bool isStart)
     {
         if(isStart)
-            transform.Find("check").GetComponent<MeshRenderer>().material.SetVector("_Color", Vector4.Lerp(transform.Find("check").GetComponent<MeshRenderer>().material.GetVector("_Color"), new Vector4(1, 0, 0, 1), Time.deltaTime)); 
+            transform.Find("check").GetComponent<MeshRenderer>().material.SetVector("_Color", Vector4.Lerp(transform.Find("check").GetComponent<MeshRenderer>().material.GetVector("_Color"), new Vector4(1, 0, 0, 0.5f), Time.deltaTime)); 
     }
 
     public void myUpdateFunction()

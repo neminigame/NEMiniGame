@@ -12,8 +12,8 @@ public class Glitch : MonoBehaviour
     private Material Gmat;
     private void Awake()
     {
-        strength = 0.07f;
-        speed = 0.02f;
+        strength = 0.05f;
+        speed = 0.01f;
         Gshader = Shader.Find("MiniGame/Glitch");
         if(Gshader!=null)
             Gmat = new Material(Gshader);

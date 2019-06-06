@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: wall3
+  m_Shader: {fileID: 4800000, guid: ab09ae18a13576244b244358122fb423, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ReflectionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _EmissionStrength: 10
+    - _GridEmission: 0
+    - _ReflectionStrength: 0.2
+    - _RingEmission: 10
+    - _RingSpeedMax: 0.5
+    - _RingSpeedMin: 0.2
+    - _RingSrtide: 0
+    - _RingThicknessMax: 0.5
+    - _RingThicknessMin: 0.1
+    - _Stride: 0.2
+    - _ThicknessMax: 0.45
+    - _ThicknessMin: 0.15
+    - _TrailsEmission: 10
+    - _dir: 1
+    - _flag: 0
+    - _speed: 0
+    - _width: 1
+    m_Colors:
+    - _Center: {r: 2.15, g: 0, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _GridColor: {r: 0.1745283, g: 0.7523918, b: 1, a: 1}
+    - _Spectra: {r: -0.85, g: 11.8, b: 0, a: 0.88721055}

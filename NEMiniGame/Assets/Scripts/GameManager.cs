@@ -18,8 +18,9 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         _textMeshProUGUIMat = gameOver.GetComponent<TextMeshProUGUI>().fontMaterial;
-        InitialGameMang();
+       
         _playerControl = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+        InitialGameMang();
         //_countDown = transform.Find("Canvas").GetComponent<CountDown>();
     }
     // Start is called before the first frame update
@@ -39,14 +40,14 @@ public class GameManager : MonoBehaviour
         gameOver.SetActive(true);
         _playerControl.enabled = false;
         _countDown.CountStop();
-        _textMeshProUGUIMat.SetFloat("_OutlineSoftness", Mathf.Lerp(_textMeshProUGUIMat.GetFloat("_OutlineSoftness"), 0f, Time.deltaTime * speed));
-        _textMeshProUGUIMat.SetFloat("_FaceDilate", Mathf.Lerp(_textMeshProUGUIMat.GetFloat("_FaceDilate"), 0f, Time.deltaTime * speed));
+        //_textMeshProUGUIMat.SetFloat("_OutlineSoftness", Mathf.Lerp(_textMeshProUGUIMat.GetFloat("_OutlineSoftness"), 0f, Time.deltaTime * speed));
+        //_textMeshProUGUIMat.SetFloat("_FaceDilate", Mathf.Lerp(_textMeshProUGUIMat.GetFloat("_FaceDilate"), 0f, Time.deltaTime * speed));
     }
     public void InitialGameMang()
     {
         gameOver.SetActive(false);
-        _textMeshProUGUIMat.SetFloat("_OutlineSoftness", 1f);
-        _textMeshProUGUIMat.SetFloat("_FaceDilate", -1f);
+        // _textMeshProUGUIMat.SetFloat("_OutlineSoftness", 1f);
+        //  _textMeshProUGUIMat.SetFloat("_FaceDilate", -1f);
         isFinished = false;
     }
     public void Win()

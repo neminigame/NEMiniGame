@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MiniGame_Portal
+  m_Shader: {fileID: 4800000, guid: 149ac11d75adb624fa3353e59e4c5dbf, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaClip:
+        m_Texture: {fileID: 2800000, guid: 1e88ee119dd28ed40b027cdc4125e24f, type: 3}
+        m_Scale: {x: 0.5, y: 0.5}
+        m_Offset: {x: 0, y: 0}
+    - _ClipMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GlowMask:
+        m_Texture: {fileID: 2800000, guid: 150fb76f693a49e4f8019ba5ea8892c2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 1c0e230a8ff499a4c95aec3afc88202e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Arg: 1
+    - _Arg2: 1
+    - _DistortFactor: 4
+    - _Force: 1
+    - _NoiseFactor: 8
+    - _PortalOffset: 1.01
+    - _Speed: 100
+    - _clipangle: 0
+    - _radius: 0
+    - bodyRadius: 0.2
+    - leafCount: 1
+    - leafSize: 0.3
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color1: {r: 1, g: 0.59621054, b: 0, a: 1}
+    - _Color2: {r: 1, g: 0.9389741, b: 0.4481132, a: 1}

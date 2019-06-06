@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
@@ -12,6 +11,7 @@ public class UIManager : MonoBehaviour
     private int _currentID;
     private int totalItems;
     private bool isFinished;//是否收集齐物品
+
     private void Awake()
     {
         boxsLayout = transform.Find("BoxsLayout");
@@ -66,5 +66,9 @@ public class UIManager : MonoBehaviour
             return true;
         else
             return false;
+    }
+    public void SetDieUI()
+    {
+    
     }
 }
