@@ -82,7 +82,7 @@ Material:
     - _outlinefactor: 0
     - _specularfactor: 0.01
     m_Colors:
-    - _Color: {r: 1, g: 0.8118903, b: 0.41981128, a: 1}
+    - _Color: {r: 1, g: 0.8118903, b: 0.41981125, a: 0.39215687}
     - _Diffuse: {r: 1, g: 0.7046653, b: 0.33088234, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Specular: {r: 1, g: 1, b: 1, a: 1}
