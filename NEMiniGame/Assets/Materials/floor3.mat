@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: floor2
+  m_Name: floor3
   m_Shader: {fileID: 4800000, guid: d7ba4c852f925d34e91091aacab8220c, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -77,11 +77,11 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - _light: 1
-    - _outlinefactor: 0
+    - _outlinefactor: 0.1
     - _specularfactor: 0.01
     m_Colors:
-    - _Color: {r: 0.8867924, g: 0.72365606, b: 0.8177732, a: 1}
+    - _Color: {r: 0.6226415, g: 0.50809896, b: 0.59118116, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _outlinecolor: {r: 0, g: 0, b: 0, a: 0}
-    - _shadowColor: {r: 0.43854567, g: 0.59705377, b: 0.6886792, a: 1}
+    - _shadowColor: {r: 0.1, g: 0.1, b: 0.1, a: 0.1}
     - _specular: {r: 1, g: 1, b: 1, a: 1}

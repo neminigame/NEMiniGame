@@ -75,5 +75,5 @@ Material:
     - _clipangle: 0
     - _radius: 1
     m_Colors:
-    - _Color: {r: 0.75686276, g: 1, b: 0.5058824, a: 0.5019608}
+    - _Color: {r: 0.75686276, g: 1, b: 0.5058824, a: 0.29803923}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

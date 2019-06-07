@@ -79,14 +79,14 @@ public class PlayerControl : MonoBehaviour
             rdir.y = 0;
             tdir = rdir.normalized;
             //碰撞特效
-            Material wallmat = collision.gameObject.transform.GetComponent<Renderer>().material;
-            if (wallmat != null)
-            {
-                wallmat.SetVector("_Center", cp.point);
-                wallmat.SetFloat("_speed", 0f);
-                wallmat.SetFloat("_GridEmission", 20f);
-                wallmat.SetFloat("_width", 1f);
-            }
+            //Material wallmat = collision.gameObject.transform.GetComponent<Renderer>().material;
+            //if (wallmat != null)
+            //{
+            //    wallmat.SetVector("_Center", cp.point);
+            //    wallmat.SetFloat("_speed", 0f);
+            //    wallmat.SetFloat("_GridEmission", 20f);
+            //    wallmat.SetFloat("_width", 1f);
+            //}
         }
         else if (collision.gameObject.tag == "StartAndEndPos")
         {
@@ -97,7 +97,7 @@ public class PlayerControl : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Enemy")
         {
-            //GameManager.Instance.GameOver();
+            GameManager.Instance.GameOver();
         }
     }
     void ChangeTimeScale(float val)
