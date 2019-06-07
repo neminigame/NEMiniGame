@@ -97,7 +97,7 @@ public class PlayerControl : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Enemy")
         {
-            GameManager.Instance.GameOver();
+            //GameManager.Instance.GameOver();
         }
     }
     void ChangeTimeScale(float val)
