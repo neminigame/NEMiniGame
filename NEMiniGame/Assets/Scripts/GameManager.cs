@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -14,6 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private CountDown _countDown;
     private Material _textMeshProUGUIMat;
+    public CinemachineFreeLook cf;
+    float yAccelTime, yDecelTime, xAccelTime, xDecelTime, yMaxSpeed, xMaxSpeed;
+    float yAccelTimeAfter, yDecelTimeAfter, xAccelTimeAfter, xDecelTimeAfter, yMaxSpeedAfter, xMaxSpeedAfter;
+    float _timeScale = 0.1f;
     void Awake()
     {
         Instance = this;
@@ -26,13 +31,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(gameOver.GetComponent<TextMeshProUGUI>().fontMaterial);
+        //Debug.Log(gameOver.GetComponent<TextMeshProUGUI>().fontMaterial);
+        InitialCM();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        CMMouseOption();
     }
 
     public void GameOver()
@@ -53,5 +59,52 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         GameOver();
+    }
+    //存储虚拟相机移动速度的初始值和改变后的值
+    void InitialCM()
+    {
+        yAccelTime = cf.m_YAxis.m_AccelTime;
+        yDecelTime = cf.m_YAxis.m_DecelTime;
+        xAccelTime = cf.m_XAxis.m_AccelTime;
+        xDecelTime = cf.m_XAxis.m_DecelTime;
+        yMaxSpeed = cf.m_YAxis.m_MaxSpeed;
+        xMaxSpeed = cf.m_XAxis.m_MaxSpeed;
+        yAccelTimeAfter = cf.m_YAxis.m_AccelTime * _timeScale;
+        yDecelTimeAfter = cf.m_YAxis.m_DecelTime * _timeScale;
+        xAccelTimeAfter = cf.m_XAxis.m_AccelTime * _timeScale;
+        xDecelTimeAfter = cf.m_XAxis.m_DecelTime * _timeScale;
+        yMaxSpeedAfter = cf.m_YAxis.m_MaxSpeed / _timeScale;
+        xMaxSpeedAfter = cf.m_XAxis.m_MaxSpeed / _timeScale;
+    }
+    //每帧调用的虚拟相机设置
+    void CMMouseOption()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            cf.m_YAxis.m_InputAxisName = "Mouse Y";
+            cf.m_XAxis.m_InputAxisName = "Mouse X";
+            //cf.m_YAxis.m_AccelTime = a;
+            //cf.m_YAxis.m_DecelTime = b;
+            //cf.m_XAxis.m_AccelTime = c;
+            //cf.m_XAxis.m_DecelTime = d;
+            if (Input.GetMouseButton(0))
+            {
+                cf.m_YAxis.m_AccelTime = yAccelTimeAfter;
+                cf.m_YAxis.m_DecelTime = yDecelTimeAfter;
+                cf.m_XAxis.m_AccelTime = xAccelTimeAfter;
+                cf.m_XAxis.m_DecelTime = xDecelTimeAfter;
+                cf.m_YAxis.m_MaxSpeed = yMaxSpeedAfter;
+                cf.m_XAxis.m_MaxSpeed = xMaxSpeedAfter;
+            }
+            else
+            {
+
+            }
+        }
+        else
+        {
+            cf.m_YAxis.m_InputAxisName = "";
+            cf.m_XAxis.m_InputAxisName = "";
+        }
     }
 }
