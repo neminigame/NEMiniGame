@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
     public bool isFinished;//是否收集齐
     [SerializeField]
     private PlayerControl _playerControl;
-    [SerializeField]
-    private CountDown _countDown;
     private Material _textMeshProUGUIMat;
     public CinemachineFreeLook cf;
     float yAccelTime, yDecelTime, xAccelTime, xDecelTime, yMaxSpeed, xMaxSpeed;
@@ -23,7 +21,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         _textMeshProUGUIMat = gameOver.GetComponent<TextMeshProUGUI>().fontMaterial;
-       
+
         _playerControl = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
         InitialGameMang();
         //_countDown = transform.Find("Canvas").GetComponent<CountDown>();
@@ -45,7 +43,7 @@ public class GameManager : MonoBehaviour
     {
         gameOver.SetActive(true);
         _playerControl.enabled = false;
-        _countDown.CountStop();
+        CountDown._Count = CountDown.IsCountOK.NOTOK;
         //_textMeshProUGUIMat.SetFloat("_OutlineSoftness", Mathf.Lerp(_textMeshProUGUIMat.GetFloat("_OutlineSoftness"), 0f, Time.deltaTime * speed));
         //_textMeshProUGUIMat.SetFloat("_FaceDilate", Mathf.Lerp(_textMeshProUGUIMat.GetFloat("_FaceDilate"), 0f, Time.deltaTime * speed));
     }

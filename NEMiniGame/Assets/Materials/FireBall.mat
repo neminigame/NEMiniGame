@@ -33,6 +33,6 @@ Material:
     - _IntersectPower: 0.51
     - _Pow: 35.2
     - _RimStrength: 0.57
-    - _Transparent: 0.644
+    - _Transparent: 0.609
     m_Colors:
-    - _Color: {r: 0.27300763, g: 0.24132253, b: 0.2735849, a: 0}
+    - _Color: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 0}

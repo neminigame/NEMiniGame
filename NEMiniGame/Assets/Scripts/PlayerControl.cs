@@ -13,11 +13,13 @@ public class PlayerControl : MonoBehaviour
     private float _timeScale = 0.1f;
     private float tspeed, trspeed;//前进速度，旋转速度
     private Vector3 mouse1, mouse2;//第一次鼠标，第二次鼠标位置
+    private int JudgeIsBegin=0;//判断是否第一次点鼠标，如果是则开始计时
     private Vector3 tdir;
     public List<Item> Items;
     // Start is called before the first frame update
     void Awake()
     {
+        JudgeIsBegin = 0;
         _camera = Camera.main;
         rig = GetComponent<Rigidbody>();
         model = transform.Find("player").gameObject;
@@ -26,6 +28,11 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //判断是否开始计时
+        if(JudgeIsBegin==1)
+        {
+            CountDown._Count = CountDown.IsCountOK.OK;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             mouse1 = Input.mousePosition;
@@ -59,6 +66,7 @@ public class PlayerControl : MonoBehaviour
             show_line = false;
             trspeed = rspeed;
             tspeed = speed;
+            JudgeIsBegin += 1;
         }
         //小球滚动前进
         Vector3 rotate_dir = Vector3.Cross(Vector3.up, tdir);
