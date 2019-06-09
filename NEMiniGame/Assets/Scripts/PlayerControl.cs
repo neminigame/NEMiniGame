@@ -23,11 +23,13 @@ public class PlayerControl : MonoBehaviour
         _camera = Camera.main;
         rig = GetComponent<Rigidbody>();
         model = transform.Find("player").gameObject;
+        Items.Clear();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         //判断是否开始计时
         if(JudgeIsBegin==1)
         {
@@ -96,16 +98,20 @@ public class PlayerControl : MonoBehaviour
             //    wallmat.SetFloat("_width", 1f);
             //}
         }
-        else if (collision.gameObject.tag == "StartAndEndPos")
-        {
-            if (GameManager.Instance.isFinished == true)
-            {
-                GameManager.Instance.Win();
-            }
-        }
         else if(collision.gameObject.tag == "Enemy")
         {
             GameManager.Instance.GameOver();
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag=="door")
+        {
+            if (GameManager.Instance.isFinished == true)
+            {
+                //Debug.Log(GameManager.Instance.isFinished);
+                GameManager.Instance.Win();
+            }
         }
     }
     void ChangeTimeScale(float val)

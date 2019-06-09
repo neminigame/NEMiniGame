@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.Timeline;
+using UnityEngine.Playables;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameObject gameOver;
     public float speed;
-    public bool isFinished;//是否收集齐
+   
     [SerializeField]
     private PlayerControl _playerControl;
     private Material _textMeshProUGUIMat;
@@ -17,6 +18,12 @@ public class GameManager : MonoBehaviour
     float yAccelTime, yDecelTime, xAccelTime, xDecelTime, yMaxSpeed, xMaxSpeed;
     float yAccelTimeAfter, yDecelTimeAfter, xAccelTimeAfter, xDecelTimeAfter, yMaxSpeedAfter, xMaxSpeedAfter;
     float _timeScale = 0.1f;
+
+    //回到门时的动画
+    public bool isFinished;//是否收集齐
+    public PlayableDirector backDirector;
+    [SerializeField]
+    private int totalItems;
     void Awake()
     {
         Instance = this;
@@ -31,12 +38,14 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log(gameOver.GetComponent<TextMeshProUGUI>().fontMaterial);
         InitialCM();
+        totalItems = GameObject.FindGameObjectsWithTag("Item").Length;
     }
 
     // Update is called once per frame
     void Update()
     {
         CMMouseOption();
+       isFinished= judgeItem(_playerControl.Items);
     }
 
     public void GameOver()
@@ -56,7 +65,8 @@ public class GameManager : MonoBehaviour
     }
     public void Win()
     {
-        GameOver();
+        backDirector.enabled = true;
+       // GameOver();
     }
     //存储虚拟相机移动速度的初始值和改变后的值
     void InitialCM()
@@ -104,5 +114,11 @@ public class GameManager : MonoBehaviour
             cf.m_YAxis.m_InputAxisName = "";
             cf.m_XAxis.m_InputAxisName = "";
         }
+    }
+    bool judgeItem(List<Item> item)
+    {
+        if (item.Count >= totalItems)
+            return true;
+        return false;
     }
 }

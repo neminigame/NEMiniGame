@@ -9,9 +9,12 @@ public class UIManager : MonoBehaviour
     public List<Sprite> images;
     public int currentID { get{ return _currentID; } set{_currentID = value;} }
     private int _currentID;
-    private int totalItems;
+    
+    //private int totalItems;
     private bool isFinished;//是否收集齐物品
 
+    public ScenManager scene;
+    public Image EndUI_black, EndUI_point;
     private void Awake()
     {
         boxsLayout = transform.Find("BoxsLayout");
@@ -21,17 +24,17 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         InitializeVal();
-        totalItems = GameObject.FindGameObjectsWithTag("Item").Length;
+        //totalItems = GameObject.FindGameObjectsWithTag("Item").Length;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentID == totalItems)
-        {
-            isFinished = true;
-            GameManager.Instance.isFinished = true;
-        }
+        //if (currentID == totalItems)
+        //{
+        //    isFinished = true;
+        //    GameManager.Instance.isFinished = true;
+        //}
     }
     public void InitializeVal()
     {
@@ -67,8 +70,31 @@ public class UIManager : MonoBehaviour
         else
             return false;
     }
-    public void SetDieUI()
+    public void SetEndUI()
     {
-    
+        EndUI_black.enabled = true;
+        EndUI_point.enabled = true;
+        StartCoroutine(EndUIscale(EndUI_point.gameObject,EndUI_point.transform.localScale.x,0,0.7f));
+       
+    }
+    IEnumerator EndUIscale(GameObject t,float start_scale,float end_scale, float duration)
+    {
+        float temptime = 0f;
+        Vector3 tempscale;
+        if (t == null)
+        {
+            yield return null;
+        }
+        while (temptime<duration)
+        {
+            //Debug.Log(
+            temptime += Time.unscaledDeltaTime;
+            tempscale.x = Mathf.Lerp(start_scale, end_scale, temptime / duration);
+            tempscale.y = Mathf.Lerp(start_scale, end_scale, temptime / duration);
+            tempscale.z= Mathf.Lerp(start_scale, end_scale, temptime / duration);
+            t.transform.localScale = tempscale;
+            yield return null;
+        }
+        scene.quit();
     }
 }

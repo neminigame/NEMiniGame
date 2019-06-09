@@ -18,13 +18,13 @@ public class ScenManager : MonoBehaviour
     }
     public void quit()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
     public void reset()
     {
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 1f * 0.02f;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         
     }
 }
