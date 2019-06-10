@@ -11,12 +11,13 @@ Shader "MiniGame/toon_floor"
 		_RampTex("Ramp Tex",2D)="white"{}
 		_light("light",Range(1,5))=1
 		_shadowColor("shadow color",Color)=(0.1,0.1,0.1,0.1)
+		_reflectPow("reflect power",Range(0,1))=1
 	}
 	SubShader{
-
+		Tags{"LightMode"="ForwardBase"  "RenderType"="Opaque"}
 		Pass
 		{
-			Tags{"LightMode"="ForwardBase"  "RenderType"="Opaque"}
+			
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
@@ -28,13 +29,14 @@ Shader "MiniGame/toon_floor"
 			float4 _MainTex_ST;
 			sampler2D _RampTex;
 			fixed4 _Color,_shadowColor;
-			half _light;
+			half _light,_reflectPow;
 			struct v2f{
 				float4 pos:SV_POSITION;
 				float3 worldnormal:TEXCOORD0;
 				float3 worldpos:TEXCOORD1;
 				float3 reflectionDir:TEXCOORD3;
 				half2 uv:TEXCOORD2;
+				SHADOW_COORDS(4)
 			};
 			v2f vert(appdata_base v)
 			{
@@ -45,6 +47,7 @@ Shader "MiniGame/toon_floor"
 				float3 worldViewDir = WorldSpaceViewDir(v.vertex);
 				o.reflectionDir = reflect(-worldViewDir, o.worldnormal);
 				o.uv=TRANSFORM_TEX(v.texcoord,_MainTex);
+				TRANSFER_SHADOW(o);
 				return o;
 			}
 			fixed4 frag(v2f i):SV_Target
@@ -55,12 +58,15 @@ Shader "MiniGame/toon_floor"
 				fixed3 halfdir=normalize(worldlightdir+worldviewdir);
 				fixed3 ccolor=tex2D(_MainTex,i.uv).rgb;
 				fixed3 albedo=ccolor*_Color.rgb;
+				UNITY_LIGHT_ATTENUATION(atten,i,i.worldpos);
 				fixed3 ambient=UNITY_LIGHTMODEL_AMBIENT.xyz*albedo;
 				fixed diff=dot(worldnormal,worldlightdir)*0.5+0.5;
 				fixed3 diffuse=_LightColor0.rgb*albedo*tex2D(_RampTex,float2(diff,diff)).rgb;
-			float3 reflectDir = BoxProjectedCubemapDirection(i.reflectionDir, i.worldpos, unity_SpecCube0_ProbePosition, unity_SpecCube0_BoxMin, unity_SpecCube0_BoxMax);
-	half4 rgbm = UNITY_SAMPLE_TEXCUBE(unity_SpecCube0, reflectDir);
-				return fixed4((rgbm.rgb)*_light,1.0);
+				diffuse=lerp(_shadowColor*diffuse,diffuse,atten);
+				float3 reflectDir = BoxProjectedCubemapDirection(i.reflectionDir, i.worldpos, unity_SpecCube0_ProbePosition, unity_SpecCube0_BoxMin, unity_SpecCube0_BoxMax);
+				half4 rgbm = UNITY_SAMPLE_TEXCUBE(unity_SpecCube0, reflectDir);
+				diffuse=lerp(diffuse,rgbm.rgb,_reflectPow);
+				return fixed4(diffuse*_light,1.0);
 			}
 			ENDCG
 		}

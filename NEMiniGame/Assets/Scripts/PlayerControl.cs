@@ -57,7 +57,7 @@ public class PlayerControl : MonoBehaviour
                 dir = dir2 - dir1;
 
                 dir = dir.normalized;
-                Debug.DrawRay(rig.position, dir, Color.red);
+               // Debug.DrawRay(rig.position, dir, Color.red);
             }
         }
         if (Input.GetMouseButtonUp(0))
