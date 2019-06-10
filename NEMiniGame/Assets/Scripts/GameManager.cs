@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameObject gameOver;
+    private bool gameover;//判断游戏是否完成的标记
     public float speed;
    
     [SerializeField]
@@ -51,13 +52,14 @@ public class GameManager : MonoBehaviour
         //开始时的动画，判断是否执行小球控制
         if (startDirector.state == PlayState.Playing)
             _playerControl.enabled = false;
-        else _playerControl.enabled = true;
+        else if(!gameover)_playerControl.enabled = true;
         //
     }
 
     public void GameOver()
     {
         gameOver.SetActive(true);
+        gameover = true;
         _playerControl.enabled = false;
         CountDown._Count = CountDown.IsCountOK.NOTOK;
         //_textMeshProUGUIMat.SetFloat("_OutlineSoftness", Mathf.Lerp(_textMeshProUGUIMat.GetFloat("_OutlineSoftness"), 0f, Time.deltaTime * speed));
@@ -74,6 +76,7 @@ public class GameManager : MonoBehaviour
     {
         
         backDirector.enabled = true;
+        gameover = true;
         _playerControl.enabled = false;
         // GameOver();
     }

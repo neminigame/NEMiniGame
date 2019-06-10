@@ -6,7 +6,8 @@ using UnityEngine;
 public class ScanningLine : MonoBehaviour
 {
     public Material TransitionMat;
-    public bool canPlay=false;
+    public bool canPlay=false;//转场结束动画
+    public bool canPlay2 = true;//转场开始动画
     private float _time;
     public float speed = 1;
     public bool distort;
@@ -33,6 +34,16 @@ public class ScanningLine : MonoBehaviour
                 _time = 0;
             }
         }
+        if(canPlay2)
+        {
+            _time += Time.deltaTime;
+            TransitionMat.SetFloat("_Cutoff",1- speed * 1.2f*_time);
+            if (1-speed * 1.2f* _time < 0.1)
+            {
+                canPlay2 = false;
+                _time = 0;
+            }
+        }
         TransitionMat.SetFloat("_Distort", Convert.ToInt32(distort));
     }
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
@@ -46,8 +57,9 @@ public class ScanningLine : MonoBehaviour
             Shader shader = Shader.Find("JackieZhou/Distort");
             TransitionMat = new Material(shader);
         }
-        TransitionMat.SetFloat("_Cutoff", 0);
+        TransitionMat.SetFloat("_Cutoff", 1);
         canPlay = false;
-        _time = 0;
+        canPlay2 = true;
+        _time =  0;
     }
 }

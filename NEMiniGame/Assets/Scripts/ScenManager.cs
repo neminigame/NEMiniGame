@@ -27,6 +27,6 @@ public class ScenManager : MonoBehaviour
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 1f * 0.02f;
         SceneManager.LoadScene(1);
-        
+
     }
 }

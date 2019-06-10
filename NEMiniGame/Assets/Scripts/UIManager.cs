@@ -7,17 +7,22 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     public Transform boxsLayout;
     public List<Sprite> images;
-    public int currentID { get{ return _currentID; } set{_currentID = value;} }
+    public int currentID { get { return _currentID; } set { _currentID = value; } }
     private int _currentID;
-    
+
     //private int totalItems;
     private bool isFinished;//是否收集齐物品
 
     public ScenManager scene;
+    //结束时的UI动画
     public Image EndUI_black, EndUI_point;
+    //继续时的UI动画
+    public ScanningLine scanline;
+    public GameObject[] hideUI;//需要隐藏的UI;
     private void Awake()
     {
         boxsLayout = transform.Find("BoxsLayout");
+        scanline = Camera.main.GetComponent<ScanningLine>();
         Instance = this;
     }
     // Start is called before the first frame update
@@ -74,8 +79,25 @@ public class UIManager : MonoBehaviour
     {
         EndUI_black.enabled = true;
         EndUI_point.enabled = true;
-        StartCoroutine(EndUIscale(EndUI_point.gameObject,EndUI_point.transform.localScale.x,0,0.7f));
-       
+        StartCoroutine(EndUIscale(EndUI_point.gameObject, EndUI_point.transform.localScale.x, 0, 0.7f));
+
+    }
+    public void SetResetUI()
+    {
+
+        for (int i = 0; i < hideUI.Length; i++)
+            hideUI[i].SetActive(false);
+        StartCoroutine(ResetUI());
+    }
+    IEnumerator ResetUI()
+    {
+        scanline.canPlay = true;
+        
+        while(scanline.TransitionMat.GetFloat("_Cutoff")<1)
+        {
+            yield return null;
+        }
+        scene.reset();
     }
     IEnumerator EndUIscale(GameObject t,float start_scale,float end_scale, float duration)
     {

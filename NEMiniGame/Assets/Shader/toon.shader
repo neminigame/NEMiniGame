@@ -13,10 +13,10 @@ Shader "MiniGame/toon"
 		_shadowColor("shadow color",Color)=(0.1,0.1,0.1,0.1)
 	}
 	SubShader{
-
+		Tags{"LightMode"="ForwardBase"  "RenderType"="Opaque"}
 		Pass
 		{
-			Tags{"LightMode"="ForwardBase"  "RenderType"="Opaque"}
+			
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
@@ -34,7 +34,7 @@ Shader "MiniGame/toon"
 				float3 worldnormal:TEXCOORD0;
 				float3 worldpos:TEXCOORD1;
 				half2 uv:TEXCOORD2;
-				SHADOW_COORDS(3)
+				SHADOW_COORDS(4)
 			};
 			v2f vert(appdata_base v)
 			{
@@ -54,11 +54,11 @@ Shader "MiniGame/toon"
 				fixed3 halfdir=normalize(worldlightdir+worldviewdir);
 				fixed3 ccolor=tex2D(_MainTex,i.uv).rgb;
 				fixed3 albedo=ccolor*_Color.rgb;
-				UNITY_LIGHT_ATTENUATION(atten,i,i.worldpos);
+				
 				fixed3 ambient=UNITY_LIGHTMODEL_AMBIENT.xyz*albedo;
 				fixed diff=dot(worldnormal,worldlightdir)*0.5+0.5;
 				fixed3 diffuse=_LightColor0.rgb*albedo*tex2D(_RampTex,float2(diff,diff)).rgb;
-
+				UNITY_LIGHT_ATTENUATION(atten,i,i.worldpos);
 				diffuse=lerp(_shadowColor*diffuse,diffuse,atten);
 				return fixed4((ambient+diffuse)*_light,1.0);
 			}
