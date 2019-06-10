@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: floor
-  m_Shader: {fileID: 4800000, guid: d7ba4c852f925d34e91091aacab8220c, type: 3}
+  m_Shader: {fileID: 4800000, guid: 179061994dd9b21498362312ee698a96, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -78,6 +78,7 @@ Material:
     - _ZWrite: 1
     - _light: 1
     - _outlinefactor: 0
+    - _reflectPow: 0.15
     - _specularfactor: 0.01
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

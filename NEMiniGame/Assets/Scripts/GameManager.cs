@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public PlayableDirector backDirector;
     [SerializeField]
     private int totalItems;
+    //开始时的动画，判断是否执行小球控制
+    public PlayableDirector startDirector;
     void Awake()
     {
         Instance = this;
@@ -46,6 +48,11 @@ public class GameManager : MonoBehaviour
     {
         CMMouseOption();
        isFinished= judgeItem(_playerControl.Items);
+        //开始时的动画，判断是否执行小球控制
+        if (startDirector.state == PlayState.Playing)
+            _playerControl.enabled = false;
+        else _playerControl.enabled = true;
+        //
     }
 
     public void GameOver()
@@ -65,8 +72,10 @@ public class GameManager : MonoBehaviour
     }
     public void Win()
     {
+        
         backDirector.enabled = true;
-       // GameOver();
+        _playerControl.enabled = false;
+        // GameOver();
     }
     //存储虚拟相机移动速度的初始值和改变后的值
     void InitialCM()
