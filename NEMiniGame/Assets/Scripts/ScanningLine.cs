@@ -26,7 +26,7 @@ public class ScanningLine : MonoBehaviour
     {
         if (canPlay)
         {
-            _time += Time.deltaTime;
+            _time += Time.unscaledDeltaTime;
             TransitionMat.SetFloat("_Cutoff", speed *_time);
             if (speed * _time > 1)
             {
@@ -36,7 +36,7 @@ public class ScanningLine : MonoBehaviour
         }
         if(canPlay2)
         {
-            _time += Time.deltaTime;
+            _time += Time.unscaledDeltaTime;
             TransitionMat.SetFloat("_Cutoff",1- speed * 1.2f*_time);
             if (1-speed * 1.2f* _time < 0.1)
             {

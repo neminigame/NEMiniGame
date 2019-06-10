@@ -18,7 +18,6 @@ public class UIManager : MonoBehaviour
     public Image EndUI_black, EndUI_point;
     //继续时的UI动画
     public ScanningLine scanline;
-    public GameObject[] hideUI;//需要隐藏的UI;
     private void Awake()
     {
         boxsLayout = transform.Find("BoxsLayout");
@@ -85,8 +84,6 @@ public class UIManager : MonoBehaviour
     public void SetResetUI()
     {
 
-        for (int i = 0; i < hideUI.Length; i++)
-            hideUI[i].SetActive(false);
         StartCoroutine(ResetUI());
     }
     IEnumerator ResetUI()

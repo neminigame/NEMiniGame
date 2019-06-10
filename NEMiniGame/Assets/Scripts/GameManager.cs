@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
         backDirector.enabled = true;
         gameover = true;
         _playerControl.enabled = false;
+        CountDown._Count = CountDown.IsCountOK.NOTOK;
         // GameOver();
     }
     //存储虚拟相机移动速度的初始值和改变后的值
