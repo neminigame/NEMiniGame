@@ -220,6 +220,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: TeachingRobot
       objectReference: {fileID: 0}
+    - target: {fileID: 7410566350715327946, guid: 3bb3e1249bb4aeb44991ad6ced31f239,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7410566350715327941, guid: 3bb3e1249bb4aeb44991ad6ced31f239,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -274,6 +279,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410566351436062900, guid: 3bb3e1249bb4aeb44991ad6ced31f239,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410566351527493837, guid: 3bb3e1249bb4aeb44991ad6ced31f239,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bb3e1249bb4aeb44991ad6ced31f239, type: 3}
@@ -346,6 +361,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7410566350715327946, guid: 3bb3e1249bb4aeb44991ad6ced31f239,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7410566350715327941, guid: 3bb3e1249bb4aeb44991ad6ced31f239,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -400,6 +420,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410566351436062900, guid: 3bb3e1249bb4aeb44991ad6ced31f239,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410566351527493837, guid: 3bb3e1249bb4aeb44991ad6ced31f239,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bb3e1249bb4aeb44991ad6ced31f239, type: 3}
@@ -1177,7 +1207,7 @@ GameObject:
   - component: {fileID: 1145201250}
   - component: {fileID: 1145201252}
   - component: {fileID: 1145201251}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2211,17 +2241,17 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 0.48262596
-          outSlope: 0.48262596
+          inSlope: 0.39768028
+          outSlope: 0.39768028
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0.48262596
-          inSlope: 0.48262596
-          outSlope: 0.48262596
+          value: 0.39768028
+          inSlope: 0.39768028
+          outSlope: 0.39768028
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
@@ -5958,6 +5988,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeachingLine
       objectReference: {fileID: 0}
+    - target: {fileID: 3421269886216567729, guid: f1901b0de46ee474cb38e1f123ac808e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421269886216567730, guid: f1901b0de46ee474cb38e1f123ac808e,
+        type: 3}
+      propertyPath: objectType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3421269886216567731, guid: f1901b0de46ee474cb38e1f123ac808e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6013,11 +6053,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3421269886216567730, guid: f1901b0de46ee474cb38e1f123ac808e,
-        type: 3}
-      propertyPath: objectType
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1901b0de46ee474cb38e1f123ac808e, type: 3}
 --- !u!1001 &1654394268
@@ -6036,6 +6071,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421269886216567729, guid: f1901b0de46ee474cb38e1f123ac808e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3421269886216567731, guid: f1901b0de46ee474cb38e1f123ac808e,
         type: 3}

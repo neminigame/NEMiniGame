@@ -18,6 +18,7 @@ public class TeachingBrain : MonoBehaviour
         {
             posCollection.Add(transform.GetChild(i));
             posCollection[i].GetComponent<GuideManager>().ID = i;
+            posCollection[i].GetComponent<GuideManager>().playerControl = playerControl;
         }
         playerControl.transform.position = posCollection[0].position;
         startID = 0;
@@ -27,7 +28,7 @@ public class TeachingBrain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var t = posCollection[endID].position - posCollection[startID].position;
+        var t = posCollection[endID].position - playerControl.transform.position;
         playerControl.dir = t.normalized;
     }
     public void ResetPos(int ID)

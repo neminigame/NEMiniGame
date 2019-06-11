@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
     public List<Item> Items;
     public bool isTeachingMode = false;
     public line line;
+    public float factor = 1f;
     // Start is called before the first frame update
     void Awake()
     {
@@ -85,7 +86,7 @@ public class PlayerControl : MonoBehaviour
             tdir = dir;
             trspeed = rspeed;
             tspeed = speed;
-            rig.velocity = tdir * tspeed;
+            rig.velocity = tdir * tspeed * factor;
         }
         //小球滚动前进
         Vector3 rotate_dir = Vector3.Cross(Vector3.up, tdir);
