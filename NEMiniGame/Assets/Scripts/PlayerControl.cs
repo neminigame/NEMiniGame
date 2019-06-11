@@ -135,12 +135,17 @@ public class PlayerControl : MonoBehaviour
     }
     public void ChangeTimeScale(float val)
     {
+        if (!GameManager.Instance)
+        {
+            Time.timeScale = val;
+            Time.fixedDeltaTime = val * 0.02f;
+            return;
+        }
         if(!GameManager.Instance.isPause)
         {
             Time.timeScale = val;
             Time.fixedDeltaTime = val * 0.02f;
         }
-
     }
     IEnumerator Dunzhen()
     {

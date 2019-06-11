@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //Debug.Log(gameOver.GetComponent<TextMeshProUGUI>().fontMaterial);
+        cf.m_YAxis.m_InputAxisName = "";
+        cf.m_XAxis.m_InputAxisName = "";
         InitialCM();
         totalItems = GameObject.FindGameObjectsWithTag("Item").Length;
     }
@@ -102,32 +104,35 @@ public class GameManager : MonoBehaviour
     //每帧调用的虚拟相机设置
     void CMMouseOption()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         {
             cf.m_YAxis.m_InputAxisName = "Mouse Y";
             cf.m_XAxis.m_InputAxisName = "Mouse X";
-            //cf.m_YAxis.m_AccelTime = a;
-            //cf.m_YAxis.m_DecelTime = b;
-            //cf.m_XAxis.m_AccelTime = c;
-            //cf.m_XAxis.m_DecelTime = d;
-            if (Input.GetMouseButton(0))
-            {
-                cf.m_YAxis.m_AccelTime = yAccelTimeAfter;
-                cf.m_YAxis.m_DecelTime = yDecelTimeAfter;
-                cf.m_XAxis.m_AccelTime = xAccelTimeAfter;
-                cf.m_XAxis.m_DecelTime = xDecelTimeAfter;
-                cf.m_YAxis.m_MaxSpeed = yMaxSpeedAfter;
-                cf.m_XAxis.m_MaxSpeed = xMaxSpeedAfter;
-            }
-            else
-            {
-
-            }
         }
-        else
+        else if(Input.GetMouseButtonUp(1))
         {
             cf.m_YAxis.m_InputAxisName = "";
             cf.m_XAxis.m_InputAxisName = "";
+            cf.m_YAxis.m_InputAxisValue = 0;
+            cf.m_XAxis.m_InputAxisValue = 0;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            cf.m_YAxis.m_AccelTime = yAccelTimeAfter;
+            cf.m_YAxis.m_DecelTime = yDecelTimeAfter;
+            cf.m_XAxis.m_AccelTime = xAccelTimeAfter;
+            cf.m_XAxis.m_DecelTime = xDecelTimeAfter;
+            cf.m_YAxis.m_MaxSpeed = yMaxSpeedAfter;
+            cf.m_XAxis.m_MaxSpeed = xMaxSpeedAfter;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            cf.m_YAxis.m_AccelTime = yAccelTime;
+            cf.m_YAxis.m_DecelTime = yDecelTime;
+            cf.m_XAxis.m_AccelTime = xAccelTime;
+            cf.m_XAxis.m_DecelTime = xDecelTime;
+            cf.m_YAxis.m_MaxSpeed = yMaxSpeed;
+            cf.m_XAxis.m_MaxSpeed = xMaxSpeed;
         }
     }
     bool judgeItem(List<Item> item)
