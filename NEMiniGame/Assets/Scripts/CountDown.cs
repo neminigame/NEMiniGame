@@ -17,14 +17,23 @@ public class CountDown : MonoBehaviour
 
     private void Awake()
     {
+        
         _hour = 0;
-        _minute = 0;
-        _second = 0;
-        _mileSecond = 000;
+        //ugui上的输入框文本同步
+        string[] arrays = TimeCountDown.text.Split(':');
+        if(arrays.Length==2)
+        {
+            float t = float.Parse(arrays[1]);
+            _minute = int.Parse(arrays[0]);
+            _second = (int)t;
+            _mileSecond = (int)((t-_second)*1000);
+        }
+      
+        
     }
     void Start()
     {
-        _time = 0;
+        _time = _second+_mileSecond*1.0f/1000;
         _Count = IsCountOK.NOTOK;
       //  reStartCountDown();
     }
@@ -34,14 +43,26 @@ public class CountDown : MonoBehaviour
         if(_Count==IsCountOK.OK)
         {
            
-            _time += Time.deltaTime;
-            _hour = (int)(_time / 3600);
-            _minute = (int)((_time - _hour * 3600) / 60);
-            _second = (int)(_time - _hour * 3600 - _minute * 60);
-            _mileSecond = (int)((_time - (int)_time) * 1000);
-            TimeCountDown.text = string.Format("{0:D2}:{1:D2}.{2:D3}", _minute, _second, _mileSecond);
+            _time -= Time.deltaTime;
+            if(_time<0f)//倒计时结束且当前没有失败，判断为失败
+            {
+                GameManager.Instance.GameOver();
+                _hour = 0;
+                _minute = 0;
+                _second = 0;
+                _mileSecond = 000;
+                TimeCountDown.text = string.Format("{0:D2}:{1:D2}.{2:D3}", _minute, _second, _mileSecond);
+            }
+            else
+            {
+                _hour = (int)(_time / 3600);
+                _minute = (int)((_time - _hour * 3600) / 60);
+                _second = (int)(_time - _hour * 3600 - _minute * 60);
+                _mileSecond = (int)((_time - (int)_time) * 1000);
+                TimeCountDown.text = string.Format("{0:D2}:{1:D2}.{2:D3}", _minute, _second, _mileSecond);
+            }
         }
-     
+        judgeColor(3f, Color.red);//时间3s内变为红色
     }
 
     //private IEnumerator CountDownT()
@@ -59,10 +80,10 @@ public class CountDown : MonoBehaviour
     {
       
         
-        _hour = 0;
-        _minute = 0;
-        _second = 0;
-        _mileSecond = 000;
+        //_hour = 0;
+        //_minute = 0;
+        //_second = 0;
+        //_mileSecond = 000;
         _Count = IsCountOK.NOTOK;
          TimeCountDown.text = string.Format("{0:D2}:{1:D2}.{2:D3}", _minute,_second ,_mileSecond);
     }
@@ -80,5 +101,12 @@ public class CountDown : MonoBehaviour
         }
         else
             _Count = IsCountOK.OK;
+    }
+    public void judgeColor(float t,Color col)
+    {
+        if(_second<t)
+        {
+            TimeCountDown.color = col;
+        }
     }
 }

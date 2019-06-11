@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     private int totalItems;
     //开始时的动画，判断是否执行小球控制
     public PlayableDirector startDirector;
+
+    public bool isPause=false;//判断游戏是否暂停标记
     void Awake()
     {
         Instance = this;

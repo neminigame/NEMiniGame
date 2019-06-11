@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     public Image EndUI_black, EndUI_point;
     //继续时的UI动画
     public ScanningLine scanline;
+
+    public GameObject PauseUI;//暂停时的UI面板
     private void Awake()
     {
         boxsLayout = transform.Find("BoxsLayout");
@@ -85,6 +87,14 @@ public class UIManager : MonoBehaviour
     {
 
         StartCoroutine(ResetUI());
+    }
+    public void SetPauseUI()
+    {
+        PauseUI.SetActive(true);
+    }
+    public void ResetPauseUI()
+    {
+        PauseUI.SetActive(false);
     }
     IEnumerator ResetUI()
     {

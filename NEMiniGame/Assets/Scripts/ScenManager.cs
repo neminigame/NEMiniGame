@@ -29,4 +29,14 @@ public class ScenManager : MonoBehaviour
         SceneManager.LoadScene(1);
 
     }
+    public void Setpause()
+    {
+        GameManager.Instance.isPause = true;
+        Time.timeScale = 0f;
+    }
+    public void SetRun()
+    {
+        GameManager.Instance.isPause = false;
+        Time.timeScale = 1f;
+    }
 }

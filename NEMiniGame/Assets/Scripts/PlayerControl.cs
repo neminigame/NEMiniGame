@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour
     private float _timeScale = 0.1f;
     private float tspeed, trspeed;//前进速度，旋转速度
     private Vector3 mouse1, mouse2;//第一次鼠标，第二次鼠标位置
-    private int JudgeIsBegin=0;//判断是否第一次点鼠标，如果是则开始计时
+    private int JudgeIsBegin = 0;//判断是否第一次点鼠标，如果是则开始计时
     private Vector3 tdir;
     public List<Item> Items;
     public bool isTeachingMode = false;
@@ -33,7 +33,7 @@ public class PlayerControl : MonoBehaviour
     {
 
         //判断是否开始计时
-        if(JudgeIsBegin==1)
+        if (JudgeIsBegin == 1)
         {
             if (isTeachingMode)
                 return;
@@ -65,7 +65,7 @@ public class PlayerControl : MonoBehaviour
                 dir = dir2 - dir1;
 
                 dir = dir.normalized;
-               // Debug.DrawRay(rig.position, dir, Color.red);
+                // Debug.DrawRay(rig.position, dir, Color.red);
             }
         }
         if (Input.GetMouseButtonUp(0))
@@ -93,7 +93,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(!isTeachingMode)
+        if (!isTeachingMode)
             rig.velocity = tdir * tspeed;
     }
     public void OnCollisionEnter(Collision collision)
@@ -101,7 +101,7 @@ public class PlayerControl : MonoBehaviour
         //计算完全弹性碰撞更新移动方向
         if (collision.gameObject.tag == "wall")
         {
-           // StartCoroutine(Dunzhen());
+            // StartCoroutine(Dunzhen());
             ContactPoint cp = collision.contacts[0];
             Vector3 rdir = Vector3.Reflect(tdir, cp.normal);
             rdir.y = 0;
@@ -116,14 +116,14 @@ public class PlayerControl : MonoBehaviour
             //    wallmat.SetFloat("_width", 1f);
             //}
         }
-        else if(collision.gameObject.tag == "Enemy")
+        else if (collision.gameObject.tag == "Enemy")
         {
             GameManager.Instance.GameOver();
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag=="door")
+        if (other.tag == "door")
         {
             if (GameManager.Instance.isFinished == true)
             {
@@ -134,8 +134,12 @@ public class PlayerControl : MonoBehaviour
     }
     public void ChangeTimeScale(float val)
     {
-        Time.timeScale = val;
-        Time.fixedDeltaTime = val * 0.02f;
+        if(!GameManager.Instance.isPause)
+        {
+            Time.timeScale = val;
+            Time.fixedDeltaTime = val * 0.02f;
+        }
+
     }
     IEnumerator Dunzhen()
     {

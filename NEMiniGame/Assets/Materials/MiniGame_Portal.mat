@@ -47,7 +47,7 @@ Material:
     - _Arg: 1
     - _Arg2: 1
     - _DistortFactor: 4
-    - _Force: 1
+    - _Force: 1.0000175
     - _NoiseFactor: 8
     - _PortalOffset: 1.01
     - _Speed: 100
