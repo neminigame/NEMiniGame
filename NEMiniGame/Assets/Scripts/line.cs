@@ -2,20 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ObjectType
+{
+    Player,
+    TeachingRobot
+}
 public class line : MonoBehaviour
 {
+    public ObjectType objectType=ObjectType.Player;
     public GameObject sphere;
     public PlayerControl Player;
     public LineRenderer linerender;
     public float line_length;
     public Vector3 p0, p1, p2;
     private Vector3 curdir;
+    public bool isTeachingMode = false;
+    public float lerpSpeed = 8f;
     // Start is called before the first frame update
     void Start()
     {
-        sphere = GameObject.FindGameObjectWithTag("Player");
+        if(objectType==ObjectType.TeachingRobot)
+            sphere = GameObject.FindGameObjectWithTag("TeachingRobot");
+        else if(objectType==ObjectType.Player)
+            sphere = GameObject.FindGameObjectWithTag("Player");
         if(sphere!=null)
-         Player=sphere.GetComponent<PlayerControl>();
+            Player=sphere.GetComponent<PlayerControl>();
+        Player.line = this;
         linerender = GetComponent<LineRenderer>();
         linerender.positionCount = 2;
     }
@@ -28,7 +40,9 @@ public class line : MonoBehaviour
 
         p0 = sphere.transform.position;
         p0.y -= (float)0.1;
-        curdir = Player.dir;
+        if (!isTeachingMode)
+            curdir = Player.dir;
+        else curdir = Vector3.Lerp(curdir, Player.dir, Time.unscaledDeltaTime * lerpSpeed);
         //Debug.Log(curdir);
         linerender.SetPosition(0, p0);
 
@@ -51,9 +65,6 @@ public class line : MonoBehaviour
             linerender.positionCount = 2;
             p1 = p0 + line_length * curdir;
             linerender.SetPosition(1, p1);
-
         }
-
-
     }
 }

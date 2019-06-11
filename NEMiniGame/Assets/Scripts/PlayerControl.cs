@@ -16,6 +16,8 @@ public class PlayerControl : MonoBehaviour
     private int JudgeIsBegin=0;//判断是否第一次点鼠标，如果是则开始计时
     private Vector3 tdir;
     public List<Item> Items;
+    public bool isTeachingMode = false;
+    public line line;
     // Start is called before the first frame update
     void Awake()
     {
@@ -33,14 +35,20 @@ public class PlayerControl : MonoBehaviour
         //判断是否开始计时
         if(JudgeIsBegin==1)
         {
+            if (isTeachingMode)
+                return;
             CountDown._Count = CountDown.IsCountOK.OK;
         }
         if (Input.GetMouseButtonDown(0))
         {
+            if (isTeachingMode)
+                return;
             mouse1 = Input.mousePosition;
         }
         if (Input.GetMouseButton(0))
         {
+            if (isTeachingMode)
+                return;
             ChangeTimeScale(0.1f);
             mouse2 = Input.mousePosition;
             if (Vector3.Distance(mouse1, mouse2) > 10)
@@ -62,6 +70,8 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
+            if (isTeachingMode)
+                return;
             ChangeTimeScale(1f);
             //松开鼠标赋予速度,取消指示线的显示
             tdir = dir;
@@ -70,13 +80,21 @@ public class PlayerControl : MonoBehaviour
             tspeed = speed;
             JudgeIsBegin += 1;
         }
+        if (isTeachingMode)
+        {
+            tdir = dir;
+            trspeed = rspeed;
+            tspeed = speed;
+            rig.velocity = tdir * tspeed;
+        }
         //小球滚动前进
         Vector3 rotate_dir = Vector3.Cross(Vector3.up, tdir);
         model.transform.Rotate(rotate_dir, Time.deltaTime * trspeed * 100, Space.World);
     }
     private void FixedUpdate()
     {
-        rig.velocity = tdir * tspeed;
+        if(!isTeachingMode)
+            rig.velocity = tdir * tspeed;
     }
     public void OnCollisionEnter(Collision collision)
     {
@@ -114,7 +132,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
     }
-    void ChangeTimeScale(float val)
+    public void ChangeTimeScale(float val)
     {
         Time.timeScale = val;
         Time.fixedDeltaTime = val * 0.02f;

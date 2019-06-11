@@ -7,6 +7,7 @@ TagManager:
   - wall
   - Item
   - StartAndEndPos
+  - TeachingRobot
   layers:
   - Default
   - TransparentFX
