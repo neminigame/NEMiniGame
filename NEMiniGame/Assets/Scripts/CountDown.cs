@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+public enum GameMode
+{
+    Teaching,
+    Normal
+}
 public class CountDown : MonoBehaviour
 {
     [SerializeField]
@@ -14,6 +19,7 @@ public class CountDown : MonoBehaviour
     private float _time;
     public static IsCountOK _Count;
     public enum IsCountOK {OK,NOTOK };
+    public GameMode gameMode=GameMode.Normal;
 
     private void Awake()
     {
@@ -46,12 +52,22 @@ public class CountDown : MonoBehaviour
             _time -= Time.deltaTime;
             if(_time<0f)//倒计时结束且当前没有失败，判断为失败
             {
-                GameManager.Instance.GameOver();
-                _hour = 0;
-                _minute = 0;
-                _second = 0;
-                _mileSecond = 000;
-                TimeCountDown.text = string.Format("{0:D2}:{1:D2}.{2:D3}", _minute, _second, _mileSecond);
+                switch (gameMode)
+                {
+                    case GameMode.Teaching:
+
+                        break;
+                    case GameMode.Normal:
+                        GameManager.Instance.GameOver();
+                        _hour = 0;
+                        _minute = 0;
+                        _second = 0;
+                        _mileSecond = 000;
+                        TimeCountDown.text = string.Format("{0:D2}:{1:D2}.{2:D3}", _minute, _second, _mileSecond);
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+    public GameMode gameMode = GameMode.Normal;
     public Camera _camera;
     public GameObject model;
     public Rigidbody rig;
@@ -19,6 +20,8 @@ public class PlayerControl : MonoBehaviour
     public bool isTeachingMode = false;
     public line line;
     public float factor = 1f;
+    public GameManagerBase gameManager;
+    private Vector3 rotate_dir;
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,8 +30,19 @@ public class PlayerControl : MonoBehaviour
         rig = GetComponent<Rigidbody>();
         model = transform.Find("player").gameObject;
         Items.Clear();
+       
     }
-
+    private void Start()
+    {
+        if (gameMode == GameMode.Normal)
+        {
+            gameManager = GameManager.Instance;
+        }
+        else if (gameMode == GameMode.Teaching)
+        {
+            gameManager = TeachGameManager.Instance;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -89,7 +103,7 @@ public class PlayerControl : MonoBehaviour
             rig.velocity = tdir * tspeed * factor;
         }
         //小球滚动前进
-        Vector3 rotate_dir = Vector3.Cross(Vector3.up, tdir);
+        rotate_dir = Vector3.Cross(Vector3.up, tdir);
         model.transform.Rotate(rotate_dir, Time.deltaTime * trspeed * 100, Space.World);
     }
     private void FixedUpdate()
@@ -119,17 +133,25 @@ public class PlayerControl : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Enemy")
         {
-            GameManager.Instance.GameOver();
+            gameManager.GameOver();
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "door")
         {
-            if (GameManager.Instance.isFinished == true)
+            if (gameManager.isFinished == true)
             {
-                //Debug.Log(GameManager.Instance.isFinished);
-                GameManager.Instance.Win();
+                gameManager.Win();
+            }
+        }
+        else if (other.tag == "Identifer")
+        {
+            TeachGameManager.Instance.SetTeachingRobot(true);
+            if (TeachGameManager.Instance.hitIdentiferNum == 0)
+            {
+                tdir = Vector3.zero;
+                TeachGameManager.Instance.hitIdentiferNum++;
             }
         }
     }

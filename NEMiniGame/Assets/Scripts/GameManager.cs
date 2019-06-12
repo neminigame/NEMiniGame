@@ -5,26 +5,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Timeline;
 using UnityEngine.Playables;
-public class GameManager : MonoBehaviour
+public class GameManager : GameManagerBase
 {
     public static GameManager Instance;
     public GameObject gameOver;
     private bool gameover;//判断游戏是否完成的标记
-    public float speed;
    
-    [SerializeField]
-    private PlayerControl _playerControl;
+    //[SerializeField]
+    //protected PlayerControl _playerControl;
     private Material _textMeshProUGUIMat;
-    public CinemachineFreeLook cf;
-    float yAccelTime, yDecelTime, xAccelTime, xDecelTime, yMaxSpeed, xMaxSpeed;
-    float yAccelTimeAfter, yDecelTimeAfter, xAccelTimeAfter, xDecelTimeAfter, yMaxSpeedAfter, xMaxSpeedAfter;
-    float _timeScale = 0.1f;
+    //public CinemachineFreeLook cf;
+    //float yAccelTime, yDecelTime, xAccelTime, xDecelTime, yMaxSpeed, xMaxSpeed;
+    //float yAccelTimeAfter, yDecelTimeAfter, xAccelTimeAfter, xDecelTimeAfter, yMaxSpeedAfter, xMaxSpeedAfter;
+    //float _timeScale = 0.1f;
 
     //回到门时的动画
-    public bool isFinished;//是否收集齐
+   // public bool isFinished;//是否收集齐
     public PlayableDirector backDirector;
-    [SerializeField]
-    private int totalItems;
+    //public int totalItems;
     //开始时的动画，判断是否执行小球控制
     public PlayableDirector startDirector;
 
@@ -52,7 +50,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         CMMouseOption();
-       isFinished= judgeItem(_playerControl.Items);
+       isFinished = judgeItem(_playerControl.Items);
         //开始时的动画，判断是否执行小球控制
         if (startDirector.state == PlayState.Playing)
             _playerControl.enabled = false;
@@ -60,7 +58,7 @@ public class GameManager : MonoBehaviour
         //
     }
 
-    public void GameOver()
+    public override void GameOver()
     {
         gameOver.SetActive(true);
         gameover = true;
@@ -76,7 +74,7 @@ public class GameManager : MonoBehaviour
         //  _textMeshProUGUIMat.SetFloat("_FaceDilate", -1f);
         isFinished = false;
     }
-    public void Win()
+    public override void Win()
     {
         
         backDirector.enabled = true;
@@ -84,61 +82,5 @@ public class GameManager : MonoBehaviour
         _playerControl.enabled = false;
         CountDown._Count = CountDown.IsCountOK.NOTOK;
         // GameOver();
-    }
-    //存储虚拟相机移动速度的初始值和改变后的值
-    void InitialCM()
-    {
-        yAccelTime = cf.m_YAxis.m_AccelTime;
-        yDecelTime = cf.m_YAxis.m_DecelTime;
-        xAccelTime = cf.m_XAxis.m_AccelTime;
-        xDecelTime = cf.m_XAxis.m_DecelTime;
-        yMaxSpeed = cf.m_YAxis.m_MaxSpeed;
-        xMaxSpeed = cf.m_XAxis.m_MaxSpeed;
-        yAccelTimeAfter = cf.m_YAxis.m_AccelTime * _timeScale;
-        yDecelTimeAfter = cf.m_YAxis.m_DecelTime * _timeScale;
-        xAccelTimeAfter = cf.m_XAxis.m_AccelTime * _timeScale;
-        xDecelTimeAfter = cf.m_XAxis.m_DecelTime * _timeScale;
-        yMaxSpeedAfter = cf.m_YAxis.m_MaxSpeed / _timeScale;
-        xMaxSpeedAfter = cf.m_XAxis.m_MaxSpeed / _timeScale;
-    }
-    //每帧调用的虚拟相机设置
-    void CMMouseOption()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            cf.m_YAxis.m_InputAxisName = "Mouse Y";
-            cf.m_XAxis.m_InputAxisName = "Mouse X";
-        }
-        else if(Input.GetMouseButtonUp(1))
-        {
-            cf.m_YAxis.m_InputAxisName = "";
-            cf.m_XAxis.m_InputAxisName = "";
-            cf.m_YAxis.m_InputAxisValue = 0;
-            cf.m_XAxis.m_InputAxisValue = 0;
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            cf.m_YAxis.m_AccelTime = yAccelTimeAfter;
-            cf.m_YAxis.m_DecelTime = yDecelTimeAfter;
-            cf.m_XAxis.m_AccelTime = xAccelTimeAfter;
-            cf.m_XAxis.m_DecelTime = xDecelTimeAfter;
-            cf.m_YAxis.m_MaxSpeed = yMaxSpeedAfter;
-            cf.m_XAxis.m_MaxSpeed = xMaxSpeedAfter;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            cf.m_YAxis.m_AccelTime = yAccelTime;
-            cf.m_YAxis.m_DecelTime = yDecelTime;
-            cf.m_XAxis.m_AccelTime = xAccelTime;
-            cf.m_XAxis.m_DecelTime = xDecelTime;
-            cf.m_YAxis.m_MaxSpeed = yMaxSpeed;
-            cf.m_XAxis.m_MaxSpeed = xMaxSpeed;
-        }
-    }
-    bool judgeItem(List<Item> item)
-    {
-        if (item.Count >= totalItems)
-            return true;
-        return false;
     }
 }

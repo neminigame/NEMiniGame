@@ -10,7 +10,9 @@ public class EnemyControl : MonoBehaviour
         Dad = 1,
         Mom,
         DD,
-        Dog
+        Dog,
+        Robot1,
+        Robot2
     }
     public enum LoopType
     {
@@ -24,6 +26,7 @@ public class EnemyControl : MonoBehaviour
         FindOne,
         FindTwo
     }
+    public GameMode gameMode = GameMode.Normal;
     public EnemyType enemyType;
     public float speed = 1.0f;
     [Tooltip("巡视后停留时长")]
@@ -54,35 +57,51 @@ public class EnemyControl : MonoBehaviour
         questionMark = transform.Find("QuestionMark").gameObject;
         cam = Camera.main;
         detectNum = 0;
-        exclamationMark = transform.Find("ExclamationMark").gameObject;
         if (loopType == LoopType.Pinpong)
         {
             isRevert = !isRevert;
-            transform.position = (Vector3)iTweenPath.GetPath(enemyType.ToString()).GetValue(0);
-            iTween.MoveTo(gameObject, iTween.Hash(
-                "path", iTweenPath.GetPath(enemyType.ToString()),
-                "delay", stayTime,
-                "easetype", easeType,
-                "looptype", iTween.LoopType.none,
-                "speed", speed,
-                "orienttopath", true,
-                "lookTime", 1.1,
-                "axis", "y",
-                "oncomplete", "myCompleteFun",
-                "oncompletetarget", gameObject));
+            try
+            {
+                transform.position = (Vector3)iTweenPath.GetPath(enemyType.ToString()).GetValue(0);
+                iTween.MoveTo(gameObject, iTween.Hash(
+                    "path", iTweenPath.GetPath(enemyType.ToString()),
+                    "delay", stayTime,
+                    "easetype", easeType,
+                    "looptype", iTween.LoopType.none,
+                    "speed", speed,
+                    "orienttopath", true,
+                    "lookTime", 1.1,
+                    "axis", "y",
+                    "oncomplete", "myCompleteFun",
+                    "oncompletetarget", gameObject));
+            }
+            catch (Exception)
+            {
+               
+            } 
+
         }
         else
         {
-            transform.position = (Vector3)iTweenPath.GetPath(enemyType.ToString()).GetValue(0);
-            iTween.MoveTo(gameObject, iTween.Hash(
-                "path", iTweenPath.GetPath(enemyType.ToString()),
-                "delay", stayTime,
-                "easetype", easeType,
-                "looptype", loopType.ToString().ToLower(),
-                "speed", speed,
-                "orienttopath", true,
-                "lookTime", 1.1,
-                "axis", "y"));
+            try
+            {
+                transform.position = (Vector3)iTweenPath.GetPath(enemyType.ToString()).GetValue(0);
+                iTween.MoveTo(gameObject, iTween.Hash(
+                    "path", iTweenPath.GetPath(enemyType.ToString()),
+                    "delay", stayTime,
+                    "easetype", easeType,
+                    "looptype", loopType.ToString().ToLower(),
+                    "speed", speed,
+                    "orienttopath", true,
+                    "lookTime", 1.1,
+                    "axis", "y"));
+            }
+            catch (Exception)
+            {
+
+
+            }
+            
         }
         
     }
@@ -105,7 +124,16 @@ public class EnemyControl : MonoBehaviour
             {
                 exclamationMark.SetActive(true);
                 LookAtCam(exclamationMark.transform);
-                GameManager.Instance.GameOver();
+                if (gameMode == GameMode.Normal)
+                {
+                    GameManager.Instance.GameOver();
+                }
+                else
+                {
+                    TeachGameManager.Instance.GameOver();
+                    Debug.Log("Detected2");
+                }
+
             }
         }
         if (questionMark.activeSelf == true)

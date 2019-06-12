@@ -32,6 +32,5 @@ public class Item : MonoBehaviour
         UIManager.Instance.ChangeVal(UIManager.Instance.currentID, ItemImage,1f);
         UIManager.Instance.currentID ++;
         UIManager.Instance.images.Add(ItemImage);
-
     }
 }
