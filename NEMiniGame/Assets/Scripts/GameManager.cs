@@ -9,8 +9,9 @@ public class GameManager : GameManagerBase
 {
     public static GameManager Instance;
     public GameObject gameOver;
-    private bool gameover;//判断游戏是否完成的标记
-   
+    public GameObject Cam;
+    //private bool gameover;//判断游戏是否完成的标记
+
     //[SerializeField]
     //protected PlayerControl _playerControl;
     private Material _textMeshProUGUIMat;
@@ -20,13 +21,13 @@ public class GameManager : GameManagerBase
     //float _timeScale = 0.1f;
 
     //回到门时的动画
-   // public bool isFinished;//是否收集齐
-    public PlayableDirector backDirector;
+    //public bool isFinished;//是否收集齐
+    //public PlayableDirector backDirector;
     //public int totalItems;
     //开始时的动画，判断是否执行小球控制
-    public PlayableDirector startDirector;
+    //public PlayableDirector startDirector;
 
-    public bool isPause=false;//判断游戏是否暂停标记
+    //public bool isPause=false;//判断游戏是否暂停标记
     void Awake()
     {
         Instance = this;
@@ -82,5 +83,7 @@ public class GameManager : GameManagerBase
         _playerControl.enabled = false;
         CountDown._Count = CountDown.IsCountOK.NOTOK;
         // GameOver();
+        //关闭过渡摄像机
+        Cam.SetActive(false);
     }
 }

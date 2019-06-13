@@ -133,6 +133,7 @@ public class PlayerControl : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Enemy")
         {
+            gameManager.showGlitch();
             gameManager.GameOver();
         }
     }
@@ -147,23 +148,36 @@ public class PlayerControl : MonoBehaviour
         }
         else if (other.tag == "Identifer")
         {
-            TeachGameManager.Instance.SetTeachingRobot(true);
-            if (TeachGameManager.Instance.hitIdentiferNum == 0)
+            if (other.name == "Identifer1")
             {
-                tdir = Vector3.zero;
-                TeachGameManager.Instance.hitIdentiferNum++;
+                if (TeachGameManager.Instance.hitIdentiferNum == 0)
+                {
+                    TeachGameManager.Instance.ShowHint("注意躲开敌人视野前进");
+                    tdir = Vector3.zero;
+                    TeachGameManager.Instance.hitIdentiferNum++;
+                }
+            }
+             if (other.name == "Identifer2")
+            {
+                TeachGameManager.Instance.SetTeachingRobot(true);
+                if (TeachGameManager.Instance.hitIdentiferNum == 1)
+                {
+                    TeachGameManager.Instance.ShowHint("参考灵体，躲开敌人，拿到关键发光道具",6);
+                    tdir = Vector3.zero;
+                    TeachGameManager.Instance.hitIdentiferNum++;
+                }
             }
         }
     }
     public void ChangeTimeScale(float val)
     {
-        if (!GameManager.Instance)
+        if (!gameManager)
         {
             Time.timeScale = val;
             Time.fixedDeltaTime = val * 0.02f;
             return;
         }
-        if(!GameManager.Instance.isPause)
+        if(!gameManager.isPause)
         {
             Time.timeScale = val;
             Time.fixedDeltaTime = val * 0.02f;

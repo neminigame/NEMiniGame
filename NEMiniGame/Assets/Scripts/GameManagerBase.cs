@@ -2,12 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+
 
 public class GameManagerBase : MonoBehaviour
 {
     public CinemachineFreeLook cf;
-    public bool isFinished;//是否能够通关
+    public bool isFinished=false;//是否能够通关
     public int totalItems;
+    public bool isPause = false;//判断游戏是否暂停标记
+    public PlayableDirector backDirector;
+    //开始时的动画，判断是否执行小球控制
+    public PlayableDirector startDirector;
+    [SerializeField]
+    protected Glitch glitch;
+    protected bool gameover;//判断游戏是否完成的标记
     [SerializeField]
     protected PlayerControl _playerControl;
     float yAccelTime, yDecelTime, xAccelTime, xDecelTime, yMaxSpeed, xMaxSpeed;
@@ -77,4 +86,15 @@ public class GameManagerBase : MonoBehaviour
             cf.m_XAxis.m_MaxSpeed = xMaxSpeed;
         }
     }
+    IEnumerator IShowGlitch(float time=.3f)
+    {
+        glitch.enabled = true;
+        yield return new WaitForSeconds(time);
+        glitch.enabled = false;
+    }
+    public void showGlitch(float time=.3f)
+    {
+        StartCoroutine(IShowGlitch(time));
+    }
+
 }

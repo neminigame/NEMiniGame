@@ -106,6 +106,10 @@ public class UIManager : MonoBehaviour
         }
         scene.reset();
     }
+    public void ResetTeach()
+    {
+        scene.reset(3);
+    }
     IEnumerator EndUIscale(GameObject t,float start_scale,float end_scale, float duration)
     {
         float temptime = 0f;

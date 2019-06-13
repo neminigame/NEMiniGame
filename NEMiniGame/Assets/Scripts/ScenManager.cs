@@ -4,11 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ScenManager : MonoBehaviour
 {
-
+    public GameMode gameMode = GameMode.Normal;
+    public GameManagerBase gameManager;
     // Use this for initialization
     void Start()
     {
-
+        if (gameMode == GameMode.Normal)
+        {
+            gameManager = GameManager.Instance;
+        }
+        else if (gameMode == GameMode.Teaching)
+        {
+            gameManager = TeachGameManager.Instance;
+        }
     }
 
     // Update is called once per frame
@@ -20,7 +28,7 @@ public class ScenManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 1f * 0.02f;
-        SceneManager.LoadScene(0);
+        Application.Quit();
     }
     public void reset()
     {
@@ -29,14 +37,20 @@ public class ScenManager : MonoBehaviour
         SceneManager.LoadScene(1);
 
     }
+    public void reset(int id)
+    {
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 1f * 0.02f;
+        SceneManager.LoadScene(id);
+    }
     public void Setpause()
     {
-        GameManager.Instance.isPause = true;
+        gameManager.isPause = true;
         Time.timeScale = 0f;
     }
     public void SetRun()
     {
-        GameManager.Instance.isPause = false;
+        gameManager.isPause = false;
         Time.timeScale = 1f;
     }
 }
