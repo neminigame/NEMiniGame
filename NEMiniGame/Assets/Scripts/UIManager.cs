@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
@@ -20,6 +21,7 @@ public class UIManager : MonoBehaviour
     public ScanningLine scanline;
 
     public GameObject PauseUI;//暂停时的UI面板
+    
     private void Awake()
     {
         boxsLayout = transform.Find("BoxsLayout");
@@ -81,8 +83,16 @@ public class UIManager : MonoBehaviour
         EndUI_black.enabled = true;
         EndUI_point.enabled = true;
         StartCoroutine(EndUIscale(EndUI_point.gameObject, EndUI_point.transform.localScale.x, 0, 0.7f));
-
+       
     }
+    public void SetEndUIInStartTrial()
+    {
+        EndUI_black.enabled = true;
+        EndUI_point.enabled = true;
+        StartCoroutine(EndUIscale2(EndUI_point.gameObject, EndUI_point.transform.localScale.x, 0, 0.7f));
+         
+    }
+
     public void SetResetUI()
     {
 
@@ -120,7 +130,7 @@ public class UIManager : MonoBehaviour
         }
         while (temptime<duration)
         {
-            //Debug.Log(
+            //Debug.Log
             temptime += Time.unscaledDeltaTime;
             tempscale.x = Mathf.Lerp(start_scale, end_scale, temptime / duration);
             tempscale.y = Mathf.Lerp(start_scale, end_scale, temptime / duration);
@@ -128,6 +138,26 @@ public class UIManager : MonoBehaviour
             t.transform.localScale = tempscale;
             yield return null;
         }
-        scene.quit();
+        scene.reset(0);
+    }
+    IEnumerator EndUIscale2(GameObject t, float start_scale, float end_scale, float duration)
+    {
+        float temptime = 0f;
+        Vector3 tempscale;
+        if (t == null)
+        {
+            yield return null;
+        }
+        while (temptime < duration)
+        {
+            //Debug.Log
+            temptime += Time.unscaledDeltaTime;
+            tempscale.x = Mathf.Lerp(start_scale, end_scale, temptime / duration);
+            tempscale.y = Mathf.Lerp(start_scale, end_scale, temptime / duration);
+            tempscale.z = Mathf.Lerp(start_scale, end_scale, temptime / duration);
+            t.transform.localScale = tempscale;
+            yield return null;
+        }
+        scene.reset();
     }
 }
