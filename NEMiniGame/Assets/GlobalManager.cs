@@ -2,18 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GlobalManager : MonoBehaviour
 {
     public AudioClip LobbyAudio;
     public AudioClip PlayAudio;
+    
 
-
+    public Text ECG;
+    public Text SpO2;
+    public Text NIBP;
+    [Range(-3,3)]
+    public float offset;
+    public AudioMixer audioMixer;
     public int preSceneNum = 0;
     public int curSceneNum = 0;
     private AudioSource audioSource;
     private static GlobalManager _Instance;
+    
     public static GlobalManager Instance
     {
         get {
@@ -69,6 +78,14 @@ public class GlobalManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (curSceneNum == 0)
+        {
+            float x = audioSource.time / audioSource.clip.length;
+            float t = (float)(Math.Sin(Math.PI * x - offset));
+            ECG.color = new Color(ECG.color.r,ECG.color.g,ECG.color.b, t);
+            SpO2.color = new Color(SpO2.color.r, SpO2.color.g, SpO2.color.b, t);
+            NIBP.color = new Color(NIBP.color.r, NIBP.color.g, NIBP.color.b, t);
+            audioMixer.SetFloat("pitchBend", 1f / audioSource.pitch);   
+        }
     }
 }

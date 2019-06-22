@@ -162,7 +162,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2619102}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 54c2eb7e6362d7045a059b0b6a397521, type: 2}
   m_CullingMode: 0
@@ -425,22 +425,54 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 2af28fc09aa83c24ebe84d2719b3ddc8, type: 3}
+      objectReference: {fileID: 8300000, guid: 23031ed221d8c854f95c7380281824af, type: 3}
     - target: {fileID: 1878123141088227475, guid: b9116184fff8e8d4da72c8f670c907f1,
         type: 3}
       propertyPath: Loop
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1878123141088227475, guid: b9116184fff8e8d4da72c8f670c907f1,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: dc07d0a0b39de1d4db0f9fb9b72e7ea3,
+        type: 2}
     - target: {fileID: 6504410559369023297, guid: b9116184fff8e8d4da72c8f670c907f1,
         type: 3}
       propertyPath: LobbyAudio
       value: 
-      objectReference: {fileID: 8300000, guid: 2af28fc09aa83c24ebe84d2719b3ddc8, type: 3}
+      objectReference: {fileID: 8300000, guid: 23031ed221d8c854f95c7380281824af, type: 3}
     - target: {fileID: 6504410559369023297, guid: b9116184fff8e8d4da72c8f670c907f1,
         type: 3}
       propertyPath: PlayAudio
       value: 
       objectReference: {fileID: 8300000, guid: 75da8b83dc966584789de733ae10657c, type: 3}
+    - target: {fileID: 6504410559369023297, guid: b9116184fff8e8d4da72c8f670c907f1,
+        type: 3}
+      propertyPath: ECG
+      value: 
+      objectReference: {fileID: 367187040}
+    - target: {fileID: 6504410559369023297, guid: b9116184fff8e8d4da72c8f670c907f1,
+        type: 3}
+      propertyPath: SpO2
+      value: 
+      objectReference: {fileID: 774276683}
+    - target: {fileID: 6504410559369023297, guid: b9116184fff8e8d4da72c8f670c907f1,
+        type: 3}
+      propertyPath: NIBP
+      value: 
+      objectReference: {fileID: 332239466}
+    - target: {fileID: 6504410559369023297, guid: b9116184fff8e8d4da72c8f670c907f1,
+        type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6504410559369023297, guid: b9116184fff8e8d4da72c8f670c907f1,
+        type: 3}
+      propertyPath: audioMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: dc07d0a0b39de1d4db0f9fb9b72e7ea3,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9116184fff8e8d4da72c8f670c907f1, type: 3}
 --- !u!1 &156479395
