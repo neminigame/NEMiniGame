@@ -79,10 +79,11 @@ Material:
     - _light: 1
     - _outlinefactor: 0
     - _reflectPow: 0.15
+    - _reflectPower: 0.099
     - _specularfactor: 0.01
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _outlinecolor: {r: 0, g: 0, b: 0, a: 0}
-    - _shadowColor: {r: 0.5411765, g: 0.6156863, b: 0.64705884, a: 0.1}
+    - _shadowColor: {r: 0.7688679, g: 0.9320199, b: 1, a: 0.1}
     - _specular: {r: 1, g: 1, b: 1, a: 1}

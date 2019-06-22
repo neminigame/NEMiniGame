@@ -22,6 +22,8 @@ public class PlayerControl : MonoBehaviour
     public float factor = 1f;
     public GameManagerBase gameManager;
     private Vector3 rotate_dir;
+    private bool isGameOver=false;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Awake()
     {
@@ -30,7 +32,7 @@ public class PlayerControl : MonoBehaviour
         rig = GetComponent<Rigidbody>();
         model = transform.Find("player").gameObject;
         Items.Clear();
-       
+        audioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
@@ -42,6 +44,7 @@ public class PlayerControl : MonoBehaviour
         {
             gameManager = TeachGameManager.Instance;
         }
+        isGameOver = false;
     }
     // Update is called once per frame
     void Update()
@@ -122,20 +125,25 @@ public class PlayerControl : MonoBehaviour
             rdir.y = 0;
             tdir = rdir.normalized;
             //碰撞特效
-            //Material wallmat = collision.gameObject.transform.GetComponent<Renderer>().material;
-            //if (wallmat != null)
-            //{
-            //    wallmat.SetVector("_Center", cp.point);
-            //    wallmat.SetFloat("_speed", 0f);
-            //    wallmat.SetFloat("_GridEmission", 20f);
-            //    wallmat.SetFloat("_width", 1f);
-            //}
+            Material wallmat = collision.gameObject.transform.GetComponent<Renderer>().material;
+            if (wallmat != null)
+            {
+                wallmat.SetVector("_Center", cp.point);
+                wallmat.SetFloat("_speed", 0f);
+                wallmat.SetFloat("_GridEmission", 20f);
+                wallmat.SetFloat("_width", 1f);
+            }
         }
         else if (collision.gameObject.tag == "Enemy")
         {
-            gameManager.showGlitch();
-            gameManager.GameOver();
+            if (!isGameOver)
+            {
+                gameManager.showGlitch(2.0f,2.0f);
+                gameManager.GameOver();
+                isGameOver = true;
+            }
         }
+        audioSource.Play();
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -34,14 +34,14 @@ public class ScenManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 1f * 0.02f;
-        SceneManager.LoadScene(1);
+        GlobalManager.Instance.ChangeScene(1);
 
     }
     public void reset(int id)
     {
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 1f * 0.02f;
-        SceneManager.LoadScene(id);
+        GlobalManager.Instance.ChangeScene(id);
     }
     public void Setpause()
     {

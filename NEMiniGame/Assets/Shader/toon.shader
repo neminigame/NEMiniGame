@@ -9,7 +9,7 @@ Shader "MiniGame/toon"
 		_Color("Color",Color)=(1,1,1,1)
 		_MainTex("Main Tex",2D)="white"{}
 		_RampTex("Ramp Tex",2D)="white"{}
-		_light("light",Range(1,5))=1
+		_light("light",Range(0.1,5))=1
 		_shadowColor("shadow color",Color)=(0.1,0.1,0.1,0.1)
 	}
 	SubShader{
@@ -55,7 +55,7 @@ Shader "MiniGame/toon"
 				fixed3 ccolor=tex2D(_MainTex,i.uv).rgb;
 				fixed3 albedo=ccolor*_Color.rgb;
 				
-				fixed3 ambient=UNITY_LIGHTMODEL_AMBIENT.xyz*albedo;
+				fixed3 ambient=albedo;
 				fixed diff=dot(worldnormal,worldlightdir)*0.5+0.5;
 				fixed3 diffuse=_LightColor0.rgb*albedo*tex2D(_RampTex,float2(diff,diff)).rgb;
 				UNITY_LIGHT_ATTENUATION(atten,i,i.worldpos);

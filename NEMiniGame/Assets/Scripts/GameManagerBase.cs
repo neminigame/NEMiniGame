@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
-
+using UnityEngine.UI;
+using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class GameManagerBase : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class GameManagerBase : MonoBehaviour
     float yAccelTime, yDecelTime, xAccelTime, xDecelTime, yMaxSpeed, xMaxSpeed;
     float yAccelTimeAfter, yDecelTimeAfter, xAccelTimeAfter, xDecelTimeAfter, yMaxSpeedAfter, xMaxSpeedAfter;
     float _timeScale = 0.1f;
+    Image gradientImage;
+    Text tipText;
     public virtual bool judgeItem(List<Item> item)
     {
         if (item.Count >= totalItems)
@@ -86,15 +90,47 @@ public class GameManagerBase : MonoBehaviour
             cf.m_XAxis.m_MaxSpeed = xMaxSpeed;
         }
     }
-    IEnumerator IShowGlitch(float time=.3f)
+    IEnumerator IShowGlitch(float time1=.3f,float time2=7f)
     {
         glitch.enabled = true;
-        yield return new WaitForSeconds(time);
+        ShowBlackAndRestart(2f,5f);
+        yield return new WaitForSeconds(time1);
         glitch.enabled = false;
+        yield return new WaitForSeconds(time2);
+        GlobalManager.Instance.ChangeScene(0);
     }
-    public void showGlitch(float time=.3f)
+    public void showGlitch(float time1 = .3f, float time2 = 2f)
     {
-        StartCoroutine(IShowGlitch(time));
+        StartCoroutine(IShowGlitch(time1,time2));
     }
+    void ShowBlackAndRestart(float time1 = 2f, float time2 = 5f)
+    {
+        if (gradientImage)
+        {
+            gradientImage.gameObject.SetActive(true);
+            gradientImage.color = Color.clear;
+            gradientImage.DOColor(Color.black, time1);
+        }
+        if (tipText)
+        {
+            tipText.gameObject.SetActive(true);
+            tipText.color = Color.clear;
+            tipText.DOColor(Color.white, time1);
+            tipText.DOText("系统参数错误，正在重启……", time2);
+        }
+    }
+    protected void Initial()
+    {
+        try
+        {
+            gradientImage = UIManager.Instance.transform.Find("GradientImage").GetComponent<Image>();
+            tipText = UIManager.Instance.transform.Find("TipText").GetComponent<Text>();
+            gradientImage.gameObject.SetActive(false);
+            tipText.gameObject.SetActive(false);
+        }
+        catch (System.Exception)
+        {
+        }
 
+    }
 }

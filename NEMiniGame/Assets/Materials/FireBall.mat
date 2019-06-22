@@ -31,8 +31,8 @@ Material:
     - _DistortStrength: 0.2
     - _DistortTimeFactor: 0.2
     - _IntersectPower: 0.51
-    - _Pow: 35.2
+    - _Pow: 0.1
     - _RimStrength: 0.57
-    - _Transparent: 0.609
+    - _Transparent: 0.47
     m_Colors:
-    - _Color: {r: 0.36320752, g: 0.80115145, b: 1, a: 0}
+    - _Color: {r: 0.25, g: 0.7638889, b: 1, a: 0}

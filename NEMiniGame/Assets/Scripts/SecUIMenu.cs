@@ -7,6 +7,7 @@ public class SecUIMenu : MonoBehaviour
     [SerializeField] private GameObject MenuButtons;
     [SerializeField] private GameObject LevelButtons;
     [SerializeField] private GameObject StartButtons;
+    public GameObject startMovie;
 
     public void Awake()
     {
@@ -28,15 +29,23 @@ public class SecUIMenu : MonoBehaviour
     }
     public void SwitchStart()
     {
-        if (MenuButtons.activeSelf)
+        if (GlobalManager.Instance.preSceneNum == 1)
         {
-            MenuButtons.SetActive(false);
-            StartButtons.SetActive(true);
+            GlobalManager.Instance.ChangeScene(1);
         }
         else
         {
-            MenuButtons.SetActive(true);
-            StartButtons.SetActive(false);
+            if (MenuButtons.activeSelf)
+            {
+                MenuButtons.SetActive(false);
+                // StartButtons.SetActive(true);
+                startMovie.SetActive(true);
+            }
+            else
+            {
+                MenuButtons.SetActive(true);
+                //StartButtons.SetActive(false);
+            }
         }
     }
 }

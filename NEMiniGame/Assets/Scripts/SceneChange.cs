@@ -7,6 +7,6 @@ public class SceneChange : MonoBehaviour
 {
     public void loadScene(int id)
     {
-        SceneManager.LoadScene(id);
+        GlobalManager.Instance.ChangeScene(id);
     }
 }

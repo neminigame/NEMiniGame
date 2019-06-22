@@ -43,6 +43,7 @@ public class GameManager : GameManagerBase
         //Debug.Log(gameOver.GetComponent<TextMeshProUGUI>().fontMaterial);
         cf.m_YAxis.m_InputAxisName = "";
         cf.m_XAxis.m_InputAxisName = "";
+        Initial();
         InitialCM();
         totalItems = GameObject.FindGameObjectsWithTag("Item").Length;
     }
@@ -61,7 +62,7 @@ public class GameManager : GameManagerBase
 
     public override void GameOver()
     {
-        gameOver.SetActive(true);
+        //gameOver.SetActive(true);
         gameover = true;
         _playerControl.enabled = false;
         CountDown._Count = CountDown.IsCountOK.NOTOK;
