@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
+using Cinemachine;
 
 public class test : MonoBehaviour
 {
+    public CinemachineBlendListCamera cmb;
     // Start is called before the first frame update
     void Start()
     {
-        Text text = GetComponent<Text>();
-        text.DOText("AABBCCDDEEFFGG赵钱孙李周吴郑王冯陈楚卫",5f);
+        cmb = this.GetComponent<CinemachineBlendListCamera>();
     }
 
     // Update is called once per frame

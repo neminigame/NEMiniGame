@@ -451,17 +451,17 @@ PrefabInstance:
         type: 3}
       propertyPath: ECG
       value: 
-      objectReference: {fileID: 367187040}
+      objectReference: {fileID: 0}
     - target: {fileID: 6504410559369023297, guid: b9116184fff8e8d4da72c8f670c907f1,
         type: 3}
       propertyPath: SpO2
       value: 
-      objectReference: {fileID: 774276683}
+      objectReference: {fileID: 0}
     - target: {fileID: 6504410559369023297, guid: b9116184fff8e8d4da72c8f670c907f1,
         type: 3}
       propertyPath: NIBP
       value: 
-      objectReference: {fileID: 332239466}
+      objectReference: {fileID: 0}
     - target: {fileID: 6504410559369023297, guid: b9116184fff8e8d4da72c8f670c907f1,
         type: 3}
       propertyPath: speed

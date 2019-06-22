@@ -136,12 +136,19 @@ public class PlayerControl : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Enemy")
         {
-            if (!isGameOver)
+            if (gameMode == GameMode.Normal)
             {
-                gameManager.showGlitch(2.0f,2.0f);
-                gameManager.GameOver();
-                isGameOver = true;
+                if (!isGameOver)
+                {
+                    gameManager.showGlitchAndOver(2.0f, 2.0f);
+                    isGameOver = true;
+                }
             }
+            else if (gameMode == GameMode.Teaching)
+            {
+                gameManager.showGlitch(2.0f);
+            }         
+            gameManager.GameOver();
         }
         audioSource.Play();
     }

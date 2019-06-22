@@ -90,7 +90,7 @@ public class GameManagerBase : MonoBehaviour
             cf.m_XAxis.m_MaxSpeed = xMaxSpeed;
         }
     }
-    IEnumerator IShowGlitch(float time1=.3f,float time2=7f)
+    IEnumerator IShowGlitchAndOver(float time1=.3f,float time2=7f)
     {
         glitch.enabled = true;
         ShowBlackAndRestart(2f,5f);
@@ -99,9 +99,20 @@ public class GameManagerBase : MonoBehaviour
         yield return new WaitForSeconds(time2);
         GlobalManager.Instance.ChangeScene(0);
     }
-    public void showGlitch(float time1 = .3f, float time2 = 2f)
+    IEnumerator IShowGlitch(float time1 = .3f)
     {
-        StartCoroutine(IShowGlitch(time1,time2));
+        glitch.enabled = true;
+        ShowBlackAndRestart(2f, 5f);
+        yield return new WaitForSeconds(time1);
+        glitch.enabled = false;
+    }
+    public void showGlitch(float time1 = .3f)
+    {
+        StartCoroutine(IShowGlitch(time1));
+    }
+    public void showGlitchAndOver(float time1 = .3f, float time2 = 2f)
+    {
+        StartCoroutine(IShowGlitchAndOver(time1,time2));
     }
     void ShowBlackAndRestart(float time1 = 2f, float time2 = 5f)
     {
@@ -119,7 +130,7 @@ public class GameManagerBase : MonoBehaviour
             tipText.DOText("系统参数错误，正在重启……", time2);
         }
     }
-    protected void Initial()
+    public virtual void Initial()
     {
         try
         {

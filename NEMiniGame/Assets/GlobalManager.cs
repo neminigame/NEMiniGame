@@ -20,7 +20,7 @@ public class GlobalManager : MonoBehaviour
     public AudioMixer audioMixer;
     public int preSceneNum = 0;
     public int curSceneNum = 0;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     private static GlobalManager _Instance;
     
     public static GlobalManager Instance
@@ -80,6 +80,12 @@ public class GlobalManager : MonoBehaviour
     {
         if (curSceneNum == 0)
         {
+            if (!ECG)
+            {
+                ECG = transform.Find("/xdt/Canvas/Texts/ECG").GetComponent<Text>();
+                SpO2 = transform.Find("/xdt/Canvas/Texts/SpO2").GetComponent<Text>();
+                NIBP = transform.Find("/xdt/Canvas/Texts/NIBP").GetComponent<Text>();
+            }
             float x = audioSource.time / audioSource.clip.length;
             float t = (float)(Math.Sin(Math.PI * x - offset));
             ECG.color = new Color(ECG.color.r,ECG.color.g,ECG.color.b, t);

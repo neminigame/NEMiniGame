@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Playables;
+using DG.Tweening;
 
 public class TeachGameManager : GameManagerBase
 {
@@ -17,6 +18,14 @@ public class TeachGameManager : GameManagerBase
     public GameObject Hint;
     public GameObject BlendCam;
     public GameObject camToHide;
+    public float waitTime = 2f;
+    [SerializeField]
+    private Image tipImage;
+    [SerializeField]
+    private Button tipBtn;
+    private Text tipBtnText;
+    private float startTIme;
+    private bool canPopTip=false;
     //float yAccelTime, yDecelTime, xAccelTime, xDecelTime, yMaxSpeed, xMaxSpeed;
     //float yAccelTimeAfter, yDecelTimeAfter, xAccelTimeAfter, xDecelTimeAfter, yMaxSpeedAfter, xMaxSpeedAfter;
     //float _timeScale = 0.1f;
@@ -24,6 +33,8 @@ public class TeachGameManager : GameManagerBase
     {
         Instance = this;
         _playerControl = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+        tipBtnText = tipBtn.transform.Find("Text").GetComponent<Text>();
+        canPopTip = false;
     }
 
     public override void GameOver()
@@ -46,6 +57,7 @@ public class TeachGameManager : GameManagerBase
     // Start is called before the first frame update
     void Start()
     {
+        startTIme = Time.time;
         cf.m_YAxis.m_InputAxisName = "";
         cf.m_XAxis.m_InputAxisName = "";
         base.InitialCM();
@@ -62,6 +74,7 @@ public class TeachGameManager : GameManagerBase
     // Update is called once per frame
     void Update()
     {
+
         CMMouseOption();
         isFinished = judgeItem(_playerControl.Items);
         //开始时的动画，判断是否执行小球控制
@@ -69,8 +82,23 @@ public class TeachGameManager : GameManagerBase
             _playerControl.enabled = false;
         else if (!gameover) _playerControl.enabled = true;
         //Time.timeScale = 0f;
+        if (Time.time - startTIme <= waitTime)
+        {
+            _playerControl.enabled = false;
+        }
+        //弹出提示
+        else if(!canPopTip)
+        {
+            tipImage.gameObject.SetActive(true);
+            tipBtn.gameObject.SetActive(true);
+            tipImage.DOColor(Color.white, 1.5f);
+            tipBtn.GetComponent<Image>().DOColor(Color.white, 1.5f);
+            tipBtnText.DOColor(Color.black, 1.5f);
+            canPopTip = true;
+        }
     }
 
+    
     void Restart()
     {
         ShowHint("您已被敌人发现/撞击了敌人，请注意！！！");
@@ -107,4 +135,15 @@ public class TeachGameManager : GameManagerBase
         yield return new WaitForSeconds(time);
         camToHide.SetActive(false);
     }
+    public void HideTip()
+    {
+        tipImage.color = Color.clear;
+        tipImage.gameObject.SetActive(false);
+        tipBtn.GetComponent<Image>().color = Color.clear;
+        tipBtn.gameObject.SetActive(false);
+        tipBtnText.color = Color.clear;
+        tipBtnText.gameObject.SetActive(false);
+        _playerControl.enabled = true;
+    }
+
 }

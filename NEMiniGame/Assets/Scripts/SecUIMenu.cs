@@ -29,6 +29,7 @@ public class SecUIMenu : MonoBehaviour
     }
     public void SwitchStart()
     {
+        //如果之前的关卡都是第一关，那么还进入第一关
         if (GlobalManager.Instance.preSceneNum == 1)
         {
             GlobalManager.Instance.ChangeScene(1);
@@ -38,6 +39,7 @@ public class SecUIMenu : MonoBehaviour
             if (MenuButtons.activeSelf)
             {
                 MenuButtons.SetActive(false);
+                GlobalManager.Instance.audioSource.mute=true;
                 // StartButtons.SetActive(true);
                 startMovie.SetActive(true);
             }
