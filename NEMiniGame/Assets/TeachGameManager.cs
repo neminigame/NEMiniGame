@@ -18,6 +18,7 @@ public class TeachGameManager : GameManagerBase
     public GameObject Hint;
     public GameObject BlendCam;
     public GameObject camToHide;
+    public TeachingBrain teachBrain;
     public float waitTime = 2f;
     [SerializeField]
     private Image tipImage;
@@ -50,9 +51,10 @@ public class TeachGameManager : GameManagerBase
         BlendCam.SetActive(false);
         camToHide.SetActive(true);
     }
-    public void SetTeachingRobot(bool val)
+    public void SetTeachingRobot(bool val,int routID)
     {
         TeachingRobot.SetActive(val);
+        TeachingRobot.transform.position = teachBrain.posCollections[routID][0].position;
     }
     // Start is called before the first frame update
     void Start()
@@ -61,7 +63,7 @@ public class TeachGameManager : GameManagerBase
         cf.m_YAxis.m_InputAxisName = "";
         cf.m_XAxis.m_InputAxisName = "";
         base.InitialCM();
-        SetTeachingRobot(false);
+        SetTeachingRobot(false, 0);
         List<string> listText=new List<string>();
         listText.Add("不断按住鼠标左键进入子弹时间，反弹小球进行前进,按住右键调整视野");
         listText.Add("进入敌人扫描范围会引起警觉，数秒后在此被发现则通关失败");

@@ -165,6 +165,9 @@ public class PlayerControl : MonoBehaviour
         {
             if (other.name == "Identifer1")
             {
+                TeachGameManager.Instance.teachBrain.routID = 0;
+                TeachGameManager.Instance.SetTeachingRobot(false, 0);
+                TeachGameManager.Instance.SetTeachingRobot(true, 0);
                 if (TeachGameManager.Instance.hitIdentiferNum == 0)
                 {
                     TeachGameManager.Instance.ShowHint("注意躲开敌人视野前进");
@@ -174,7 +177,9 @@ public class PlayerControl : MonoBehaviour
             }
              if (other.name == "Identifer2")
             {
-                TeachGameManager.Instance.SetTeachingRobot(true);
+                TeachGameManager.Instance.teachBrain.routID = 1;
+                TeachGameManager.Instance.SetTeachingRobot(false, 1);
+                TeachGameManager.Instance.SetTeachingRobot(true, 1);
                 if (TeachGameManager.Instance.hitIdentiferNum == 1)
                 {
                     TeachGameManager.Instance.ShowHint("参考灵体，躲开敌人，拿到关键发光道具",6);

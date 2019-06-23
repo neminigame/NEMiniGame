@@ -10,26 +10,26 @@ public class GuideManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        teachingBrain = transform.parent.GetComponent<TeachingBrain>();
+        teachingBrain = transform.parent.parent.GetComponent<TeachingBrain>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "TeachingRobot")
         {
-            if (ID + 1 < teachingBrain.posCollection.Count)
+            if (ID + 1 < teachingBrain.posCollections[teachingBrain.routID].Count)
             {
                 teachingBrain.startID = ID;
                 teachingBrain.endID = ID + 1;
             }
             else
             {
-                teachingBrain.ResetPos(0);
+                teachingBrain.ResetPos(teachingBrain.routID, 0);
                 teachingBrain.startID = 0;
                 teachingBrain.endID = 1;
             }

@@ -6,11 +6,21 @@ using Cinemachine;
 
 public class test : MonoBehaviour
 {
-    public CinemachineBlendListCamera cmb;
+
+    public List<List<Transform>> posCollections;
+    public List<Transform> posCollection1;
+    public List<Transform> posCollection2;
+
     // Start is called before the first frame update
     void Start()
     {
-        cmb = this.GetComponent<CinemachineBlendListCamera>();
+        posCollections = new List<List<Transform>>();
+        posCollections.Add(new List<Transform>());
+        for (int i = 0; i < transform.GetChild(0).childCount; i++)
+        {
+            posCollections[0].Add(transform.GetChild(0).GetChild(i));
+            posCollection1.Add(posCollections[0][i]);
+        }
     }
 
     // Update is called once per frame
