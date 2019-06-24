@@ -20,7 +20,7 @@ public class zhedangbantou : MonoBehaviour {
     private int judgelayer;
 	// Use this for initialization
 	void Start () {
-        judgelayer = 1 << LayerMask.NameToLayer("wall");
+        judgelayer = 1 << LayerMask.NameToLayer("alphawall");
 	}
 	
 	// Update is called once per frame

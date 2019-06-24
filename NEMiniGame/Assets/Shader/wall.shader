@@ -5,6 +5,7 @@ Shader "MiniGame/wall"
 	Properties
 	{
 		_Center ("Center", Vector) = (0.0, 0.0, 0.0)
+		_Color("Color",Color)=(1,1,1,1)
 		_GridColor ("GridColor", Color) = (0.2, 0.3, 0.5)
 		_GridEmission ("GridEmission", Float) = 8.0
 		_speed("speed",Range(0,50))=1
@@ -21,7 +22,7 @@ Shader "MiniGame/wall"
 			#pragma fragment frag
 			#include "UnityCG.cginc"
 			float3 _Center;
-			float4 _GridColor;
+			float4 _GridColor,_Color;
 			float _GridEmission;
 			half _speed,_width,_dir;
 			float2 mod(float2 a, float2 b) { return a - b * floor(a/b); }

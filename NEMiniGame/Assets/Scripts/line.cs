@@ -48,7 +48,7 @@ public class line : MonoBehaviour
 
 
         RaycastHit hit;
-        if (Physics.Raycast(p0, curdir, out hit, line_length, 1 << LayerMask.NameToLayer("wall")))
+        if (Physics.Raycast(p0, curdir, out hit, line_length, 1 << LayerMask.NameToLayer("wall") | 1 << LayerMask.NameToLayer("alphawall")))
         {
 
             linerender.positionCount = 3;

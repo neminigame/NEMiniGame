@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
@@ -21,12 +23,16 @@ public class UIManager : MonoBehaviour
     public ScanningLine scanline;
 
     public GameObject PauseUI;//暂停时的UI面板
-    
+
+    //气泡框显示
+    public GameObject bubble;
     private void Awake()
     {
         boxsLayout = transform.Find("BoxsLayout");
         scanline = Camera.main.GetComponent<ScanningLine>();
         Instance = this;
+        bubble = GameObject.Find("Player").transform.Find("bubble").gameObject;
+
     }
     // Start is called before the first frame update
     void Start()
@@ -83,14 +89,14 @@ public class UIManager : MonoBehaviour
         EndUI_black.enabled = true;
         EndUI_point.enabled = true;
         StartCoroutine(EndUIscale(EndUI_point.gameObject, EndUI_point.transform.localScale.x, 0, 0.7f));
-       
+
     }
     public void SetEndUIInStartTrial()
     {
         EndUI_black.enabled = true;
         EndUI_point.enabled = true;
         StartCoroutine(EndUIscale2(EndUI_point.gameObject, EndUI_point.transform.localScale.x, 0, 0.7f));
-         
+
     }
 
     public void SetResetUI()
@@ -105,6 +111,30 @@ public class UIManager : MonoBehaviour
     public void ResetPauseUI()
     {
         PauseUI.SetActive(false);
+    }
+    public void SetBubbleUI(string text)
+    {
+        if (text.Length > 0)
+        {
+            //文本输入小写字母t用作换行符号，便于在inspector更改
+            bubble.GetComponentInChildren<Text>().text = text.Replace('t', '\n');
+            bubble.SetActive(true);
+            bubble.GetComponentInChildren<CanvasGroup>().alpha = 1f;
+            StartCoroutine(BubbleUiAnim(0.8f));
+        }
+    }
+    IEnumerator BubbleUiAnim(float duration)
+    {
+        float time = 0f;
+        CanvasGroup image= bubble.GetComponentInChildren<CanvasGroup>();
+        yield return new WaitForSeconds(1.2f);
+        while (time<duration)
+        {
+            time += Time.unscaledDeltaTime;
+            image.alpha = Mathf.Lerp(1f, 0f, time / duration);
+            yield return null;
+        }
+        bubble.SetActive(false);
     }
     IEnumerator ResetUI()
     {

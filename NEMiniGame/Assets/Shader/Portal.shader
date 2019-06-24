@@ -18,7 +18,6 @@
     SubShader
     {
         Tags { "Queue"="AlphaTest"  "IgnoreProjector"="True "}
-        LOD 100
 
         Pass
         {
@@ -112,7 +111,7 @@
 
 				//worldPos.xyz += worldNormal * _Force;
 				float2 uv = i.uv;
-				i.uv += -0.5 + tex2D(_MainTex, uv)/3;
+				i.uv += -0.6 + tex2D(_MainTex, uv)/3;
 				float r = sqrt(i.uv.x * i.uv.x + i.uv.y * i.uv.y);
 				float theta = 0;
 				theta = atan2(i.uv.y, i.uv.x);

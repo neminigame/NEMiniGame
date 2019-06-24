@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
+using UnityEngine.UI;
 public class PlayerControl : MonoBehaviour
 {
     public GameMode gameMode = GameMode.Normal;
@@ -25,6 +26,9 @@ public class PlayerControl : MonoBehaviour
     private bool isGameOver=false;
     private AudioSource audioSource;
     // Start is called before the first frame update
+
+
+    private Vector3 tempscaleAnim;
     void Awake()
     {
         JudgeIsBegin = 0;
@@ -33,6 +37,7 @@ public class PlayerControl : MonoBehaviour
         model = transform.Find("player").gameObject;
         Items.Clear();
         audioSource = GetComponent<AudioSource>();
+        tempscaleAnim = transform.localScale;
     }
     private void Start()
     {
@@ -123,6 +128,7 @@ public class PlayerControl : MonoBehaviour
             ContactPoint cp = collision.contacts[0];
             Vector3 rdir = Vector3.Reflect(tdir, cp.normal);
             rdir.y = 0;
+            transform.DOScale(CalculateScaleMatrix(tdir, 0.5f) * tempscaleAnim, 0.1f);//碰撞时的缩放动画
             tdir = rdir.normalized;
             //碰撞特效
             Material wallmat = collision.gameObject.transform.GetComponent<Renderer>().material;
@@ -133,6 +139,7 @@ public class PlayerControl : MonoBehaviour
                 wallmat.SetFloat("_GridEmission", 20f);
                 wallmat.SetFloat("_width", 1f);
             }
+           
         }
         else if (collision.gameObject.tag == "Enemy")
         {
@@ -152,6 +159,13 @@ public class PlayerControl : MonoBehaviour
         }
         audioSource.Play();
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "wall")
+        {
+            transform.DOScale(tempscaleAnim, 0.25f);
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "door")
@@ -161,7 +175,7 @@ public class PlayerControl : MonoBehaviour
                 gameManager.Win();
             }
         }
-        else if (other.tag == "Identifer")
+        else if (other.tag == "Identifer"&&gameMode==GameMode.Teaching)
         {
             if (other.name == "Identifer1")
             {
@@ -208,5 +222,22 @@ public class PlayerControl : MonoBehaviour
         ChangeTimeScale(0.05f);
         yield return new WaitForSecondsRealtime(0.005f);
         ChangeTimeScale(1f);
+    }
+    //沿任意轴缩放公式
+    static Matrix4x4 CalculateScaleMatrix(Vector3 dir,float k)
+    {
+        Matrix4x4 ScaleMat = Matrix4x4.identity;
+        ScaleMat.m00 = (1F +(k-1F)*dir[0] * dir[0]);
+        ScaleMat.m01 = ((k-1F)*dir[0] * dir[1]);
+        ScaleMat.m02 = ((k-1F)*dir[0] * dir[2]);
+
+        ScaleMat.m10 = ((k - 1F) * dir[0] * dir[1]);
+        ScaleMat.m11 = (1F+(k-1F)* dir[1] * dir[1]);
+        ScaleMat.m12 = ((k-1F)*dir[1] * dir[2]);
+
+        ScaleMat.m20 = ((k - 1F) * dir[0] * dir[2]);
+        ScaleMat.m21 = ((k - 1F) * dir[1] * dir[2]);
+        ScaleMat.m22 = (1F+(k-1F)*dir[2]*dir[2]);
+        return ScaleMat;
     }
 }
