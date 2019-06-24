@@ -11,6 +11,7 @@ Shader "MiniGame/toon"
 		_RampTex("Ramp Tex",2D)="white"{}
 		_light("light",Range(0.1,5))=1
 		_shadowColor("shadow color",Color)=(0.1,0.1,0.1,0.1)
+		_lightprobe("light probe",Range(0,10))=1
 	}
 	SubShader{
 		Tags{"LightMode"="ForwardBase"  "RenderType"="Opaque"}
@@ -28,12 +29,13 @@ Shader "MiniGame/toon"
 			float4 _MainTex_ST;
 			sampler2D _RampTex;
 			fixed4 _Color,_shadowColor;
-			half _light;
+			half _light,_lightprobe;
 			struct v2f{
 				float4 pos:SV_POSITION;
 				float3 worldnormal:TEXCOORD0;
 				float3 worldpos:TEXCOORD1;
 				half2 uv:TEXCOORD2;
+				fixed3 SHlighting:Color;
 				SHADOW_COORDS(4)
 			};
 			v2f vert(appdata_base v)
@@ -43,6 +45,8 @@ Shader "MiniGame/toon"
 				o.worldpos=mul(unity_ObjectToWorld,v.vertex).xyz;
 				o.worldnormal=UnityObjectToWorldNormal(v.normal);
 				o.uv=TRANSFORM_TEX(v.texcoord,_MainTex);
+				o.SHlighting=ShadeSH9(float4(o.worldnormal,1));
+				o.SHlighting*=_lightprobe;
 				TRANSFER_SHADOW(o);
 				return o;
 			}
@@ -56,11 +60,13 @@ Shader "MiniGame/toon"
 				fixed3 albedo=ccolor*_Color.rgb;
 				
 				fixed3 ambient=albedo;
-				fixed diff=dot(worldnormal,worldlightdir)*0.5+0.5;
-				fixed3 diffuse=_LightColor0.rgb*albedo*tex2D(_RampTex,float2(diff,diff)).rgb;
-				UNITY_LIGHT_ATTENUATION(atten,i,i.worldpos);
-				diffuse=lerp(_shadowColor*diffuse,diffuse,atten);
-				return fixed4((ambient+diffuse)*_light,1.0);
+				//fixed diff=dot(worldnormal,worldlightdir)*0.5+0.5;
+				//fixed3 diffuse=_LightColor0.rgb*albedo*tex2D(_RampTex,float2(diff,diff)).rgb;
+				//UNITY_LIGHT_ATTENUATION(atten,i,i.worldpos);
+				//diffuse=lerp(_shadowColor*diffuse,diffuse,atten);
+
+				albedo*=i.SHlighting;
+				return fixed4(albedo*_light,1.0);
 			}
 			ENDCG
 		}
