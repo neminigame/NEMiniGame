@@ -67,7 +67,6 @@ public class GlobalManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
-    // Start is called before the first frame update
     void Start()
     {
         audioSource = this.GetComponent<AudioSource>();
@@ -75,7 +74,6 @@ public class GlobalManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (curSceneNum == 0)

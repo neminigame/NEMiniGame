@@ -13,7 +13,7 @@ public class System_Time : MonoBehaviour
     void Update()
     {
        
-        timeText.text = DateTime.Now.ToString(("yyyy年MM月dd日HH:mm:ss"));
+        timeText.text = DateTime.Now.ToString(("1999年10月16日HH:mm:ss"));
     }
 
 

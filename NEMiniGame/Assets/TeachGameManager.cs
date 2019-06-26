@@ -47,6 +47,7 @@ public class TeachGameManager : GameManagerBase
     {
         backDirector.enabled = true;
         gameover = true;
+        CountDown._Count = CountDown.IsCountOK.NOTOK;
         _playerControl.enabled = false;
         BlendCam.SetActive(false);
         camToHide.SetActive(true);
@@ -64,11 +65,7 @@ public class TeachGameManager : GameManagerBase
         cf.m_XAxis.m_InputAxisName = "";
         base.InitialCM();
         SetTeachingRobot(false, 0);
-        List<string> listText=new List<string>();
-        listText.Add("不断按住鼠标左键进入子弹时间，反弹小球进行前进,按住右键调整视野");
-        listText.Add("进入敌人扫描范围会引起警觉，数秒后在此被发现则通关失败");
-        listText.Add("碰撞到敌人立即失败");
-        ShowHint(listText,3f);
+        
         //StartCoroutine(HideCam());
     }
 
@@ -146,6 +143,13 @@ public class TeachGameManager : GameManagerBase
         tipBtnText.color = Color.clear;
         tipBtnText.gameObject.SetActive(false);
         _playerControl.enabled = true;
+        #region 开始三屏字
+        List<string> listText = new List<string>();
+        listText.Add("不断按住鼠标左键进入子弹时间，反弹小球进行前进,按住右键调整视野");
+        listText.Add("进入敌人扫描范围会引起警觉，数秒后在此被发现则通关失败");
+        listText.Add("碰撞到敌人立即失败");
+        ShowHint(listText, 3f);
+        #endregion
     }
 
 }

@@ -1138,6 +1138,7 @@ MonoBehaviour:
   polar:
     exposedName: 68333df6f07c4ae48a9f91cd53aacc93
     defaultValue: {fileID: 0}
+  Clip: {fileID: 0}
 --- !u!114 &114167248956637148
 MonoBehaviour:
   m_ObjectHideFlags: 1

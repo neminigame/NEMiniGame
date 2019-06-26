@@ -18,9 +18,12 @@ public class CountDown : MonoBehaviour
     private int _hour;
     private float _time;
     public static IsCountOK _Count;
+    private PlayerControl playerControl;
     public enum IsCountOK {OK,NOTOK };
     public GameMode gameMode=GameMode.Normal;
+    public GameObject gameoverPanel;
 
+    private bool isGameOver;
     private void Awake()
     {
         
@@ -39,6 +42,7 @@ public class CountDown : MonoBehaviour
     }
     void Start()
     {
+        playerControl = GameObject.Find("Player").GetComponent<PlayerControl>();
         _time = _second+_mileSecond*1.0f/1000;
         _Count = IsCountOK.NOTOK;
       //  reStartCountDown();
@@ -50,15 +54,22 @@ public class CountDown : MonoBehaviour
         {
            
             _time -= Time.deltaTime;
-            if(_time<0f)//倒计时结束且当前没有失败，判断为失败
+            if(_time<=0f)//倒计时结束且当前没有失败，判断为失败
             {
+                TimeCountDown.text = string.Format("{0:D2}:{1:D2}.{2:D3}", 0, 0, 0);
                 switch (gameMode)
                 {
                     case GameMode.Teaching:
-
+                        playerControl.gameManager.GameOver();
+                        gameoverPanel.SetActive(true);
                         break;
                     case GameMode.Normal:
-                        GameManager.Instance.GameOver();
+                        playerControl.gameManager.GameOver();
+                        if (!isGameOver)
+                        {
+                           playerControl.gameManager.showGlitchAndOver(2.0f, 2.0f);
+                            isGameOver = true;
+                        }
                         _hour = 0;
                         _minute = 0;
                         _second = 0;

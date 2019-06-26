@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.Timeline;
+using UnityEngine.Playables;
 public class PlayerControl : MonoBehaviour
 {
     public GameMode gameMode = GameMode.Normal;
@@ -15,7 +17,7 @@ public class PlayerControl : MonoBehaviour
     private float _timeScale = 0.1f;
     private float tspeed, trspeed;//前进速度，旋转速度
     private Vector3 mouse1, mouse2;//第一次鼠标，第二次鼠标位置
-    private int JudgeIsBegin = 0;//判断是否第一次点鼠标，如果是则开始计时
+  //  private int JudgeIsBegin = 0;//判断是否第一次点鼠标，如果是则开始计时
     private Vector3 tdir;
     public List<Item> Items;
     public bool isTeachingMode = false;
@@ -23,21 +25,27 @@ public class PlayerControl : MonoBehaviour
     public float factor = 1f;
     public GameManagerBase gameManager;
     private Vector3 rotate_dir;
-    private bool isGameOver=false;
+    private bool isGameOver = false;
     private AudioSource audioSource;
+    private Vector3 iniPos; //小球初始位置
+    public PlayableDirector doorAnim;//小球载入动画
     // Start is called before the first frame update
-
-
+    private float totaltime;
+    private bool canCountdown=true;
     private Vector3 tempscaleAnim;
     void Awake()
     {
-        JudgeIsBegin = 0;
+       // JudgeIsBegin = 0;
         _camera = Camera.main;
         rig = GetComponent<Rigidbody>();
         model = transform.Find("player").gameObject;
+        doorAnim = GameObject.Find("doorTimeline").GetComponent<PlayableDirector>();
+        print(doorAnim.duration);
+
         Items.Clear();
         audioSource = GetComponent<AudioSource>();
         tempscaleAnim = transform.localScale;
+
     }
     private void Start()
     {
@@ -54,24 +62,31 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (totaltime < doorAnim.duration)
+        {
+            totaltime += Time.deltaTime;
+            return;
+        }
+        if (canCountdown&&(!isTeachingMode))
+        {
+            iniPos = model.transform.position;
+            canCountdown = false;
+            print(iniPos);
+        }
 
         //判断是否开始计时
-        if (JudgeIsBegin == 1)
+        if ((Vector3.Distance(model.transform.position, iniPos) > 0)&&(!isTeachingMode))
         {
-            if (isTeachingMode)
-                return;
             CountDown._Count = CountDown.IsCountOK.OK;
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && (!isTeachingMode))
         {
-            if (isTeachingMode)
-                return;
+
             mouse1 = Input.mousePosition;
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && (!isTeachingMode))
         {
-            if (isTeachingMode)
-                return;
+     
             ChangeTimeScale(0.1f);
             mouse2 = Input.mousePosition;
             if (Vector3.Distance(mouse1, mouse2) > 10)
@@ -91,20 +106,20 @@ public class PlayerControl : MonoBehaviour
                 // Debug.DrawRay(rig.position, dir, Color.red);
             }
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && (!isTeachingMode))
         {
-            if (isTeachingMode)
-                return;
+
             ChangeTimeScale(1f);
             //松开鼠标赋予速度,取消指示线的显示
             tdir = dir;
             show_line = false;
             trspeed = rspeed;
             tspeed = speed;
-            JudgeIsBegin += 1;
+          //  JudgeIsBegin += 1;
         }
         if (isTeachingMode)
         {
+
             tdir = dir;
             trspeed = rspeed;
             tspeed = speed;
@@ -139,7 +154,7 @@ public class PlayerControl : MonoBehaviour
                 wallmat.SetFloat("_GridEmission", 20f);
                 wallmat.SetFloat("_width", 1f);
             }
-           
+
         }
         else if (collision.gameObject.tag == "Enemy")
         {
@@ -154,7 +169,7 @@ public class PlayerControl : MonoBehaviour
             else if (gameMode == GameMode.Teaching)
             {
                 gameManager.showGlitch(2.0f);
-            }         
+            }
             gameManager.GameOver();
         }
         audioSource.Play();
@@ -175,7 +190,7 @@ public class PlayerControl : MonoBehaviour
                 gameManager.Win();
             }
         }
-        else if (other.tag == "Identifer"&&gameMode==GameMode.Teaching)
+        else if (other.tag == "Identifer" && gameMode == GameMode.Teaching)
         {
             if (other.name == "Identifer1")
             {
@@ -189,14 +204,14 @@ public class PlayerControl : MonoBehaviour
                     TeachGameManager.Instance.hitIdentiferNum++;
                 }
             }
-             if (other.name == "Identifer2")
+            if (other.name == "Identifer2")
             {
                 TeachGameManager.Instance.teachBrain.routID = 1;
                 TeachGameManager.Instance.SetTeachingRobot(false, 1);
                 TeachGameManager.Instance.SetTeachingRobot(true, 1);
                 if (TeachGameManager.Instance.hitIdentiferNum == 1)
                 {
-                    TeachGameManager.Instance.ShowHint("参考灵体，躲开敌人，拿到关键发光道具",6);
+                    TeachGameManager.Instance.ShowHint("参考灵体，躲开敌人，拿到关键发光道具", 6);
                     tdir = Vector3.zero;
                     TeachGameManager.Instance.hitIdentiferNum++;
                 }
@@ -211,7 +226,7 @@ public class PlayerControl : MonoBehaviour
             Time.fixedDeltaTime = val * 0.02f;
             return;
         }
-        if(!gameManager.isPause)
+        if (!gameManager.isPause)
         {
             Time.timeScale = val;
             Time.fixedDeltaTime = val * 0.02f;
@@ -224,20 +239,20 @@ public class PlayerControl : MonoBehaviour
         ChangeTimeScale(1f);
     }
     //沿任意轴缩放公式
-    static Matrix4x4 CalculateScaleMatrix(Vector3 dir,float k)
+    static Matrix4x4 CalculateScaleMatrix(Vector3 dir, float k)
     {
         Matrix4x4 ScaleMat = Matrix4x4.identity;
-        ScaleMat.m00 = (1F +(k-1F)*dir[0] * dir[0]);
-        ScaleMat.m01 = ((k-1F)*dir[0] * dir[1]);
-        ScaleMat.m02 = ((k-1F)*dir[0] * dir[2]);
+        ScaleMat.m00 = (1F + (k - 1F) * dir[0] * dir[0]);
+        ScaleMat.m01 = ((k - 1F) * dir[0] * dir[1]);
+        ScaleMat.m02 = ((k - 1F) * dir[0] * dir[2]);
 
         ScaleMat.m10 = ((k - 1F) * dir[0] * dir[1]);
-        ScaleMat.m11 = (1F+(k-1F)* dir[1] * dir[1]);
-        ScaleMat.m12 = ((k-1F)*dir[1] * dir[2]);
+        ScaleMat.m11 = (1F + (k - 1F) * dir[1] * dir[1]);
+        ScaleMat.m12 = ((k - 1F) * dir[1] * dir[2]);
 
         ScaleMat.m20 = ((k - 1F) * dir[0] * dir[2]);
         ScaleMat.m21 = ((k - 1F) * dir[1] * dir[2]);
-        ScaleMat.m22 = (1F+(k-1F)*dir[2]*dir[2]);
+        ScaleMat.m22 = (1F + (k - 1F) * dir[2] * dir[2]);
         return ScaleMat;
     }
 }

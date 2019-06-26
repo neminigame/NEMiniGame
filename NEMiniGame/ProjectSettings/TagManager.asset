@@ -8,6 +8,10 @@ TagManager:
   - Item
   - StartAndEndPos
   - TeachingRobot
+  - Identifer
+  - Enemy
+  - door
+  - GameOverTeach
   layers:
   - Default
   - TransparentFX
