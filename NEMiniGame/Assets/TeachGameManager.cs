@@ -40,6 +40,8 @@ public class TeachGameManager : GameManagerBase
 
     public override void GameOver()
     {
+        base.GameOver();
+        showGlitch(2.0f);
         Restart();
     }
 

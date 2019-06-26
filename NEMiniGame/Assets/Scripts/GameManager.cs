@@ -62,6 +62,8 @@ public class GameManager : GameManagerBase
 
     public override void GameOver()
     {
+        base.GameOver();
+        showGlitchAndOver(2.0f, 2.0f);
         //gameOver.SetActive(true);
         gameover = true;
         _playerControl.enabled = false;

@@ -34,8 +34,8 @@ public class GameManagerBase : MonoBehaviour
     }
     public virtual void GameOver()
     {
+        Time.timeScale = 1;
 
-    
     }
     public virtual void Win()
     {

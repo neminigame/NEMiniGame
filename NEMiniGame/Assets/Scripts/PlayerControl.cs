@@ -162,13 +162,13 @@ public class PlayerControl : MonoBehaviour
             {
                 if (!isGameOver)
                 {
-                    gameManager.showGlitchAndOver(2.0f, 2.0f);
+                    //gameManager.showGlitchAndOver(2.0f, 2.0f);
                     isGameOver = true;
                 }
             }
             else if (gameMode == GameMode.Teaching)
             {
-                gameManager.showGlitch(2.0f);
+                //gameManager.showGlitch(2.0f);
             }
             gameManager.GameOver();
         }
