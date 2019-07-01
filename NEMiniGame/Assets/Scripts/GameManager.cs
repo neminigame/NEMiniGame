@@ -63,7 +63,7 @@ public class GameManager : GameManagerBase
         }
         catch (System.Exception)
         {
-            throw;
+            Debug.Log("Current GameManager has no FocusFloorVCam!");
         }
     }
 
