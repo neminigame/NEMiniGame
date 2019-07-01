@@ -28,21 +28,20 @@ public class SetPos : MonoBehaviour
                 catchers.Add(temp);
             }
         }
-        for (int i = 0; i < catchers.Count; i++)
-        {
-            catchers[i].position = CircleCenter.position + new Vector3(radius2 * Mathf.Cos(2 * Mathf.PI * i / 3f + speed * Time.deltaTime), 0, radius2 * Mathf.Sin(2 * Mathf.PI * i / 3f + speed * Time.deltaTime));
-        }
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         for (int i = 0; i < stus.Count; i++)
         {
             stus[i].position = CircleCenter.position + new Vector3(radius * Mathf.Cos(2 * Mathf.PI * i / 12f + RotateAng), 0, radius * Mathf.Sin(2 * Mathf.PI * i / 12f + RotateAng));
             stus[i].LookAt(CircleCenter);
         }
+        for (int i = 0; i < catchers.Count; i++)
+        {
+            catchers[i].position = CircleCenter.position + new Vector3(radius2 * Mathf.Cos(2 * Mathf.PI * i / 3f + speed * Time.deltaTime), 0, radius2 * Mathf.Sin(2 * Mathf.PI * i / 3f + speed * Time.deltaTime));
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (WaterCup)
         {
 
@@ -51,9 +50,10 @@ public class SetPos : MonoBehaviour
         }
         for (int i = 0; i < catchers.Count; i++)
         {
-            catchers[i].Translate(Vector3.forward * speed * Time.deltaTime);
             catchers[i].LookAt(CircleCenter);
-            catchers[i].Rotate(Vector3.up,Mathf.PI/2);
+            //catchers[i].Rotate(Vector3.up,Mathf.PI/2);
+            catchers[i].Rotate(0, 90, 0);
+            catchers[i].Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
         }
         //WaterCup.position = CircleCenter.position;
 

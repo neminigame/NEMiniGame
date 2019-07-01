@@ -60,10 +60,12 @@ public class EnemyControl : MonoBehaviour
     private bool haveupgrade=false;
     private GameObject exclamationMark;
     private GameObject questionMark;
+    public Material meshMat;
     public float upgradeScale;
     public bool UsePosition = false;
     private Camera cam;
     private Vector3 upgradeTrans;
+    public BoxCollider boxCollider;
     public bool isStartUpgrade;
     public float animTime=1.5f;
     // Start is called before the first frame update
@@ -75,6 +77,17 @@ public class EnemyControl : MonoBehaviour
         questionMark = transform.Find("QuestionMark").gameObject;
         cam = Camera.main;
         detectNum = 0;
+
+        try
+        {
+            boxCollider = transform.GetChild(0).GetComponent<BoxCollider>();
+            meshMat = transform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMaterial;
+        }
+        catch (Exception e)
+        {
+            throw;
+        }
+
         if (loopType == LoopType.Pinpong)
         {
             isRevert = !isRevert;
@@ -127,6 +140,7 @@ public class EnemyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateCollider();
         UpgradeDetect(isStartUpgrade);
         ChangeColor(isStartUpgrade);
         if (fanControl.checkFan(transform, player.transform))
@@ -149,7 +163,6 @@ public class EnemyControl : MonoBehaviour
                 else
                 {
                     TeachGameManager.Instance.GameOver();
-                    Debug.Log("Detected2");
                 }
 
             }
@@ -240,6 +253,21 @@ public class EnemyControl : MonoBehaviour
         else
         {
             target.rotation = cam.transform.rotation;
+        }
+    }
+ 
+    void UpdateCollider(float threShold = 0.1f)
+    {
+        if (meshMat && boxCollider)
+        {
+            if (meshMat.GetColor("_Color").a > threShold)
+            {
+                boxCollider.enabled = true;
+            }
+            else
+            {
+                boxCollider.enabled = false;
+            }
         }
     }
 }

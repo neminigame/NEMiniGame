@@ -33,6 +33,7 @@ public class PlayerControl : MonoBehaviour
     private float totaltime;
     private bool canCountdown=true;
     private Vector3 tempscaleAnim;
+    private int hitIdentify2Times = 0;
     void Awake()
     {
        // JudgeIsBegin = 0;
@@ -45,10 +46,12 @@ public class PlayerControl : MonoBehaviour
         Items.Clear();
         audioSource = GetComponent<AudioSource>();
         tempscaleAnim = transform.localScale;
-
+        hitIdentify2Times = 0;
     }
     private void Start()
     {
+
+
         if (gameMode == GameMode.Normal)
         {
             gameManager = GameManager.Instance;
@@ -190,30 +193,49 @@ public class PlayerControl : MonoBehaviour
                 gameManager.Win();
             }
         }
-        else if (other.tag == "Identifer" && gameMode == GameMode.Teaching)
+        else if (other.tag == "Identifer" )
         {
-            if (other.name == "Identifer1")
+            if (gameMode == GameMode.Teaching)
             {
-                TeachGameManager.Instance.teachBrain.routID = 0;
-                TeachGameManager.Instance.SetTeachingRobot(false, 0);
-                TeachGameManager.Instance.SetTeachingRobot(true, 0);
-                if (TeachGameManager.Instance.hitIdentiferNum == 0)
+                if (other.name == "Identifer1")
                 {
-                    TeachGameManager.Instance.ShowHint("注意躲开敌人视野前进");
-                    tdir = Vector3.zero;
-                    TeachGameManager.Instance.hitIdentiferNum++;
+                    TeachGameManager.Instance.teachBrain.routID = 0;
+                    TeachGameManager.Instance.SetTeachingRobot(false, 0);
+                    TeachGameManager.Instance.SetTeachingRobot(true, 0);
+                    if (TeachGameManager.Instance.hitIdentiferNum == 0)
+                    {
+                        TeachGameManager.Instance.ShowHint("注意躲开敌人视野前进");
+                        tdir = Vector3.zero;
+                        TeachGameManager.Instance.hitIdentiferNum++;
+                    }
+                }
+                if (other.name == "Identifer2")
+                {
+                    TeachGameManager.Instance.teachBrain.routID = 1;
+                    TeachGameManager.Instance.SetTeachingRobot(false, 1);
+                    TeachGameManager.Instance.SetTeachingRobot(true, 1);
+                    if (TeachGameManager.Instance.hitIdentiferNum == 1)
+                    {
+                        TeachGameManager.Instance.ShowHint("参考灵体，躲开敌人，拿到关键发光道具", 6);
+                        tdir = Vector3.zero;
+                        TeachGameManager.Instance.hitIdentiferNum++;
+                    }
                 }
             }
-            if (other.name == "Identifer2")
+            else
             {
-                TeachGameManager.Instance.teachBrain.routID = 1;
-                TeachGameManager.Instance.SetTeachingRobot(false, 1);
-                TeachGameManager.Instance.SetTeachingRobot(true, 1);
-                if (TeachGameManager.Instance.hitIdentiferNum == 1)
+                if (other.name == "Identifer1")
                 {
-                    TeachGameManager.Instance.ShowHint("参考灵体，躲开敌人，拿到关键发光道具", 6);
+                    
+                }
+                if (other.name == "Identifer2"&& GameManager.Instance.hitIdentiferNum == 0)
+                {
+                    hitIdentify2Times++;
+                    GameManager.Instance.Scene2Control();
+
                     tdir = Vector3.zero;
-                    TeachGameManager.Instance.hitIdentiferNum++;
+                    GameManager.Instance.hitIdentiferNum++;
+
                 }
             }
         }

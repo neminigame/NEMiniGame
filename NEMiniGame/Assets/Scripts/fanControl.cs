@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 class fanControl
 {
-    public static bool checkFan(Transform enemy,Transform player)
+    public static bool checkFan(Transform enemy,Transform player,float threshold = 0.1f)
     {
         Transform fan = enemy.Find("check");
         Material mat = fan.GetComponent<Renderer>().sharedMaterial;
         float r = mat.GetFloat("_radius");
+        float a = mat.GetColor("_Color").a;
         float angle = mat.GetFloat("_clipangle");
         angle = (180f - angle * Mathf.PI * Mathf.Rad2Deg);
         Vector3 delta = (player.position - enemy.position);
         float cos = Vector3.Dot(delta.normalized, enemy.forward);
         float tangle = Mathf.Acos(cos)*Mathf.Rad2Deg;
         float clipr = r * fan.localScale.x * enemy.localScale.x / 2;
-         //Debug.Log(tangle + " " +angle);
-        if (tangle < angle && delta.magnitude < clipr)
-            return true;
-        return false;
+        //Debug.Log(tangle + " " +angle);
+        if (a > threshold)
+        {
+            if (tangle < angle && delta.magnitude < clipr)
+                return true;
+            return false;
+        }
+        else
+            return false;
     }
     public static void upgradeFan(Transform enemy, float scale)
     {

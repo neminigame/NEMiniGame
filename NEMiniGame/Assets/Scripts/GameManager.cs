@@ -5,16 +5,23 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Timeline;
 using UnityEngine.Playables;
+using System;
+
 public class GameManager : GameManagerBase
 {
     public static GameManager Instance;
     public GameObject gameOver;
     public GameObject Cam;
+    [Range(0,1)]
+    public float i;
+    public AudioClip ac;
     //private bool gameover;//判断游戏是否完成的标记
 
     //[SerializeField]
     //protected PlayerControl _playerControl;
     private Material _textMeshProUGUIMat;
+    public int hitIdentiferNum=0;
+    public CinemachineVirtualCamera focusFloorVCam;
     //public CinemachineFreeLook cf;
     //float yAccelTime, yDecelTime, xAccelTime, xDecelTime, yMaxSpeed, xMaxSpeed;
     //float yAccelTimeAfter, yDecelTimeAfter, xAccelTimeAfter, xDecelTimeAfter, yMaxSpeedAfter, xMaxSpeedAfter;
@@ -40,12 +47,24 @@ public class GameManager : GameManagerBase
     // Start is called before the first frame update
     void Start()
     {
+
+        hitIdentiferNum = 0;
         //Debug.Log(gameOver.GetComponent<TextMeshProUGUI>().fontMaterial);
         cf.m_YAxis.m_InputAxisName = "";
         cf.m_XAxis.m_InputAxisName = "";
         Initial();
         InitialCM();
         totalItems = GameObject.FindGameObjectsWithTag("Item").Length;
+        try
+        {
+            CorridorManager.instance.SetTeacherAlpha(1f);
+            CorridorManager.instance.SetStusAlpha(0);
+            focusFloorVCam = transform.parent.Find("FocusFloorVCam").GetComponent<CinemachineVirtualCamera>();
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
     }
 
     // Update is called once per frame
@@ -88,5 +107,23 @@ public class GameManager : GameManagerBase
         // GameOver();
         //关闭过渡摄像机
         Cam.SetActive(false);
+    }
+
+    //场景2中的黑屏等效果
+    public void Scene2Control()
+    {
+        StartCoroutine(PlayMusic(ac));
+    }
+
+    IEnumerator PlayMusic(AudioClip ac)
+    {
+        GameManager.Instance.focusFloorVCam.Priority = 100;
+        var t = gameObject.AddComponent<AudioSource>();
+        t.clip = ac;
+        t.Play();
+        yield return new WaitForSeconds(ac.length);
+        GameManager.Instance.focusFloorVCam.Priority = 10;
+        CorridorManager.instance.SetTeacherAlpha(0,true,.5f);
+        CorridorManager.instance.SetStusAlpha(1f,true,.5f);
     }
 }
