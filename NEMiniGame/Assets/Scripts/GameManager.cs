@@ -48,7 +48,6 @@ public class GameManager : GameManagerBase
     void Start()
     {
 
-        hitIdentiferNum = 0;
         //Debug.Log(gameOver.GetComponent<TextMeshProUGUI>().fontMaterial);
         cf.m_YAxis.m_InputAxisName = "";
         cf.m_XAxis.m_InputAxisName = "";

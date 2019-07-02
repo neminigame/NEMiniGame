@@ -34,6 +34,7 @@ public class PlayerControl : MonoBehaviour
     private bool canCountdown=true;
     private Vector3 tempscaleAnim;
     private int hitIdentify2Times = 0;
+    public bool isScene2AnimPlay = false;
     void Awake()
     {
        // JudgeIsBegin = 0;
@@ -46,7 +47,8 @@ public class PlayerControl : MonoBehaviour
         Items.Clear();
         audioSource = GetComponent<AudioSource>();
         tempscaleAnim = transform.localScale;
-        hitIdentify2Times = 0;
+
+        isScene2AnimPlay = false;
     }
     private void Start()
     {
@@ -228,13 +230,20 @@ public class PlayerControl : MonoBehaviour
                 {
                     
                 }
-                if (other.name == "Identifer2"&& GameManager.Instance.hitIdentiferNum == 0)
-                {
-                    hitIdentify2Times++;
-                    GameManager.Instance.Scene2Control();
-
-                    tdir = Vector3.zero;
-                    GameManager.Instance.hitIdentiferNum++;
+                if (other.name == "Identifer2")
+                {                           
+                    for (int i = 0; i < Items.Count; i++)
+                    {
+                        if (Items[i].name == "WaterCup")
+                        {
+                            if (!isScene2AnimPlay)
+                            {
+                                tdir = Vector3.zero;
+                                GameManager.Instance.Scene2Control();
+                            }
+                            isScene2AnimPlay = true;
+                        } 
+                    }
 
                 }
             }

@@ -25,12 +25,7 @@ public class EnemyControl : MonoBehaviour
         CorridorMan3,
         CorridorMan4,
         CorridorMan5,
-        CorridorWoman1,
-        CorridorWoman2,
-        CorridorWoman3,
-        CorridorWoman4,
-        CorridorWoman5,
-        CorridorWoman6
+        Other
     }
     public enum LoopType
     {
