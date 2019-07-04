@@ -5,11 +5,11 @@
         "m_Name": "",
         "m_EditorClassIdentifier": "",
         "Verbose": false,
-        "autoUpdaterEnabled": true,
         "launchAfterInstallation": true,
         "HideSendToUnityMenu": true,
         "BakeAnimation": true,
-        "IntegrationSavePath": "F:\\新建文件夹\\NEMiniGame\\NEMiniGame",
+        "showConvertToPrefabDialog": true,
+        "integrationSavePath": "",
         "selectedDCCApp": 0,
         "prefabSavePaths": [
             "."
@@ -23,7 +23,6 @@
         "dccOptionPaths": [],
         "exportModelSettingsSerialize": {
             "exportFormat": 0,
-            "rootMotionTransfer": "",
             "animatedSkinnedMesh": false,
             "mayaCompatibleNaming": true,
             "include": 2,
@@ -33,7 +32,6 @@
         },
         "convertToPrefabSettingsSerialize": {
             "exportFormat": 0,
-            "rootMotionTransfer": "",
             "animatedSkinnedMesh": false,
             "mayaCompatibleNaming": true
         }
