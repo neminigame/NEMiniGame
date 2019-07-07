@@ -5,6 +5,8 @@ using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.Timeline;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
+
 public class PlayerControl : MonoBehaviour
 {
     public GameMode gameMode = GameMode.Normal;
@@ -67,16 +69,19 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (totaltime < doorAnim.duration)
+        if (!isTeachingMode)
         {
-            totaltime += Time.deltaTime;
-            return;
-        }
-        if (canCountdown&&(!isTeachingMode))
-        {
-            iniPos = model.transform.position;
-            canCountdown = false;
-            print(iniPos);
+            if (totaltime < doorAnim.duration)
+            {
+                totaltime += Time.deltaTime;
+                return;
+            }
+            if (canCountdown)
+            {
+                iniPos = model.transform.position;
+                canCountdown = false;
+                print(iniPos);
+            }
         }
 
         //判断是否开始计时
@@ -192,6 +197,16 @@ public class PlayerControl : MonoBehaviour
         {
             if (gameManager.isFinished == true)
             {
+                string sceneName = SceneManager.GetActiveScene().name;
+                switch (sceneName)
+                {
+                    case "Scene1": JsonProcess.requestJson().updateHomeState(true); break;
+                    case "Scene2": JsonProcess.requestJson().updateSchoolState(true); break;
+                    case "Scene3": JsonProcess.requestJson().updateCompanyState(true); break;
+                    case "Scene4": JsonProcess.requestJson().updateHospitalState(true); break;
+                    default:
+                        break;
+                }
                 gameManager.Win();
             }
         }
