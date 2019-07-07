@@ -239,6 +239,7 @@ public class PlayerControl : MonoBehaviour
                             if (!isScene2AnimPlay)
                             {
                                 tdir = Vector3.zero;
+                                this.enabled = false;
                                 GameManager.Instance.Scene2Control();
                             }
                             isScene2AnimPlay = true;

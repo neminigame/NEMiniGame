@@ -52,7 +52,7 @@ public class SetPos : MonoBehaviour
         {
             catchers[i].LookAt(CircleCenter);
             //catchers[i].Rotate(Vector3.up,Mathf.PI/2);
-            catchers[i].Rotate(0, 90, 0);
+            catchers[i].Rotate(0, 89, 0, Space.Self);
             catchers[i].Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
         }
         //WaterCup.position = CircleCenter.position;

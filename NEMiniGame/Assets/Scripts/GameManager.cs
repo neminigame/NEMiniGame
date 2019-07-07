@@ -121,6 +121,7 @@ public class GameManager : GameManagerBase
         t.clip = ac;
         t.Play();
         yield return new WaitForSeconds(ac.length);
+        GameManager.Instance._playerControl.enabled = true;
         GameManager.Instance.focusFloorVCam.Priority = 10;
         CorridorManager.instance.SetTeacherAlpha(0,true,.5f);
         CorridorManager.instance.SetStusAlpha(1f,true,.5f);

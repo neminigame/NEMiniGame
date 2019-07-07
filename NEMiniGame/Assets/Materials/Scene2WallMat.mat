@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CheckTeacher
-  m_Shader: {fileID: 4800000, guid: 0158fae039fcdae48b35090973a38f45, type: 3}
+  m_Name: Scene2WallMat
+  m_Shader: {fileID: 4800000, guid: 9d03737d5c4a3bf45bfb9d7b322232ed, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -72,8 +72,6 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _clipangle: 0.5
-    - _radius: 1
     m_Colors:
-    - _Color: {r: 0.7553485, g: 1, b: 0.5058824, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
