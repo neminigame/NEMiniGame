@@ -119,8 +119,9 @@ public class UIManager : MonoBehaviour
             //文本输入小写字母t用作换行符号，便于在inspector更改
             bubble.GetComponentInChildren<Text>().text = text.Replace('t', '\n');
             bubble.SetActive(true);
+            StopCoroutine("BubbleUiAnim");
             bubble.GetComponentInChildren<CanvasGroup>().alpha = 1f;
-            StartCoroutine(BubbleUiAnim(0.8f));
+            StartCoroutine("BubbleUiAnim",0.8f);
         }
     }
     IEnumerator BubbleUiAnim(float duration)

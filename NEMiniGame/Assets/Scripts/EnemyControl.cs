@@ -80,7 +80,8 @@ public class EnemyControl : MonoBehaviour
         }
         catch (Exception e)
         {
-            throw;
+            //throw;
+            Debug.Log("*Warning*<color=yellow>" + "EnemyControl Try Exception" + "</color>");
         }
 
         if (loopType == LoopType.Pinpong)

@@ -10,10 +10,13 @@ public class Item : MonoBehaviour
     private PlayerControl _playerControl;
 
     public string bubbleText;//气泡框内文本
-    
+
+    private TipsManager tipsManager;
+    public int tipnum;//获得物品后加载下一个提示编号
     private void Start()
     {
         _playerControl = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+        tipsManager = GameObject.Find("tips").GetComponent<TipsManager>();
     }
     public enum ItemType {
         GiftMoney,
@@ -27,6 +30,10 @@ public class Item : MonoBehaviour
             gameObject.SetActive(false);
             _playerControl.Items.Add(this);
             BeTaken();
+            if(tipsManager!=null)
+            {
+                tipsManager.SetTip(tipnum);
+            }
             if (TeachGameManager.Instance)
             {
                 TeachGameManager.Instance.ShowHint(new List<string>{ "拿全道具后返回门处，即可通过本关","依然注意不要碰到敌人"});
