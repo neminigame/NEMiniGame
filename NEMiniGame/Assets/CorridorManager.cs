@@ -19,6 +19,8 @@ public class CorridorManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stuMats = new List<Material>();
+        checkMats = new List<Material>();
         for (int i = 0; i < transform.childCount; i++)
         {
             var temp = transform.GetChild(i);
@@ -27,8 +29,6 @@ public class CorridorManager : MonoBehaviour
                 CorridorStuTransforms.Add(temp);
                 //Debug.Log(temp.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>());
                 //Debug.Log(temp.GetChild(1).GetComponent<MeshRenderer>());
-                stuMats = new List<Material>();
-                checkMats = new List<Material>();
                 stuMats.Add(temp.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMaterial);
                 checkMats.Add(temp.GetChild(1).GetComponent<MeshRenderer>().sharedMaterial);
             }
