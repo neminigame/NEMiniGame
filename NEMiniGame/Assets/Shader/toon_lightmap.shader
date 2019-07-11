@@ -8,9 +8,11 @@ Shader "MiniGame/toon_lightmap"
 	Properties{
 		_Color("Color",Color)=(1,1,1,1)
 		_MainTex("Main Tex",2D)="white"{}
+		[Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull Mode", Float) = 2
 	}
 	SubShader{
 		Tags{ "LightMode"="ForwardBase" "RenderType"="Opaque"}
+		Cull [_Cull] 
 		Pass
 		{
 			

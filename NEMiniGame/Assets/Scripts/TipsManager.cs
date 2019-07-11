@@ -21,10 +21,14 @@ public class TipsManager : MonoBehaviour
     }
     public void SetTip(int num)
     {
-        ResetTip();
-        nowtips = tips[num - 1];
-        nowtips.SetActive(true);
-        nowtips.transform.DOScale(1.1f, 0.6f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InExpo).SetUpdate(true);
+        if(num>0)
+        {
+            ResetTip();
+            nowtips = tips[num - 1];
+            nowtips.SetActive(true);
+            nowtips.transform.DOScale(1.1f, 0.6f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InExpo).SetUpdate(true);
+        }
+
     }
     void ResetTip()
     {

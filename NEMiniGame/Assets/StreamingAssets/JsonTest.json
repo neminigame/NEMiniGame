@@ -1,5 +1,5 @@
 {
-    "home_state": false,
+    "home_state": true,
     "school_state": false,
     "company_state": false,
     "hospital_state": false
