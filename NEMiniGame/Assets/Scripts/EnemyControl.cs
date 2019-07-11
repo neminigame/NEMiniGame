@@ -25,6 +25,13 @@ public class EnemyControl : MonoBehaviour
         CorridorMan3,
         CorridorMan4,
         CorridorMan5,
+        Scene3npc1,
+        Scene3npc2,
+        Scene3npc3,
+        Scene3npc4,
+        Scene3npc5,
+        Scene3npc6,
+        Scene3npc7,
         Other
     }
     public enum LoopType
@@ -102,9 +109,9 @@ public class EnemyControl : MonoBehaviour
                     "oncomplete", "myCompleteFun",
                     "oncompletetarget", gameObject));
             }
-            catch (Exception)
+            catch (Exception e)
             {
-               
+                Debug.Log("*Warning*<color=blue>" + "EnemyControl GetPath Exception:"+ e + "</color>");
             } 
 
         }

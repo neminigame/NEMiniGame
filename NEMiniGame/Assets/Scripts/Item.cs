@@ -16,7 +16,15 @@ public class Item : MonoBehaviour
     private void Start()
     {
         _playerControl = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
-        tipsManager = GameObject.Find("tips").GetComponent<TipsManager>();
+        try
+        {
+            tipsManager = GameObject.Find("tips").GetComponent<TipsManager>();
+        }
+        catch (System.Exception e)
+        {
+
+            Debug.Log("*LOG*<color=red>" + e + "</color>");
+        } 
     }
     public enum ItemType {
         GiftMoney,
