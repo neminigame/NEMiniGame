@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Timeline;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     private Vector3 mouse1, mouse2;//第一次鼠标，第二次鼠标位置
   //  private int JudgeIsBegin = 0;//判断是否第一次点鼠标，如果是则开始计时
     private Vector3 tdir;
+    private Vector3 dropDir;
     public List<Item> Items;
     public bool isTeachingMode = false;
     public line line;
@@ -37,6 +39,7 @@ public class PlayerControl : MonoBehaviour
     private Vector3 tempscaleAnim;
     private int hitIdentify2Times = 0;
     public bool isScene2AnimPlay = false;
+    public bool isScene3Pause = false;
     void Awake()
     {
        // JudgeIsBegin = 0;
@@ -51,6 +54,7 @@ public class PlayerControl : MonoBehaviour
         tempscaleAnim = transform.localScale;
 
         isScene2AnimPlay = false;
+        isScene3Pause = false;
     }
     private void Start()
     {
@@ -184,6 +188,29 @@ public class PlayerControl : MonoBehaviour
         }
         audioSource.Play();
     }
+
+    public void DropItem(Item item)
+    {
+        //item.transform.SetParent(transform);
+        item.isGround = false;
+        item.transform.position = new Vector3(transform.position.x, transform.position.y+.5f, transform.position.z);
+        item.canBeTakenByPlayer = false;
+        item.gameObject.SetActive(true);
+        StartCoroutine(DropCoroutine(item));
+    }
+    IEnumerator DropCoroutine(Item item)
+    {
+        while (!item.isGround)
+        {
+            item.isGround = false;
+            item.GetComponent<Rigidbody>().AddForce(Vector3.Normalize(new Vector3(-dropDir.x, 10f, -dropDir.z))*9f);
+            item.GetComponent<Rigidbody>().mass += .002f;
+            yield return null;
+        }
+        Transform friendTransform = transform.Find("/Enemys/Friend").GetChild(0);
+        GameManager.Instance.FriendComeTo(friendTransform, item.transform);
+    }
+
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "wall")
@@ -243,7 +270,22 @@ public class PlayerControl : MonoBehaviour
             {
                 if (other.name == "Identifer1")
                 {
-                    
+                    for (int i = 0; i < Items.Count; i++)
+                    {
+                        if (Items[i].ItemName == "病危通知书")
+                        {
+                            Debug.Log("病危通知书");
+                            if (!isScene3Pause)
+                            {
+                                dropDir = tdir;
+                                tdir = Vector3.zero;
+                                this.enabled = false;
+                                GameManager.Instance.Scene3Control(Items[i]);
+                            }
+                            isScene3Pause = true;
+                            Items.Remove(Items[i]);
+                        }
+                    }
                 }
                 if (other.name == "Identifer2")
                 {                           

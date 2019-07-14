@@ -8,13 +8,16 @@ public class Item : MonoBehaviour
     public string description;
     public Sprite ItemImage;
     private PlayerControl _playerControl;
+    public bool canBeTakenByPlayer = true;
 
     public string bubbleText;//气泡框内文本
-
+    public bool isGround = true;
     private TipsManager tipsManager;
     public int tipnum;//获得物品后加载下一个提示编号
     private void Start()
     {
+        isGround = true;
+        canBeTakenByPlayer = true;
         _playerControl = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
         try
         {
@@ -33,7 +36,7 @@ public class Item : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player"&& canBeTakenByPlayer)
         {
             gameObject.SetActive(false);
             _playerControl.Items.Add(this);
@@ -50,6 +53,12 @@ public class Item : MonoBehaviour
             {
                 UIManager.Instance.SetBubbleUI(bubbleText);
             }
+        }
+        if (!canBeTakenByPlayer && collision.transform.tag == "wall")
+        {
+            isGround = true;
+            this.GetComponent<Rigidbody>().isKinematic = true;
+            this.GetComponent<BoxCollider>().isTrigger = true;
         }
     }
     public void BeTaken()

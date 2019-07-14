@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Timeline;
 using UnityEngine.Playables;
 using System;
+using UnityEngine.AI;
 
 public class GameManager : GameManagerBase
 {
@@ -111,10 +112,16 @@ public class GameManager : GameManagerBase
     //场景2中的黑屏等效果
     public void Scene2Control()
     {
-        StartCoroutine(PlayMusic(ac));
+        StartCoroutine(Scene2Coroutine(ac));
     }
 
-    IEnumerator PlayMusic(AudioClip ac)
+    //场景3中的停顿等基友过来肛你
+    public void Scene3Control(Item item)
+    {
+        StartCoroutine(Scene3Coroutine(item));
+    }
+
+    IEnumerator Scene2Coroutine(AudioClip ac)
     {
         GameManager.Instance.focusFloorVCam.Priority = 100;
         var t = gameObject.AddComponent<AudioSource>();
@@ -125,5 +132,22 @@ public class GameManager : GameManagerBase
         GameManager.Instance.focusFloorVCam.Priority = 10;
         CorridorManager.instance.SetTeacherAlpha(0,true,.5f);
         CorridorManager.instance.SetStusAlpha(1f,true,.5f);
+    }
+
+    IEnumerator Scene3Coroutine(Item item,float waitTime=3.0f)
+    {
+        //transform.Find("/Enemys/Friend");
+        _playerControl.DropItem(item);
+        var t = gameObject.AddComponent<AudioSource>();
+        t.clip = ac;
+        t.Play();
+        yield return new WaitForSeconds(waitTime);
+    }
+
+    public void FriendComeTo(Transform friendTransform,Transform targetTransform)
+    {
+        var friendNav = friendTransform.parent.GetComponent<NavMeshAgent>();
+        friendTransform.GetComponent<FriendBrain>().target = targetTransform;
+        friendNav.enabled = true;
     }
 }

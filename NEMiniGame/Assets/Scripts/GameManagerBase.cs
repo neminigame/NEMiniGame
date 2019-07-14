@@ -20,7 +20,7 @@ public class GameManagerBase : MonoBehaviour
     protected Glitch glitch;
     protected bool gameover;//判断游戏是否完成的标记
     [SerializeField]
-    protected PlayerControl _playerControl;
+    public PlayerControl _playerControl;
     float yAccelTime, yDecelTime, xAccelTime, xDecelTime, yMaxSpeed, xMaxSpeed;
     float yAccelTimeAfter, yDecelTimeAfter, xAccelTimeAfter, xDecelTimeAfter, yMaxSpeedAfter, xMaxSpeedAfter;
     float _timeScale = 0.1f;
