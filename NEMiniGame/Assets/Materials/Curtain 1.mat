@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u5B66\u6821\u5173\u5899\u9762"
-  m_Shader: {fileID: 4800000, guid: 9d03737d5c4a3bf45bfb9d7b322232ed, type: 3}
+  m_Name: Curtain 1
+  m_Shader: {fileID: 4800000, guid: e0d3d62f86df13f48aee1f953a99d68f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -57,10 +57,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
-    - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _Distortion: 0.61
     - _DstBlend: 0
+    - _Gloss: 8
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -68,11 +69,18 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Power: 1
+    - _Scale: 0.75
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _WindEdgeFlutter: 0.33
+    - _WindEdgeFlutterFreqScale: 0.33
     - _ZWrite: 1
+    - _light: 0.54
     m_Colors:
-    - _Color: {r: 0.7500842, g: 1, b: 0.6745283, a: 1}
+    - _Color: {r: 0.3443396, g: 0.83184, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Specular: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+    - _Wind: {r: 0.41, g: 0.14, b: -0.02, a: -0.05}

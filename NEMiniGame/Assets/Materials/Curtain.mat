@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Curtain
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: e0d3d62f86df13f48aee1f953a99d68f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -75,9 +75,12 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _WindEdgeFlutter: 0.5
+    - _WindEdgeFlutterFreqScale: 0.3
     - _ZWrite: 1
     - _light: 0.54
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.3443396, g: 0.83184, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Specular: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+    - _Wind: {r: 0.12, g: 0.14, b: -0.02, a: -0.08}
