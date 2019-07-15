@@ -95,7 +95,6 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0) && (!isTeachingMode))
         {
-
             mouse1 = Input.mousePosition;
         }
         if (Input.GetMouseButton(0) && (!isTeachingMode))
@@ -208,7 +207,7 @@ public class PlayerControl : MonoBehaviour
             yield return null;
         }
         Transform friendTransform = transform.Find("/Enemys/Friend").GetChild(0);
-        GameManager.Instance.FriendComeTo(friendTransform, item.transform);
+        GameManager.Instance.FriendComeTo(friendTransform, item.transform); //添加第三关的跟踪对象
     }
 
     private void OnCollisionExit(Collision collision)
@@ -280,7 +279,7 @@ public class PlayerControl : MonoBehaviour
                                 dropDir = tdir;
                                 tdir = Vector3.zero;
                                 this.enabled = false;
-                                GameManager.Instance.Scene3Control(Items[i]);
+                                GameManager.Instance.Scene3Control(Items[i]); //掉落病危通知书
                             }
                             isScene3Pause = true;
                             Items.Remove(Items[i]);

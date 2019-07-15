@@ -55,6 +55,7 @@ public class GameManager : GameManagerBase
         Initial();
         InitialCM();
         totalItems = GameObject.FindGameObjectsWithTag("Item").Length;
+        Debug.Log(totalItems);
         try
         {
             CorridorManager.instance.SetTeacherAlpha(1f);

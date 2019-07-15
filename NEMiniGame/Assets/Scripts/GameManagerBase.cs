@@ -26,7 +26,7 @@ public class GameManagerBase : MonoBehaviour
     float _timeScale = 0.1f;
     Image gradientImage;
     Text tipText;
-    public virtual bool judgeItem(List<Item> item)
+    public virtual bool judgeItem(List<Item> item) //判断数量
     {
         if (item.Count >= totalItems)
             return true;
