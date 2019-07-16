@@ -11,7 +11,7 @@ public class JsonEntity
     public Boolean school_state;
     public Boolean company_state;
     public Boolean hospital_state;
-
+    public Boolean teach_state;
     string JsonPath()
     {
         return Application.streamingAssetsPath + "/JsonTest.json";
@@ -23,10 +23,16 @@ public class JsonEntity
         school_state = false;
         company_state = false;
         hospital_state = false;
+        teach_state = false;
     }
     public string Tojson()
     {
         return JsonUtility.ToJson(this);
+    }
+    public void  updateTeachState(bool state)
+    {
+        teach_state = state;
+        SaveJson(this);
     }
     public void updateHomeState(bool state)
     {
@@ -48,7 +54,12 @@ public class JsonEntity
         hospital_state = state;
         SaveJson(this);
     }
-    void SaveJson(JsonEntity jsonentity)
+
+    public void InitiateJson()
+    {
+        SaveJson(this);
+    }
+     void SaveJson(JsonEntity jsonentity)
     {
         //如果本地没有对应的json 文件，重新创建
         if (!File.Exists(JsonPath()))

@@ -29,8 +29,8 @@ public class JsonProcess : MonoBehaviour
         jsonString = File.ReadAllText(path);
         JsonEntity jsonEntity = JsonUtility.FromJson<JsonEntity>(jsonString);
         jsonEntity.RefreshData(); //更新初始json状态为全不激活
-        jsonEntity.Tojson();
-        SaveJson(jsonEntity);
+
+        jsonEntity.InitiateJson();
       
     }
     public static JsonEntity requestJson() //获取某个是否被锁
