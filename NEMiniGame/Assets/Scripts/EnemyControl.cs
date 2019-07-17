@@ -148,6 +148,7 @@ public class EnemyControl : MonoBehaviour
         ChangeColor(isStartUpgrade);
         if (fanControl.checkFan(transform, player.transform))
         {
+            Debug.Log("check");
             //第一次检测到
             if (detectNum == 0)
             {
