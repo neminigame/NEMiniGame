@@ -870,7 +870,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -149, y: -181}
+  m_AnchoredPosition: {x: -136, y: -181}
   m_SizeDelta: {x: 345, y: 58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &355048887
@@ -2003,7 +2003,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928472656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -39}
+  m_LocalPosition: {x: 0, y: 0, z: -39.00002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1298545580}
@@ -2011,7 +2011,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -155, y: 38}
+  m_AnchoredPosition: {x: -185.00006, y: 38.199986}
   m_SizeDelta: {x: 345, y: 62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &928472658
@@ -2044,7 +2044,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 09cc01604a32d37429c1bf2d1b5c9030,
       type: 3}
     m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: 248c566b8f466504cb41de9d98903ac6, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -2856,6 +2856,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1298545580}
+  - component: {fileID: 1298545581}
   m_Layer: 5
   m_Name: Level_Buttons
   m_TagString: Untagged
@@ -2888,6 +2889,22 @@ RectTransform:
   m_AnchoredPosition: {x: -206.09998, y: 47.899902}
   m_SizeDelta: {x: -412.1, y: -233.8}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1298545581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298545579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d1a77f8e362444e96f9102edf62325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hospital: {fileID: 1937434735}
+  Home: {fileID: 1547107803}
+  School: {fileID: 928472658}
+  Company: {fileID: 2139113969}
 --- !u!1 &1388797720
 GameObject:
   m_ObjectHideFlags: 0
@@ -3055,7 +3072,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547107801}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -52.99993}
+  m_LocalPosition: {x: 0, y: 0, z: -53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1298545580}
@@ -3063,7 +3080,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -127.799995, y: 119.80002}
+  m_AnchoredPosition: {x: -185, y: 120}
   m_SizeDelta: {x: 345, y: 69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1547107803
@@ -3096,7 +3113,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 1b7236a2581fd254aa7ea7bdac71bb16,
       type: 3}
     m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: e022e0b115fade84d965adedf7688d4c, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -3478,7 +3495,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937434733}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -41.00009}
+  m_LocalPosition: {x: 0, y: 0, z: -41.00011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1298545580}
@@ -3486,7 +3503,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -151.00005, y: -110}
+  m_AnchoredPosition: {x: -185.00006, y: -109.80002}
   m_SizeDelta: {x: 345, y: 59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1937434735
@@ -3519,7 +3536,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: c5d817352f2fe354a92b0586c4bed597,
       type: 3}
     m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: d79ed774965a1a947a7e9880f3e6bc23, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -3735,7 +3752,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139113967}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -38.000023}
+  m_LocalPosition: {x: 0, y: 0, z: -38.000042}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1298545580}
@@ -3743,7 +3760,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -149.90004, y: -41.599987}
+  m_AnchoredPosition: {x: -185.00006, y: -41.4}
   m_SizeDelta: {x: 345, y: 61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2139113969
@@ -3776,7 +3793,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 28fd4a403dbcd46459dac6b8371fdf04,
       type: 3}
     m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: 9cdc41a09abcaa14ba4c2e4af71aa3de, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted

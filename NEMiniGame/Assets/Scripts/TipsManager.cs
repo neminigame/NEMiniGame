@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 public class TipsManager : MonoBehaviour
 {
+ 
     public List<GameObject> tips;
     public GameObject nowtips;//目前显示的指示箭头
     // Start is called before the first frame update
@@ -14,6 +16,10 @@ public class TipsManager : MonoBehaviour
             tips.Add(transform.GetChild(i).gameObject);
         }
         SetTip(1);
+        if(SceneManager.GetActiveScene().name=="Scene2")
+        {
+            tips[1].SetActive(true);
+        }
     }
     private void Update()
     {

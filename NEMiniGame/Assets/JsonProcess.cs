@@ -11,17 +11,17 @@ public class JsonProcess : MonoBehaviour
     {
         return Application.streamingAssetsPath + "/JsonTest.json";
     }
-    void SaveJson(JsonEntity jsonentity)
-    {
-        //如果本地没有对应的json 文件，重新创建
-        if (!File.Exists(JsonPath()))
-        {
-            File.Create(JsonPath());
-        }
-        string json = JsonUtility.ToJson(jsonentity, true);
-        File.WriteAllText(JsonPath(), json);
-        Debug.Log("保存成功");
-    }
+    //void SaveJson(JsonEntity jsonentity)
+    //{
+    //    //如果本地没有对应的json 文件，重新创建
+    //    if (!File.Exists(JsonPath()))
+    //    {
+    //        File.Create(JsonPath());
+    //    }
+    //    string json = JsonUtility.ToJson(jsonentity, true);
+    //    File.WriteAllText(JsonPath(), json);
+    //    Debug.Log("保存成功");
+    //}
 
     private void Start()
     {
@@ -29,7 +29,6 @@ public class JsonProcess : MonoBehaviour
         jsonString = File.ReadAllText(path);
         JsonEntity jsonEntity = JsonUtility.FromJson<JsonEntity>(jsonString);
         jsonEntity.RefreshData(); //更新初始json状态为全不激活
-
         jsonEntity.InitiateJson();
       
     }

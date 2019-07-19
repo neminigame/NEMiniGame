@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - door
   - GameOverTeach
+  - backDoor
   layers:
   - Default
   - TransparentFX
