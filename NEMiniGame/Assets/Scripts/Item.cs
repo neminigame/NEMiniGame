@@ -43,7 +43,8 @@ public class Item : MonoBehaviour
         {
             gameObject.SetActive(false);
             _playerControl.Items.Add(this);
-            BeTaken();
+            if(transform.tag=="Item")
+                BeTaken();
             if (tipsManager != null)
             {
                 tipsManager.SetTip(tipnum);

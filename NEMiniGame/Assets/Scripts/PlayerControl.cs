@@ -236,12 +236,12 @@ public class PlayerControl : MonoBehaviour
             {
 
             }
-                if (gameManager.isFinished == true)
+            if (gameManager.isFinished == true)
             {
                 string sceneName = SceneManager.GetActiveScene().name;
                 switch (sceneName)
                 {
-                    case "TeachingSceneInStart":JsonProcess.requestJson().updateTeachState(true);break;
+                    case "TeachingScene":JsonProcess.requestJson().updateTeachState(true);break;
                     case "Scene1": JsonProcess.requestJson().updateHomeState(true); break;
                     case "Scene2": JsonProcess.requestJson().updateSchoolState(true); break;
                     case "Scene3": JsonProcess.requestJson().updateCompanyState(true); break;

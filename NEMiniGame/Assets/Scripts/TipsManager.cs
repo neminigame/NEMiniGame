@@ -16,10 +16,6 @@ public class TipsManager : MonoBehaviour
             tips.Add(transform.GetChild(i).gameObject);
         }
         SetTip(1);
-        if(SceneManager.GetActiveScene().name=="Scene2")
-        {
-            tips[1].SetActive(true);
-        }
     }
     private void Update()
     {
