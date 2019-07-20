@@ -12,10 +12,11 @@ public class TeachingBrain : MonoBehaviour
     public int startID, endID;
     public int routID;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         playerControl.isTeachingMode = true;
-        line.isTeachingMode = true;
+        if(line)
+            line.isTeachingMode = true;
         posCollections = new List<List<Transform>>();
 
         for (int j = 0; j < transform.childCount; j++)
@@ -29,7 +30,8 @@ public class TeachingBrain : MonoBehaviour
             }
         }
         posCollection1 = posCollections[0];
-        posCollection2 = posCollections[1];
+        if (transform.childCount > 1)
+            posCollection2 = posCollections[1];
 
         playerControl.transform.position = posCollections[routID][0].position;
         startID = 0;

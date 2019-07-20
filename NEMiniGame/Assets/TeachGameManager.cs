@@ -20,6 +20,7 @@ public class TeachGameManager : GameManagerBase
     public GameObject camToHide;
     public TeachingBrain teachBrain;
     public float waitTime = 2f;
+    public bool WorkWithoutGameManager = true;
     [SerializeField]
     private Image tipImage;
     [SerializeField]
@@ -34,7 +35,7 @@ public class TeachGameManager : GameManagerBase
     {
         Instance = this;
         _playerControl = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
-        tipBtnText = tipBtn.transform.Find("Text").GetComponent<Text>();
+        if (WorkWithoutGameManager) tipBtnText = tipBtn.transform.Find("Text").GetComponent<Text>();
         canPopTip = false;
     }
 
@@ -63,11 +64,18 @@ public class TeachGameManager : GameManagerBase
     void Start()
     {
         startTIme = Time.time;
-        cf.m_YAxis.m_InputAxisName = "";
-        cf.m_XAxis.m_InputAxisName = "";
-        base.InitialCM();
-        SetTeachingRobot(false, 0);
-        
+        if (WorkWithoutGameManager)
+        {
+            cf.m_YAxis.m_InputAxisName = "";
+            cf.m_XAxis.m_InputAxisName = "";
+            base.InitialCM();
+            SetTeachingRobot(false, 0);
+        }
+        else
+        {
+            SetTeachingRobot(true, 0);
+        }
+
         //StartCoroutine(HideCam());
     }
 
@@ -76,26 +84,28 @@ public class TeachGameManager : GameManagerBase
     void Update()
     {
 
-        CMMouseOption();
-        isFinished = judgeItem(_playerControl.Items);
-        //开始时的动画，判断是否执行小球控制
-        if (startDirector.state == PlayState.Playing)
-            _playerControl.enabled = false;
-        else if (!gameover) _playerControl.enabled = true;
-        //Time.timeScale = 0f;
-        if (Time.time - startTIme <= waitTime)
+        if (WorkWithoutGameManager)
         {
-            _playerControl.enabled = false;
-        }
-        //弹出提示
-        else if(!canPopTip)
-        {
-            tipImage.gameObject.SetActive(true);
-            tipBtn.gameObject.SetActive(true);
-            tipImage.DOColor(Color.white, 1.5f);
-            tipBtn.GetComponent<Image>().DOColor(Color.white, 1.5f);
-            tipBtnText.DOColor(Color.black, 1.5f);
-            canPopTip = true;
+            CMMouseOption();
+            isFinished = judgeItem(_playerControl.Items);
+            //开始时的动画，判断是否执行小球控制
+            if (startDirector.state == PlayState.Playing)
+                _playerControl.enabled = false;
+            else if (!gameover) _playerControl.enabled = true;
+            if (Time.time - startTIme <= waitTime)
+            {
+                _playerControl.enabled = false;
+            }
+            //弹出提示
+            else if (!canPopTip)
+            {
+                tipImage.gameObject.SetActive(true);
+                tipBtn.gameObject.SetActive(true);
+                tipImage.DOColor(Color.white, 1.5f);
+                tipBtn.GetComponent<Image>().DOColor(Color.white, 1.5f);
+                tipBtnText.DOColor(Color.black, 1.5f);
+                canPopTip = true;
+            }
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class FriendBrain : MonoBehaviour
 {
@@ -18,13 +19,15 @@ public class FriendBrain : MonoBehaviour
     void Start()
     {
         agent = transform.parent.GetComponent<NavMeshAgent>();
-        EmptySlot = BoxLayout.transform.GetChild(0).GetComponent<Image>().sprite;
+        if(SceneManager.GetActiveScene().name == "Scene3")
+            EmptySlot = BoxLayout.transform.GetChild(0).GetComponent<Image>().sprite;
     }
 
     // Update is called once per frame
     void Update()
     {
-        SetDestination(target.position);
+        if (agent.enabled && SceneManager.GetActiveScene().name == "Scene3")
+            SetDestination(target.position);
     }
     public void SetDestination(Vector3 pos)
     {

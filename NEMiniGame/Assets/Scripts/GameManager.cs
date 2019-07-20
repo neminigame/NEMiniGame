@@ -122,6 +122,13 @@ public class GameManager : GameManagerBase
         StartCoroutine(Scene3Coroutine(item));
     }
 
+
+    //场景4中的玩家停顿，亲朋好友向前走
+    public void Scene4Control()
+    {
+
+    }
+
     IEnumerator Scene2Coroutine(AudioClip ac)
     {
         GameManager.Instance.focusFloorVCam.Priority = 100;

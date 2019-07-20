@@ -10,6 +10,7 @@ public class EnemyControl : MonoBehaviour
         Dad = 1,
         Mom,
         DD,
+        Friend,
         Dog,
         Robot1,
         Robot2,

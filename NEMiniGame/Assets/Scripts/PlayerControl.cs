@@ -40,6 +40,7 @@ public class PlayerControl : MonoBehaviour
     private int hitIdentify2Times = 0;
     public bool isScene2AnimPlay = false;
     public bool isScene3Pause = false;
+    public bool isScene4Pause = false;
     void Awake()
     {
        // JudgeIsBegin = 0;
@@ -55,6 +56,7 @@ public class PlayerControl : MonoBehaviour
 
         isScene2AnimPlay = false;
         isScene3Pause = false;
+        isScene4Pause = false;
     }
     private void Start()
     {
@@ -250,9 +252,9 @@ public class PlayerControl : MonoBehaviour
                 gameManager.Win();
             }
         }
-        else if (other.tag == "Identifer" )
+        else if (other.tag == "Identifer")
         {
-            if (gameMode == GameMode.Teaching)
+            if (gameMode == GameMode.Teaching&& SceneManager.GetActiveScene().name != "Scene4")
             {
                 if (other.name == "Identifer1")
                 {
@@ -299,6 +301,18 @@ public class PlayerControl : MonoBehaviour
                             isScene3Pause = true;
                         //    Items.Remove(Items[i]); //就不设定item减少了
                         }
+                    }
+                    //玩家到达该点时npc朝前走
+                    if (SceneManager.GetActiveScene().name == "Scene4" && gameMode==GameMode.Normal)
+                    {
+                        if (!isScene3Pause)
+                        {
+                            dropDir = tdir;
+                            tdir = Vector3.zero;
+                            this.enabled = false;
+                            GameManager.Instance.Scene4Control();
+                        }
+                        isScene3Pause = true;
                     }
                 }
                 if (other.name == "Identifer2")

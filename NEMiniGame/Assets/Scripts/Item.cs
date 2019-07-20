@@ -48,7 +48,7 @@ public class Item : MonoBehaviour
             {
                 tipsManager.SetTip(tipnum);
             }
-            if (TeachGameManager.Instance)
+            if (TeachGameManager.Instance && SceneManager.GetActiveScene().name == "Scene3")
             {
                 TeachGameManager.Instance.ShowHint(new List<string> { "拿全道具后返回门处，即可通过本关", "依然注意不要碰到敌人" });
             }
