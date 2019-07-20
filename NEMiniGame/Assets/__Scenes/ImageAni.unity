@@ -1080,7 +1080,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5C0F\u65F6\u5019\u6536\u5230\u7684\u73A9\u5177\u718A"
+  m_Text: "\u8FD9\u662F\u5C0F\u65F6\u5019\u5199\u7ED9\u5A1C\u5A1C\u7684\u60C5\u4E66"
 --- !u!222 &281375353
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2580,7 +2580,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f7105ba0cf3956d43b822fab065598a0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 82f1f29330df2f947ad671c242b4ec67, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

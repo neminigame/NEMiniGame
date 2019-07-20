@@ -115,7 +115,7 @@ public class PlayerControl : MonoBehaviour
                 //屏幕鼠标确定小球方向
                 dir = dir2 - dir1;
 
-                dir = dir.normalized;
+                dir = dir.normalized; //归一化的运动方向
                 // Debug.DrawRay(rig.position, dir, Color.red);
             }
         }
@@ -194,7 +194,11 @@ public class PlayerControl : MonoBehaviour
         item.isGround = false;
         item.transform.position = new Vector3(transform.position.x, transform.position.y+.5f, transform.position.z);
         item.canBeTakenByPlayer = false;
-        item.gameObject.SetActive(true);
+        item.gameObject.SetActive(true);//通知书掉落前出现
+        if (UIManager.Instance)
+        {
+            UIManager.Instance.SetBubbleUI("糟糕，掉了");
+        }
         StartCoroutine(DropCoroutine(item));
     }
     IEnumerator DropCoroutine(Item item)
@@ -202,11 +206,16 @@ public class PlayerControl : MonoBehaviour
         while (!item.isGround)
         {
             item.isGround = false;
-            item.GetComponent<Rigidbody>().AddForce(Vector3.Normalize(new Vector3(-dropDir.x, 10f, -dropDir.z))*9f);
+            item.GetComponent<Rigidbody>().AddForce(Vector3.Normalize(new Vector3(-dropDir.x, 10f, -dropDir.z))*9f);//通知书掉落身后
             item.GetComponent<Rigidbody>().mass += .002f;
             yield return null;
         }
-        Transform friendTransform = transform.Find("/Enemys/Friend").GetChild(0);
+        Transform FriendParent = transform.Find("/Enemys/Friend");
+        Transform friendTransform = FriendParent.GetChild(0);
+        Transform ExclamationMark = FriendParent.GetChild(2);
+        Transform QuestionMark = FriendParent.GetChild(3);
+        QuestionMark.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
         GameManager.Instance.FriendComeTo(friendTransform, item.transform); //添加第三关的跟踪对象
     }
 
@@ -221,7 +230,11 @@ public class PlayerControl : MonoBehaviour
     {
         if (other.tag == "door")
         {
-            if (gameManager.isFinished == true)
+            if (SceneManager.GetActiveScene().name == "Scene3")
+            {
+
+            }
+                if (gameManager.isFinished == true)
             {
                 string sceneName = SceneManager.GetActiveScene().name;
                 switch (sceneName)
@@ -270,6 +283,7 @@ public class PlayerControl : MonoBehaviour
             {
                 if (other.name == "Identifer1")
                 {
+                    if(SceneManager.GetActiveScene().name=="Scene3")
                     for (int i = 0; i < Items.Count; i++)
                     {
                         if (Items[i].ItemName == "病危通知书")
@@ -283,7 +297,7 @@ public class PlayerControl : MonoBehaviour
                                 GameManager.Instance.Scene3Control(Items[i]); //掉落病危通知书
                             }
                             isScene3Pause = true;
-                            Items.Remove(Items[i]);
+                        //    Items.Remove(Items[i]); //就不设定item减少了
                         }
                     }
                 }

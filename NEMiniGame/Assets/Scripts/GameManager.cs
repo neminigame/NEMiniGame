@@ -72,7 +72,7 @@ public class GameManager : GameManagerBase
     void Update()
     {
         CMMouseOption();
-       isFinished = judgeItem(_playerControl.Items);
+       isFinished = judgeItem(_playerControl.Items);//如果大于等于总item,即finish
         //开始时的动画，判断是否执行小球控制
         if (startDirector.state == PlayState.Playing)
             _playerControl.enabled = false;

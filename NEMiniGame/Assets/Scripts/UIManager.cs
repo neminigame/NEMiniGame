@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour
     {
         isFinished = false;
         _currentID = 0;
+        if(SceneManager.GetActiveScene().name!="Scene3"&&SceneManager.GetActiveScene().name != "Scene4")
         for (int i = 0; i < boxsLayout.childCount; i++)
         {
             ChangeVal(i, null, 0);
