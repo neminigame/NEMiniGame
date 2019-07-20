@@ -66,6 +66,7 @@ public class EnemyControl : MonoBehaviour
     public Material meshMat;
     public float upgradeScale;
     public bool UsePosition = false;
+    public bool moveToPath = false;
     private Camera cam;
     private Vector3 upgradeTrans;
     public BoxCollider boxCollider;
@@ -97,9 +98,10 @@ public class EnemyControl : MonoBehaviour
             isRevert = !isRevert;
             try
             {
-                transform.position = (Vector3)iTweenPath.GetPath(enemyType.ToString()).GetValue(0);
+                if(!moveToPath) transform.position = (Vector3)iTweenPath.GetPath(enemyType.ToString()).GetValue(0);
                 iTween.MoveTo(gameObject, iTween.Hash(
                     "path", iTweenPath.GetPath(enemyType.ToString()),
+                    "movetopath", moveToPath,
                     "delay", stayTime,
                     "easetype", easeType,
                     "looptype", iTween.LoopType.none,
@@ -120,9 +122,10 @@ public class EnemyControl : MonoBehaviour
         {
             try
             {
-                transform.position = (Vector3)iTweenPath.GetPath(enemyType.ToString()).GetValue(0);
+                if(!moveToPath) transform.position = (Vector3)iTweenPath.GetPath(enemyType.ToString()).GetValue(0);
                 iTween.MoveTo(gameObject, iTween.Hash(
                     "path", iTweenPath.GetPath(enemyType.ToString()),
+                    "movetopath", moveToPath,
                     "delay", stayTime,
                     "easetype", easeType,
                     "looptype", loopType.ToString().ToLower(),
@@ -222,6 +225,7 @@ public class EnemyControl : MonoBehaviour
             isRevert = !isRevert;
             iTween.MoveTo(gameObject, iTween.Hash(
             "path", iTweenPath.GetPathReversed(enemyType.ToString()),
+            "movetopath", moveToPath,
             "delay", stayTime,
             "easetype", easeType,
             "looptype", loopType,
@@ -236,6 +240,7 @@ public class EnemyControl : MonoBehaviour
             isRevert = !isRevert;
             iTween.MoveTo(gameObject, iTween.Hash(
             "path", iTweenPath.GetPath(enemyType.ToString()),
+            "movetopath", moveToPath,
             "delay", stayTime,
             "easetype", easeType,
             "looptype", loopType,
