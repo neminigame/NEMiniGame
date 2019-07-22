@@ -18,9 +18,11 @@ public class FriendBrain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        agent = transform.parent.GetComponent<NavMeshAgent>();
-        if(SceneManager.GetActiveScene().name == "Scene3")
+        if (SceneManager.GetActiveScene().name == "Scene3")
+        {
+            agent = transform.parent.GetComponent<NavMeshAgent>();
             EmptySlot = BoxLayout.transform.GetChild(0).GetComponent<Image>().sprite;
+        }
     }
 
     // Update is called once per frame

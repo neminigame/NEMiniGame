@@ -198,7 +198,8 @@ public class PlayerControl : MonoBehaviour
             }
             gameManager.GameOver();
         }
-        audioSource.Play();
+        if(audioSource)
+            audioSource.Play();
     }
 
     public void DropItem(Item item)
@@ -343,11 +344,11 @@ public class PlayerControl : MonoBehaviour
                     }
 
                 }
-                if (other.name == "Identifer5"&&hasHitIdentifer5==false)
-                {
-                    ChangeTimeScale(1f);
-                    hasHitIdentifer5 = true;
-                }
+                //if (other.name == "Identifer5"&&hasHitIdentifer5==false)
+                //{
+                //    ChangeTimeScale(1f);
+                //    hasHitIdentifer5 = true;
+                //}
             }
         }
     }

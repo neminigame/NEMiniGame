@@ -1,7 +1,7 @@
 {
-    "home_state": true,
-    "school_state": true,
+    "home_state": false,
+    "school_state": false,
     "company_state": false,
     "hospital_state": false,
-    "teach_state": true
+    "teach_state": false
 }

@@ -7,6 +7,7 @@ using UnityEngine.Timeline;
 using UnityEngine.Playables;
 using System;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : GameManagerBase
 {
@@ -100,14 +101,20 @@ public class GameManager : GameManagerBase
     }
     public override void Win()
     {
-        
-        backDirector.enabled = true;
-        gameover = true;
-        _playerControl.enabled = false;
-        CountDown._Count = CountDown.IsCountOK.NOTOK;
-        // GameOver();
-        //关闭过渡摄像机
-        Cam.SetActive(false);
+        if (SceneManager.GetActiveScene().name != "Scene4")
+        {
+            backDirector.enabled = true;
+            gameover = true;
+            _playerControl.enabled = false;
+            CountDown._Count = CountDown.IsCountOK.NOTOK;
+            // GameOver();
+            //关闭过渡摄像机
+            Cam.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Scene4Win");
+        }
     }
 
     //场景2中的黑屏等效果
