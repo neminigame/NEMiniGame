@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
     private float tspeed, trspeed;//前进速度，旋转速度
     private Vector3 mouse1, mouse2;//第一次鼠标，第二次鼠标位置
   //  private int JudgeIsBegin = 0;//判断是否第一次点鼠标，如果是则开始计时
-    private Vector3 tdir;
+    public Vector3 tdir;
     private Vector3 dropDir;
     public List<Item> Items;
     public bool isTeachingMode = false;
@@ -41,6 +41,8 @@ public class PlayerControl : MonoBehaviour
     public bool isScene2AnimPlay = false;
     public bool isScene3Pause = false;
     public bool isScene4Pause = false;
+    public Scene4Controler scene4Controler = null;
+    public bool hasHitIdentifer5 = false;
     void Awake()
     {
        // JudgeIsBegin = 0;
@@ -53,7 +55,8 @@ public class PlayerControl : MonoBehaviour
         Items.Clear();
         audioSource = GetComponent<AudioSource>();
         tempscaleAnim = transform.localScale;
-
+        if (SceneManager.GetActiveScene().name == "Scene4")
+            scene4Controler = transform.Find("/Enemys").GetComponent<Scene4Controler>();
         isScene2AnimPlay = false;
         isScene3Pause = false;
         isScene4Pause = false;
@@ -123,9 +126,17 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0) && (!isTeachingMode))
         {
-
-            ChangeTimeScale(1f);
+            if (scene4Controler && scene4Controler.scene4AnimState == Scene4AnimState.End && !hasHitIdentifer5)
+                ChangeTimeScale(.1f);
+            else 
+                ChangeTimeScale(1f);
+            
             //松开鼠标赋予速度,取消指示线的显示
+            if (scene4Controler&& (scene4Controler.scene4AnimState==Scene4AnimState.isPlaying|| scene4Controler.scene4AnimState == Scene4AnimState.End) && Vector3.Dot(dir, new Vector3(1, 0, 0)) > 0)
+            {
+                tdir = Vector3.zero;
+                return;
+            }
             tdir = dir;
             show_line = false;
             trspeed = rspeed;
@@ -307,13 +318,13 @@ public class PlayerControl : MonoBehaviour
                     {
                         if (!isScene3Pause)
                         {
-                            dropDir = tdir;
                             tdir = Vector3.zero;
                             this.enabled = false;
                             GameManager.Instance.Scene4Control();
                         }
                         isScene3Pause = true;
                     }
+                    
                 }
                 if (other.name == "Identifer2")
                 {                           
@@ -331,6 +342,11 @@ public class PlayerControl : MonoBehaviour
                         } 
                     }
 
+                }
+                if (other.name == "Identifer5"&&hasHitIdentifer5==false)
+                {
+                    ChangeTimeScale(1f);
+                    hasHitIdentifer5 = true;
                 }
             }
         }

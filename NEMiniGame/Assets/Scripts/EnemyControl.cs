@@ -55,6 +55,7 @@ public class EnemyControl : MonoBehaviour
     public LoopType loopType; 
     public iTween.EaseType easeType;
     public GameObject player;
+    public bool needCollider = true;
     public int detectNum;
     public float restTime=3.0f;
     private bool isAlive = true; 
@@ -90,7 +91,7 @@ public class EnemyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateCollider();
+        UpdateCollider(0.1f,needCollider);
         UpgradeDetect(isStartUpgrade);
         ChangeColor(isStartUpgrade);
         if (fanControl.checkFan(transform, player.transform))
@@ -209,9 +210,9 @@ public class EnemyControl : MonoBehaviour
         }
     }
  
-    void UpdateCollider(float threShold = 0.1f)
+    void UpdateCollider(float threShold = 0.1f,bool needCollider=true)
     {
-        if (meshMat && boxCollider)
+        if (meshMat && boxCollider && needCollider)
         {
             if (meshMat.GetColor("_Color").a > threShold)
             {
@@ -223,11 +224,12 @@ public class EnemyControl : MonoBehaviour
             }
         }
     }
-    public void StartAnim()
+    public void StartAnim(bool needCollider=true)
     {
         try
         {
             boxCollider = transform.GetChild(0).GetComponent<BoxCollider>();
+            boxCollider.enabled = needCollider;
             meshMat = transform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMaterial;
         }
         catch (Exception e)

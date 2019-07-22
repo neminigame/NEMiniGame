@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GuideManager : MonoBehaviour
 {
@@ -49,7 +50,9 @@ public class GuideManager : MonoBehaviour
         if (other.tag == "TeachingRobot")
         {
             playerControl.factor = 1f;
-            playerControl.ChangeTimeScale(1f);
+            if(SceneManager.GetActiveScene().name != "Scene4")
+                playerControl.ChangeTimeScale(1f);
+
             playerControl.show_line = false;
         }
     }
