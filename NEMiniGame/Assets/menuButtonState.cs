@@ -27,10 +27,14 @@ public class menuButtonState : MonoBehaviour
     void Update()
     {
         #region 随时获取json，更新按钮状态
+        Home.interactable = true;
+        School.interactable = true;
+        Company.interactable = true;
+        Hospital.interactable = true;
         Home.interactable = JsonProcess.requestJson().teach_state;
         School.interactable = JsonProcess.requestJson().home_state;
         Company.interactable = JsonProcess.requestJson().school_state;
-        Hospital.interactable= JsonProcess.requestJson().company_state;
+        Hospital.interactable = JsonProcess.requestJson().company_state;
         #endregion
     }
 }

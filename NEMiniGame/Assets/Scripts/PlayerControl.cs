@@ -134,7 +134,7 @@ public class PlayerControl : MonoBehaviour
             //松开鼠标赋予速度,取消指示线的显示
             if (scene4Controler&& (scene4Controler.scene4AnimState==Scene4AnimState.isPlaying|| scene4Controler.scene4AnimState == Scene4AnimState.End) && Vector3.Dot(dir, new Vector3(1, 0, 0)) > 0)
             {
-                tdir = Vector3.zero;
+                //tdir = Vector3.zero;
                 return;
             }
             tdir = dir;
@@ -253,7 +253,7 @@ public class PlayerControl : MonoBehaviour
                 string sceneName = SceneManager.GetActiveScene().name;
                 switch (sceneName)
                 {
-                    case "TeachingScene":JsonProcess.requestJson().updateTeachState(true);break;
+                    case "TeachingScene": JsonProcess.requestJson().updateTeachState(true); break;
                     case "Scene1": JsonProcess.requestJson().updateHomeState(true); break;
                     case "Scene2": JsonProcess.requestJson().updateSchoolState(true); break;
                     case "Scene3": JsonProcess.requestJson().updateCompanyState(true); break;
@@ -315,7 +315,7 @@ public class PlayerControl : MonoBehaviour
                         }
                     }
                     //玩家到达该点时npc朝前走
-                    if (SceneManager.GetActiveScene().name == "Scene4" && gameMode==GameMode.Normal)
+                    if (SceneManager.GetActiveScene().name == "Scene4" && gameMode==GameMode.Normal && isScene4Pause)
                     {
                         if (!isScene3Pause)
                         {

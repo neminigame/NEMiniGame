@@ -17,9 +17,12 @@ public class Scene4Controler : MonoBehaviour
     Transform dad, mom, dd, friend;
     public float distance = 4f;
     public PlayerControl playerControl;
+    public PlayerControl robotControl;
+    public bool returnToDoor=false;
     // Start is called before the first frame update
     void Start()
     {
+        robotControl.gameObject.SetActive(false);
         dad = transform.Find("Dad");
         mom = transform.Find("Mom");
         dd = transform.Find("DD");

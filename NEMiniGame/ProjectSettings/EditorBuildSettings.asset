@@ -5,28 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/__Scenes/Menu.unity
-    guid: 9941481bf64669d4e8b769952e381324
-  - enabled: 1
-    path: Assets/__Scenes/Scene1.unity
-    guid: 9d5fc2ee1c8f9ea488eeeb62dd57542b
-  - enabled: 1
-    path: Assets/__Scenes/ImageAni.unity
-    guid: 11301f5a2dac2014ba6d256c5329d37e
-  - enabled: 0
-    path: Assets/__Scenes/TeachingSceneInStart.unity
-    guid: 09e610e2a074c304e97dd6707664e852
   - enabled: 1
     path: Assets/__Scenes/TeachingScene.unity
     guid: 5de75a006309d364eadbc4fed3aee00c
   - enabled: 1
+    path: Assets/__Scenes/Scene1.unity
+    guid: 9d5fc2ee1c8f9ea488eeeb62dd57542b
+  - enabled: 1
     path: Assets/__Scenes/Scene2.unity
     guid: 6e536bde75cc945459c92b0504f0bae9
   - enabled: 1
+    path: Assets/__Scenes/Scene3.unity
+    guid: 129efb78b20c0104f889f32c8169e6c2
+  - enabled: 1
     path: Assets/__Scenes/Scene4.unity
     guid: 02e5ca920c94e4347b1f9e63ef6c823a
+  - enabled: 1
+    path: Assets/__Scenes/Menu.unity
+    guid: 9941481bf64669d4e8b769952e381324
+  - enabled: 1
+    path: Assets/__Scenes/ImageAni.unity
+    guid: 11301f5a2dac2014ba6d256c5329d37e
   m_configObjects: {}
