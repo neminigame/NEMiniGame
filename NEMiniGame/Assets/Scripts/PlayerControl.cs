@@ -8,6 +8,12 @@ using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using System;
 
+public enum Scene3State
+{
+    PrePause,
+    Pause,
+    AfterPause
+}
 public class PlayerControl : MonoBehaviour
 {
     public GameMode gameMode = GameMode.Normal;
@@ -39,13 +45,15 @@ public class PlayerControl : MonoBehaviour
     private Vector3 tempscaleAnim;
     private int hitIdentify2Times = 0;
     public bool isScene2AnimPlay = false;
+    public Scene3State scene3State = Scene3State.PrePause;
     public bool isScene3Pause = false;
     public bool isScene4Pause = false;
     public Scene4Controler scene4Controler = null;
     public bool hasHitIdentifer5 = false;
     void Awake()
     {
-       // JudgeIsBegin = 0;
+        scene3State = Scene3State.PrePause;
+        // JudgeIsBegin = 0;
         _camera = Camera.main;
         rig = GetComponent<Rigidbody>();
         model = transform.Find("player").gameObject;
@@ -91,6 +99,10 @@ public class PlayerControl : MonoBehaviour
                 canCountdown = false;
                 print(iniPos);
             }
+        }
+        if (scene3State == Scene3State.Pause)
+        {
+            tdir = Vector3.zero;
         }
 
         //判断是否开始计时
@@ -225,6 +237,7 @@ public class PlayerControl : MonoBehaviour
             yield return null;
         }
         Transform FriendParent = transform.Find("/Enemys/Friend");
+        iTween.Stop(FriendParent.gameObject);
         Transform friendTransform = FriendParent.GetChild(0);
         Transform ExclamationMark = FriendParent.GetChild(2);
         Transform QuestionMark = FriendParent.GetChild(3);
@@ -303,27 +316,27 @@ public class PlayerControl : MonoBehaviour
                         if (Items[i].ItemName == "病危通知书")
                         {
                             Debug.Log("病危通知书");
-                            if (!isScene3Pause)
+                            if (scene3State == Scene3State.PrePause)
                             {
                                 dropDir = tdir;
                                 tdir = Vector3.zero;
                                 this.enabled = false;
                                 GameManager.Instance.Scene3Control(Items[i]); //掉落病危通知书
                             }
-                            isScene3Pause = true;
+                            scene3State = Scene3State.Pause;
                         //    Items.Remove(Items[i]); //就不设定item减少了
                         }
                     }
                     //玩家到达该点时npc朝前走
                     if (SceneManager.GetActiveScene().name == "Scene4" && gameMode==GameMode.Normal && isScene4Pause)
                     {
-                        if (!isScene3Pause)
+                        if (!isScene4Pause)
                         {
                             tdir = Vector3.zero;
                             this.enabled = false;
                             GameManager.Instance.Scene4Control();
                         }
-                        isScene3Pause = true;
+                        isScene4Pause = true;
                     }
                     
                 }

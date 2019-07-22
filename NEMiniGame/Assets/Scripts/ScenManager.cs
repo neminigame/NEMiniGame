@@ -34,7 +34,7 @@ public class ScenManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 1f * 0.02f;
-        GlobalManager.Instance.ChangeScene(1);
+        GlobalManager.Instance.ChangeScene(5);
 
     }
     public void reset(int id)

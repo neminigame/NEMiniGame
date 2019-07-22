@@ -49,6 +49,7 @@ public class FriendBrain : MonoBehaviour
             if (UIManager.Instance)
             {
                 UIManager.Instance.SetBubbleUI("被他发现了，快跑！！");
+                GameManager.Instance._playerControl.scene3State = Scene3State.AfterPause;
             }
             foreach (Image i in BoxLayout.GetComponentsInChildren<Image>())
             {
