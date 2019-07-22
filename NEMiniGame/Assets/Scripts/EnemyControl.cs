@@ -72,6 +72,7 @@ public class EnemyControl : MonoBehaviour
     public BoxCollider boxCollider;
     public bool isStartUpgrade;
     public float animTime=1.5f;
+    public bool autoPlay=true;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,66 +82,8 @@ public class EnemyControl : MonoBehaviour
         questionMark = transform.Find("QuestionMark").gameObject;
         cam = Camera.main;
         detectNum = 0;
-
-        try
-        {
-            boxCollider = transform.GetChild(0).GetComponent<BoxCollider>();
-            meshMat = transform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMaterial;
-        }
-        catch (Exception e)
-        {
-            //throw;
-            Debug.Log("*Warning*<color=yellow>" + "EnemyControl Try Exception" + "</color>");
-        }
-
-        if (loopType == LoopType.Pinpong)
-        {
-            isRevert = !isRevert;
-            try
-            {
-                if(!moveToPath) transform.position = (Vector3)iTweenPath.GetPath(enemyType.ToString()).GetValue(0);
-                iTween.MoveTo(gameObject, iTween.Hash(
-                    "path", iTweenPath.GetPath(enemyType.ToString()),
-                    "movetopath", moveToPath,
-                    "delay", stayTime,
-                    "easetype", easeType,
-                    "looptype", iTween.LoopType.none,
-                    "speed", speed,
-                    "orienttopath", true,
-                    "lookTime", 1.1,
-                    "axis", "y",
-                    "oncomplete", "myCompleteFun",
-                    "oncompletetarget", gameObject));
-            }
-            catch (Exception e)
-            {
-                Debug.Log("*Warning*<color=blue>" + "EnemyControl GetPath Exception:"+ e + "</color>");
-            } 
-
-        }
-        else
-        {
-            try
-            {
-                if(!moveToPath) transform.position = (Vector3)iTweenPath.GetPath(enemyType.ToString()).GetValue(0);
-                iTween.MoveTo(gameObject, iTween.Hash(
-                    "path", iTweenPath.GetPath(enemyType.ToString()),
-                    "movetopath", moveToPath,
-                    "delay", stayTime,
-                    "easetype", easeType,
-                    "looptype", loopType.ToString().ToLower(),
-                    "speed", speed,
-                    "orienttopath", true,
-                    "lookTime", 1.1,
-                    "axis", "y"));
-            }
-            catch (Exception)
-            {
-
-
-            }
-            
-        }
+        if (autoPlay)
+            StartAnim();
         
     }
 
@@ -279,5 +222,68 @@ public class EnemyControl : MonoBehaviour
                 boxCollider.enabled = false;
             }
         }
+    }
+    public void StartAnim()
+    {
+        try
+        {
+            boxCollider = transform.GetChild(0).GetComponent<BoxCollider>();
+            meshMat = transform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMaterial;
+        }
+        catch (Exception e)
+        {
+            //throw;
+            Debug.Log("*Warning*<color=yellow>" + "EnemyControl Try Exception" + "</color>");
+        }
+
+        if (loopType == LoopType.Pinpong)
+        {
+            isRevert = !isRevert;
+            try
+            {
+                if (!moveToPath) transform.position = (Vector3)iTweenPath.GetPath(enemyType.ToString()).GetValue(0);
+                iTween.MoveTo(gameObject, iTween.Hash(
+                    "path", iTweenPath.GetPath(enemyType.ToString()),
+                    "movetopath", moveToPath,
+                    "delay", stayTime,
+                    "easetype", easeType,
+                    "looptype", iTween.LoopType.none,
+                    "speed", speed,
+                    "orienttopath", true,
+                    "lookTime", 1.1,
+                    "axis", "y",
+                    "oncomplete", "myCompleteFun",
+                    "oncompletetarget", gameObject));
+            }
+            catch (Exception e)
+            {
+                Debug.Log("*Warning*<color=blue>" + "EnemyControl GetPath Exception:" + e + "</color>");
+            }
+
+        }
+        else
+        {
+            try
+            {
+                if (!moveToPath) transform.position = (Vector3)iTweenPath.GetPath(enemyType.ToString()).GetValue(0);
+                iTween.MoveTo(gameObject, iTween.Hash(
+                    "path", iTweenPath.GetPath(enemyType.ToString()),
+                    "movetopath", moveToPath,
+                    "delay", stayTime,
+                    "easetype", easeType,
+                    "looptype", loopType.ToString().ToLower(),
+                    "speed", speed,
+                    "orienttopath", true,
+                    "lookTime", 1.1,
+                    "axis", "y"));
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+        }
+
     }
 }

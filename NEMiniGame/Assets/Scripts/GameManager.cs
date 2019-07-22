@@ -126,7 +126,8 @@ public class GameManager : GameManagerBase
     //场景4中的玩家停顿，亲朋好友向前走
     public void Scene4Control()
     {
-
+        Scene4Controler scene4Controler = transform.Find("/Enemys").GetComponent<Scene4Controler>();
+        scene4Controler.StartAnim();
     }
 
     IEnumerator Scene2Coroutine(AudioClip ac)
