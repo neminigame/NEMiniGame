@@ -72,7 +72,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _clipangle: 0.952
+    - _clipangle: 0.806
     - _radius: 1
     m_Colors:
     - _Color: {r: 0.75686276, g: 1, b: 0.5058824, a: 0.29803923}

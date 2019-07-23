@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ScanningLineMat
-  m_Shader: {fileID: 4800000, guid: 7a1290584e961004aa478d172ac33ad4, type: 3}
-  m_ShaderKeywords: _DISTORT_ON
+  m_Name: Scene3Guard
+  m_Shader: {fileID: 4800000, guid: ce6b83b166cb0a448942bfdc16d18710, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 9a124fdd975b55d4e964495a71c53b08, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -55,17 +55,15 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _TransitionTex:
-        m_Texture: {fileID: 2800000, guid: 8ff34d17909ceaa4abd3824df10bfd30, type: 3}
+    - _RampTex:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
-    - _Cutoff: -2.1327825
+    - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _Distort: 0
     - _DstBlend: 0
-    - _Fade: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -78,6 +76,9 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
+    - _light: 0.5
+    - _lightprobe: 2
     m_Colors:
-    - _Color: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _shadowColor: {r: 0.6226415, g: 0.4700947, b: 0.41411534, a: 0.1}
