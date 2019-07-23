@@ -12,6 +12,7 @@ public class JsonEntity
     public Boolean company_state;
     public Boolean hospital_state;
     public Boolean teach_state;
+    public Boolean is_FirstLogin;
     string JsonPath()
     {
         return Application.streamingAssetsPath + "/JsonTest.json";
@@ -24,6 +25,7 @@ public class JsonEntity
         company_state = false;
         hospital_state = false;
         teach_state = false;
+        is_FirstLogin = true;
     }
     public string Tojson()
     {
@@ -52,6 +54,11 @@ public class JsonEntity
     public void updateHospitalState(bool state)
     {
         hospital_state = state;
+        SaveJson(this);
+    }
+    public void updateIsFirstLogin(bool state)
+    {
+        is_FirstLogin = state;
         SaveJson(this);
     }
 

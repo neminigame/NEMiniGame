@@ -18,7 +18,8 @@ public class GameManager : GameManagerBase
     public float i;
     public AudioClip ac;
     //private bool gameover;//判断游戏是否完成的标记
-
+   
+    public GameObject QuesMarkInfour;
     //[SerializeField]
     //protected PlayerControl _playerControl;
     private Material _textMeshProUGUIMat;
@@ -114,9 +115,12 @@ public class GameManager : GameManagerBase
         else
         {
             Debug.Log("Scene4Win");
+            QuesMarkInfour.SetActive(true);
             transform.Find("/Enemys").GetComponent<Scene4Controler>().returnToDoor = true;
             transform.Find("/Enemys").GetComponent<Scene4Controler>().robotControl.gameObject.SetActive(true);
+
             _playerControl.isScene4Pause = true;
+
         }
     }
 

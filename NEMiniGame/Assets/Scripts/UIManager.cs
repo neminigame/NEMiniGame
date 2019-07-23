@@ -89,8 +89,6 @@ public class UIManager : MonoBehaviour
     {
         EndUI_black.enabled = true;
         EndUI_point.enabled = true;
-        StartCoroutine(EndUIscale(EndUI_point.gameObject, EndUI_point.transform.localScale.x, 0, 0.7f));
-
     }
     public void SetEndUIInStartTrial()
     {
@@ -150,7 +148,7 @@ public class UIManager : MonoBehaviour
     }
     public void ResetTeach()
     {
-        scene.reset(3);
+        scene.reset(0);
     }
     IEnumerator EndUIscale(GameObject t,float start_scale,float end_scale, float duration)
     {
@@ -170,7 +168,7 @@ public class UIManager : MonoBehaviour
             t.transform.localScale = tempscale;
             yield return null;
         }
-        scene.reset(0);
+        scene.reset(5);
     }
     IEnumerator EndUIscale2(GameObject t, float start_scale, float end_scale, float duration)
     {
@@ -190,6 +188,6 @@ public class UIManager : MonoBehaviour
             t.transform.localScale = tempscale;
             yield return null;
         }
-        scene.reset();
+        scene.reset(1);
     }
 }

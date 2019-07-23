@@ -76,7 +76,7 @@ public class GlobalManager : MonoBehaviour
 
     void Update()
     {
-        if (curSceneNum == 0)
+        if (curSceneNum == 5)
         {
             if (!ECG)
             {

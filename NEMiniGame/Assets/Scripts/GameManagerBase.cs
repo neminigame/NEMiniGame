@@ -97,7 +97,7 @@ public class GameManagerBase : MonoBehaviour
         yield return new WaitForSeconds(time1);
         glitch.enabled = false;
         yield return new WaitForSeconds(time2);
-        GlobalManager.Instance.ChangeScene(0);
+        GlobalManager.Instance.ChangeScene(5);
     }
     IEnumerator IShowGlitch(float time1 = .3f)
     {

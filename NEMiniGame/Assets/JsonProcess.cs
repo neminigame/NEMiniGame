@@ -28,15 +28,19 @@ public class JsonProcess : MonoBehaviour
         path = JsonPath();
         jsonString = File.ReadAllText(path);
         JsonEntity jsonEntity = JsonUtility.FromJson<JsonEntity>(jsonString);
-        jsonEntity.RefreshData(); //更新初始json状态为全不激活
-        jsonEntity.InitiateJson();
-      
+        if (jsonEntity.is_FirstLogin)
+        {
+            jsonEntity.RefreshData(); //更新初始json状态为全不激活
+            jsonEntity.InitiateJson();
+        }
+
+
     }
     public static JsonEntity requestJson() //获取某个是否被锁
     {
         jsonString = File.ReadAllText(path);
         JsonEntity json = JsonUtility.FromJson<JsonEntity>(jsonString);
-        return  json;
+        return json;
     }
 
 }
