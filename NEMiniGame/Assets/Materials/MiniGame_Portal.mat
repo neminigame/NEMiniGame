@@ -47,7 +47,11 @@ Material:
     - _Arg: 1
     - _Arg2: 1
     - _DistortFactor: 4
+<<<<<<< HEAD
     - _Force: 1.0000318
+=======
+    - _Force: 0.99973404
+>>>>>>> 4829de7940421594e02d45864da37f8f7a094205
     - _NoiseFactor: 8
     - _PortalOffset: 1.01
     - _Speed: 100

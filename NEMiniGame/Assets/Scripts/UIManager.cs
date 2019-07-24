@@ -149,7 +149,11 @@ public class UIManager : MonoBehaviour
     }
     public void ResetTeach()
     {
+<<<<<<< HEAD
         scene.reset(1);
+=======
+        scene.reset(5);
+>>>>>>> 4829de7940421594e02d45864da37f8f7a094205
     }
     IEnumerator EndUIscale(GameObject t,float start_scale,float end_scale, float duration)
     {
@@ -169,7 +173,12 @@ public class UIManager : MonoBehaviour
             t.transform.localScale = tempscale;
             yield return null;
         }
+<<<<<<< HEAD
         scene.reset(0);
+=======
+
+        scene.reset(5);
+>>>>>>> 4829de7940421594e02d45864da37f8f7a094205
     }
     IEnumerator EndUIscale2(GameObject t, float start_scale, float end_scale, float duration)
     {
@@ -189,6 +198,11 @@ public class UIManager : MonoBehaviour
             t.transform.localScale = tempscale;
             yield return null;
         }
+<<<<<<< HEAD
         scene.reset(2);
+=======
+
+        scene.reset(1);
+>>>>>>> 4829de7940421594e02d45864da37f8f7a094205
     }
 }

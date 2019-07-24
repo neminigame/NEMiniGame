@@ -61,7 +61,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
+<<<<<<< HEAD
     - _Cutoff: 0.09758826
+=======
+    - _Cutoff: 0.087506376
+>>>>>>> 4829de7940421594e02d45864da37f8f7a094205
     - _DetailNormalMapScale: 1
     - _Distort: 0
     - _DstBlend: 0

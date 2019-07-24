@@ -2803,7 +2803,11 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+<<<<<<< HEAD
           m_IntArgument: 1
+=======
+          m_IntArgument: 5
+>>>>>>> 4829de7940421594e02d45864da37f8f7a094205
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
