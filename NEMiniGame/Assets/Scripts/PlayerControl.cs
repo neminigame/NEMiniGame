@@ -47,9 +47,11 @@ public class PlayerControl : MonoBehaviour
     public bool isScene2AnimPlay = false;
     public Scene3State scene3State = Scene3State.PrePause;
     public bool isScene3Pause = false;
-    public bool isScene4Pause = false;
+    public bool isScene4Pause = false;//是否拿齐物品
     public Scene4Controler scene4Controler = null;
     public bool hasHitIdentifer5 = false;
+    public bool Scene3GetItem = false;
+    public int Scene3Identifer2Num = 0;
     void Awake()
     {
         scene3State = Scene3State.PrePause;
@@ -68,7 +70,9 @@ public class PlayerControl : MonoBehaviour
         isScene2AnimPlay = false;
         isScene3Pause = false;
         isScene4Pause = false;
-    }
+        Scene3Identifer2Num = 0;
+        Scene3GetItem = false;
+}
     private void Start()
     {
 
@@ -139,7 +143,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && (!isTeachingMode))
         {
             if (scene4Controler && scene4Controler.scene4AnimState == Scene4AnimState.End && !hasHitIdentifer5)
-                ChangeTimeScale(.1f);
+                ChangeTimeScale(.3f);
             else 
                 ChangeTimeScale(1f);
             
@@ -314,50 +318,67 @@ public class PlayerControl : MonoBehaviour
             {
                 if (other.name == "Identifer1")
                 {
-                    if(SceneManager.GetActiveScene().name=="Scene3")
-                    for (int i = 0; i < Items.Count; i++)
+                    if (SceneManager.GetActiveScene().name == "Scene3")
                     {
-                        if (Items[i].ItemName == "病危通知书")
+                        if (!Scene3GetItem)
                         {
-                            Debug.Log("病危通知书");
-                            if (scene3State == Scene3State.PrePause)
+                            for (int i = 0; i < Items.Count; i++)
                             {
-                                dropDir = tdir;
-                                tdir = Vector3.zero;
-                                this.enabled = false;
-                                GameManager.Instance.Scene3Control(Items[i]); //掉落病危通知书
+                                if (Items[i].ItemName == "病危通知书")
+                                {
+                                    Scene3GetItem = true;
+                                    Debug.Log("病危通知书");
+                                    if (scene3State == Scene3State.PrePause)
+                                    {
+                                        dropDir = tdir;
+                                        tdir = Vector3.zero;
+                                        this.enabled = false;
+                                        GameManager.Instance.Scene3Control(Items[i]); //掉落病危通知书
+                                    }
+                                    scene3State = Scene3State.Pause;
+                                //    Items.Remove(Items[i]); //就不设定item减少了
+                                }
                             }
-                            scene3State = Scene3State.Pause;
-                        //    Items.Remove(Items[i]); //就不设定item减少了
                         }
                     }
                     //玩家到达该点时npc朝前走
                     if (SceneManager.GetActiveScene().name == "Scene4" && gameMode==GameMode.Normal && isScene4Pause)
                     {
-                        if (!isScene4Pause)
+                        if (scene4Controler.scene4AnimState==Scene4AnimState.NotStart)
                         {
                             tdir = Vector3.zero;
                             this.enabled = false;
                             GameManager.Instance.Scene4Control();
                         }
-                        isScene4Pause = true;
+                        scene4Controler.scene4AnimState = Scene4AnimState.isPlaying;
                     }
                     
                 }
                 if (other.name == "Identifer2")
-                {                           
-                    for (int i = 0; i < Items.Count; i++)
+                {
+                    if (SceneManager.GetActiveScene().name == "Scene2")
                     {
-                        if (Items[i].name == "WaterCup")
+                        for (int i = 0; i < Items.Count; i++)
                         {
-                            if (!isScene2AnimPlay)
+                            if (Items[i].name == "WaterCup")
                             {
-                                tdir = Vector3.zero;
-                                this.enabled = false;
-                                GameManager.Instance.Scene2Control();
+                                if (!isScene2AnimPlay)
+                                {
+                                    tdir = Vector3.zero;
+                                    this.enabled = false;
+                                    GameManager.Instance.Scene2Control();
+                                }
+                                isScene2AnimPlay = true;
                             }
-                            isScene2AnimPlay = true;
-                        } 
+                        }
+                    }
+                    else if (SceneManager.GetActiveScene().name == "Scene3")
+                    {
+                        Scene3Identifer2Num++;
+                        if (Scene3Identifer2Num == 2)
+                        {
+                            transform.Find("/Enemys/Friend").GetChild(0).GetComponent<FriendBrain>().SetGuardsAlpha(1f, true, 1f);
+                        }
                     }
 
                 }

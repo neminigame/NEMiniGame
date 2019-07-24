@@ -15604,6 +15604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd14c7abcfeeeee4684c917d077a7e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+
   noiseTex: {fileID: 1708324052}
   quadMesh: {fileID: 1007314448}
   hbaoShader: {fileID: 4800000, guid: 7b834eafaedd0d842bb05a969d9d14bd, type: 3}
@@ -22529,6 +22530,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672731575}
+
   m_LocalRotation: {x: 0.45571455, y: 0.07680758, z: -0.039509363, w: 0.8859255}
   m_LocalPosition: {x: 0, y: 0.0000076293945, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}

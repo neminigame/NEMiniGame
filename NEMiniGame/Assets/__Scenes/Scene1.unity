@@ -2960,6 +2960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd14c7abcfeeeee4684c917d077a7e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+
   noiseTex: {fileID: 352883143}
   quadMesh: {fileID: 379617337}
   hbaoShader: {fileID: 4800000, guid: 7b834eafaedd0d842bb05a969d9d14bd, type: 3}
