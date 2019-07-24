@@ -22,7 +22,7 @@ public class startMovie : MonoBehaviour
     {
         if(starVideo.time>=starVideo.length)
         {
-            GlobalManager.Instance.ChangeScene(0);//动画播放完毕进入教学关
+            GlobalManager.Instance.ChangeScene(1);//动画播放完毕进入教学关
             GlobalManager.Instance.audioSource.mute = false;
         }
     }
