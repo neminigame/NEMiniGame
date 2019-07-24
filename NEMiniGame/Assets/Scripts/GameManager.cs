@@ -118,7 +118,7 @@ public class GameManager : GameManagerBase
             QuesMarkInfour.SetActive(true);
             transform.Find("/Enemys").GetComponent<Scene4Controler>().returnToDoor = true;
             transform.Find("/Enemys").GetComponent<Scene4Controler>().robotControl.gameObject.SetActive(true);
-
+            backDirector.enabled = true;
             _playerControl.isScene4Pause = true;
 
         }

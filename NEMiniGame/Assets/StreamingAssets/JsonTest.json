@@ -1,8 +1,8 @@
 {
     "home_state": true,
-    "school_state": true,
+    "school_state": false,
     "company_state": true,
     "hospital_state": true,
-    "teach_state": true,
+    "teach_state": false,
     "is_FirstLogin": false
 }
